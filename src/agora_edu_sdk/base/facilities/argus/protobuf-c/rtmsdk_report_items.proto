@@ -1,0 +1,255 @@
+syntax = "proto3";
+
+package io.agora.pb.rtmsdk;
+
+message CommonIndex {
+  string index1 = 1;
+  string index2 = 2;
+  string index3 = 3;
+}
+
+//id = 167
+message Session {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  string appId = 5;
+  string ver = 6;
+  int32 buildno = 7;
+  string installId = 8;
+  string localIp = 9;
+  string wanIp = 10;
+  int32 net1 = 11;
+  int32 netSubType = 12;
+  string ssid = 13;
+  string bssid = 14;
+  int32 rssi = 15;
+  int32 os = 16;
+  string did = 17;
+  string lsid = 18;
+  string fsid = 19;
+  CommonIndex index = 20;
+  string token = 21;
+}
+
+
+//id = 168
+message ApEvent {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string apAddr = 6;
+  repeated string linkServerList = 7;
+  string localWanIp = 8;
+  int32 errCode = 9;
+  int32 serverErrCode = 10;
+  string isp = 11;
+  int64 opId = 12;
+  int32 envId = 13;
+  int32 flag = 14;
+  string area = 15;
+}
+
+//id = 169
+message Link {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  int32 ec = 5;
+  int32 sc = 6;
+  string destServerIp = 7;
+  string ackedServerIp = 8;
+  int32 responseTime = 9;
+  CommonIndex index = 10;
+}
+
+//id = 170
+message Logout {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+}
+
+//id = 171
+message TxMessage {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  int64 insId = 6;
+  int64 dialId = 7;
+  int64 seq = 8;
+  string srcId = 9;
+  string dstId = 10;
+  int32 dstType = 11;
+  string payload = 12;
+  int64 messageId = 13;
+  bool isOfflineMessage = 14;
+}
+
+//id = 172
+message RxMessage {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  int64 insId = 6;
+  int64 dialId = 7;
+  int64 seq = 8;
+  string srcId = 9;
+  string dstId = 10;
+  int32 dstType = 11;
+  string payload = 12;
+  int64 messageId = 13;
+  int64 serverReceivedTs = 14;
+  bool isOfflineMessage = 15;
+}
+
+//id = 173
+message KickedOff {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  int32 linkId = 6;
+  int32 code = 7;
+  string server = 8;
+  int32 serverCode = 9;
+}
+
+//id = 174
+message TxMessageRes {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  int64 insId = 6;
+  int64 dialId = 7;
+  int64 seq = 8;
+  string srcId = 9;
+  string dstId = 10;
+  int32 dstType = 11;
+  int64 messageId = 12;
+  int32 err_code = 13;
+}
+
+//id = 175
+message ChnJoin {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  int32 errCode = 7;
+}
+
+//id = 176
+message ChnJoinRes {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  int32 errCode = 7;
+  int32 serverErrCode = 8;
+}
+
+//id = 177
+message ChnLeave {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  int32 errCode = 7;
+}
+
+//id = 178
+message ChnGetMembers {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  int32 errCode = 7;
+}
+
+//id = 179
+message ChnGetMembersRes {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  int32 errCode = 7;
+  int32 size = 8;
+}
+
+//id = 180
+message ChnMemberJoined {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  string memberId = 7;
+}
+
+//id = 181
+message ChnMemberLeft {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  string memberId = 7;
+}
+
+//id = 182
+message QueryPeersOnlineStatus {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  int32 peerCount = 6;
+}
+
+//id = 183
+message QueryPeersOnlineStatusRes {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  int32 peerCount = 6;
+  int32 errCode = 7;
+}
+
+//id = 184
+message RenewToken {
+  string sid = 1;
+  string userId = 2;
+  int64 lts = 3;
+  int64 elapse = 4;
+  CommonIndex index = 5;
+  string cname = 6;
+  string token = 7;
+}

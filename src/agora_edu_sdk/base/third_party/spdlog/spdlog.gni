@@ -1,0 +1,55 @@
+declare_args() {
+  # Prevent from child processes to inherit log file descriptors
+  spdlog_prevent_child_fd = false
+
+  # prevent spdlog from querying the thread id on each log call if thread id is not needed
+  spdlog_no_thread_id = false
+
+  # prevent spdlog from using thread local storage
+  spdlog_no_tls = false
+
+  # prevent spdlog from using of std::atomic log levels (use only if your code never modifies log levels concurrently
+  spdlog_no_atomic_levels = false
+
+  # Support wchar api
+  spdlog_wchar_support = false
+
+  # Support wchar filenames
+  spdlog_wchar_filenames = false
+
+  # Use the much faster (but much less accurate) CLOCK_REALTIME_COARSE instead of the regular clock
+  spdlog_clock_coarse = false
+}
+
+spdlog_defines = [
+  "SPDLOG_COMPILED_LIB",
+  "SPDLOG_NO_EXCEPTIONS",
+]
+
+if (spdlog_wchar_support && is_win) {
+  spdlog_defines += [ "SPDLOG_WCHAR_TO_UTF8_SUPPORT" ]
+}
+
+if (spdlog_wchar_filenames && is_win) {
+  spdlog_defines += [ "SPDLOG_WCHAR_FILENAMES" ]
+}
+
+if (spdlog_clock_coarse && !is_win) {
+  spdlog_defines += [ "SPDLOG_CLOCK_COARSE" ]
+}
+
+if (spdlog_prevent_child_fd) {
+  spdlog_defines += [ "SPDLOG_PREVENT_CHILD_FD" ]
+}
+
+if (spdlog_no_thread_id) {
+  spdlog_defines += [ "SPDLOG_NO_THREAD_ID" ]
+}
+
+if (spdlog_no_tls) {
+  spdlog_defines += [ "SPDLOG_NO_TLS" ]
+}
+
+if (spdlog_no_atomic_levels) {
+  spdlog_defines += [ "SPDLOG_NO_ATOMIC_LEVELS" ]
+}

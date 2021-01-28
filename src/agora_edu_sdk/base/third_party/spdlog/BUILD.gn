@@ -1,0 +1,26 @@
+import("../../../rte_sdk/agora.gni")
+import("spdlog.gni")
+
+static_library("spdlog") {
+  configs += [
+    "${media_sdk_path}/build:agora_config",
+    "${media_sdk_path}/build:agora_suppression",
+  ]
+  visibility = [ "*" ]
+
+  sources = [
+    "async.cpp",
+    "color_sinks.cpp",
+    "file_sinks.cpp",
+    "fmt.cpp",
+    "spdlog.cpp",
+    "stdout_sinks.cpp",
+  ]
+
+  defines = spdlog_defines
+
+  include_dirs = [
+    ".",
+    "include",
+  ]
+}

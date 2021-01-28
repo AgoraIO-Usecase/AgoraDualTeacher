@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package io.agora.pb.counter;
+
+// id = 1
+message Counter {
+  string sid = 1;
+  int64 peer = 2;
+  repeated CounterItem items = 3;
+}
+
+message CounterItem {
+  int64 lts = 1;
+  int32 id = 2;
+  int32 value = 3;
+  int32 tagErrorCode = 4; // 6 indicates interval of 6 seconds, 2 for 2 seconds
+  uint32 streamId = 5;
+}

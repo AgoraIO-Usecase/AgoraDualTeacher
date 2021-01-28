@@ -1,0 +1,17 @@
+import("../../../rte_sdk/agora.gni")
+if (feature_enable_sqlite) {
+  static_library("sqlite") {
+    configs += [
+      "${media_sdk_path}/build:agora_config",
+      "${media_sdk_path}/build:agora_suppression",
+      "//build/config/compiler:optimize_max",
+    ]
+    configs -= [ "//build/config/compiler:default_optimization" ]
+    visibility = [ "*" ]
+    sources = [
+      "sqlite3.c",
+      "sqlite3.h",
+      "sqlite3ext.h",
+    ]
+  }
+}

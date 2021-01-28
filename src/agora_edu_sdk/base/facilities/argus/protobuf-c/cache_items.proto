@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package io.agora.pb.cache;
+
+message CacheDocument {
+    // bssid or ip ==> dns name ==> ip list
+    bytes dnsList = 1;
+    string lastSid = 2;
+    string failedSid = 3;
+    bytes policy = 4;
+    string installId = 5;
+    int32 netEngine = 6;
+    string agoraUniqueId = 7;
+    bytes logUploadedList = 8;
+    string udid = 9;
+    bytes storeParams = 10;
+}
+
+message ReportCacheDocument {
+    // hash ==> ReportCacheItem
+    repeated bytes reportCacheList = 1;
+}

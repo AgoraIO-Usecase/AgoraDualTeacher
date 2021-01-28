@@ -1,0 +1,132 @@
+# Copyright (c) 2018 agora.io
+# lots of help from mozilla
+# https://dxr.mozilla.org/mozilla-central/source/ipc/chromium/src/third_party
+
+import("//build/config/nacl/config.gni")
+import("//webrtc.gni")
+
+config("libevent2_special") {
+  cflags = []
+  if (!is_win || is_clang) {
+    cflags += [
+      "-Wno-unused-function",
+      "-Wno-implicit-function-declaration",
+      "-Wno-parentheses-equality",
+    ]
+  }
+  if (is_ios) {
+    cflags += [
+      "-Wno-tautological-constant-out-of-range-compare",
+      "-Wno-constant-conversion",
+    ]
+  }
+}
+
+static_library("libevent_overwrite") {
+  overwrite_project = "//base/third_party/libevent:libevent"
+  sources = [
+    "buffer.c",
+    "bufferevent.c",
+    "bufferevent_filter.c",
+    "bufferevent_pair.c",
+    "bufferevent_ratelim.c",
+    "bufferevent_sock.c",
+    "evdns.c",
+    "event.c",
+    "event_tagging.c",
+    "evmap.c",
+    "evrpc.c",
+    "evthread.c",
+    "evutil.c",
+    "evutil_rand.c",
+    "evutil_time.c",
+    "http.c",
+    "listener.c",
+    "log.c",
+    "poll.c",
+    "select.c",
+    "signal.c",
+    "strlcpy.c",
+  ]
+
+  if (rtc_build_ssl) {
+    sources += [ "bufferevent_openssl.c" ]
+  }
+
+  append_defines = [ "HAVE_CONFIG_H" ]
+  if (rtc_force_disable_epoll) {
+    append_defines += [ "DISABLE_EPOLL" ]
+  }
+
+  if (is_mac || is_ios) {
+    sources += [
+      "evthread_pthread.c",
+      "kqueue.c",
+      "mac/event2/event-config.h",
+    ]
+    include_dirs = [ "mac" ]
+  } else if (is_linux) {
+    sources += [
+      "epoll.c",
+      "epoll_sub.c",
+      "evthread_pthread.c",
+      "linux/event2/event-config.h",
+    ]
+    include_dirs = [
+      "linux",
+      "compat",
+    ]
+  } else if (is_android) {
+    sources += [
+      "android/event2/event-config.h",
+      "epoll.c",
+      "evthread_pthread.c",
+
+      # carefull! android wants to remove arc4random
+      # https://github.com/android-ndk/ndk/issues/48
+      # --Ender(2018.10)
+      # yap, they removed
+      # --Ender(2019.1)
+      # "arc4random.c",
+    ]
+    include_dirs = [
+      ".",
+      "android",
+
+      # for LIST_FIRST/LIST_END/etc
+      "compat",
+    ]
+  } else if (is_win) {
+    sources += [
+      "buffer_iocp.c",
+      "bufferevent_async.c",
+      "event_iocp.c",
+      "evthread_win32.c",
+      "epoll.c",
+      "wepoll.c",
+      "win/event2/event-config.h",
+      "win32select.c",
+    ]
+    append_defines += [
+      "_CRT_SECURE_NO_WARNINGS",
+      "_CRT_NONSTDC_NO_DEPRECATE",
+      "EVENT__HAVE_WEPOLL",
+    ]
+    include_dirs = [
+      "win",
+      "compat",
+    ]
+  }
+
+  include_dirs += [
+    "include",
+    "//third_party/boringssl/src/include",
+  ]
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [ "//build/config/compiler:no_chromium_code" ]
+  configs += [ ":libevent2_special" ]
+  if (is_win) {
+    # because libevent already handle this well
+    configs -= [ "//build/config/win:lean_and_mean" ]
+  }
+}

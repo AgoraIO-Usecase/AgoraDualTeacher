@@ -1,0 +1,41 @@
+# Copyright 2016 Google Inc.
+#
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("skia_config") {
+  include_dirs = [
+    "include/c",
+    "include/codec",
+    "include/config",
+    "include/core",
+    "include/effects",
+    "include/encode",
+    "include/gpu",
+    "include/atlastext",
+    "include/pathops",
+    "include/ports",
+    "include/svg",
+    "include/utils",
+    "include/private",
+    # include in src folder
+    "src/core",
+    "src/utils",
+    "src/gpu",
+    "src/image",
+  ]
+}
+
+source_set("skia") {
+  sources = [
+  ]
+
+  defines = [ ]
+
+  deps = [
+  ]
+
+  configs += [
+    ":skia_config", 
+  ]
+}

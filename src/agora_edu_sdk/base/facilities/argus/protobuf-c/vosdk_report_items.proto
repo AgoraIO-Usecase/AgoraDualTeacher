@@ -1,0 +1,1538 @@
+syntax = "proto3";
+
+package io.agora.pb.vosdk;
+
+// id = 3
+message Session {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string vk = 10;
+  string ver = 11;
+  int32 net1 = 12;
+  int32 net2 = 13;
+  string localIp = 14;
+  string ssid = 15;
+  string bssid = 16;
+  int32 siglevel = 17;
+  int32 rssi = 18;
+  int32 os1 = 19;
+  string did = 20;
+  int32 pnq = 21;
+  int32 lost = 22;
+  string info = 23;
+  string lsid = 24;
+  int32 channelMode = 25;
+  string cheVer = 26;
+  int32 sdkBuildNumber = 27;
+  int32 cheBuildNumber = 28;
+  string fsid = 29;
+  int32 channelProfile = 30;
+  int32 netSubType = 31;
+  int32 clientType = 32; // 1: Normal; 2:PSTN; 3: Recording; 14 ~ Transmission SDK
+  int32 appCategory = 33;
+  int32 clientRole = 34;
+  string installId = 35;
+  string stringUid = 36;
+  int32 jitter = 37;
+  string verExtraInfo = 38;
+  string cpuid = 39;
+  string configServiceVersion = 40;
+  string serviceId = 41;
+  int32 configElapsed = 42;
+  bool isABTestSuccess = 43;
+  // appType: 1: Cocos;  2: Unity; 3: Electron; 4: Flutter; 5: Unreal; 6: Xamarin; 7: APICloud
+  int32 appType = 44;
+  string udid = 45;
+  bool useAutVos = 47;
+}
+
+// id = 4
+message Quit {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 dnsParsedTime = 10;
+}
+
+// id = 5
+message Vocs {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 ec = 10;
+  int32 sc = 11;
+  string serverIp = 12;
+  bool firstSuccess = 13;
+  int32 responseTime = 14;
+  repeated string serverIpList = 15;
+  string ssid = 16;
+  string bssid = 17;
+  string localWanIp = 18;
+  string ispName = 19;
+  bool minorIsp = 20;
+  int32 connectType = 21;
+}
+
+// id = 6
+message Vos {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 ec = 10;
+  int32 sc = 11;
+  string serverIp = 12;
+  repeated string vosList = 13;
+  bool firstSuccess = 14;
+  int32 channelCount = 15;
+  int32 responseTime = 16;
+  string ackedLoginServerIp = 17;
+  string wanIp = 18;
+}
+
+// id = 7
+message FirstAudioPacketSent {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 codec = 10;
+}
+
+// id = 8
+message FirstAudioPacketReceived {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 codec = 10;
+}
+
+// id = 9
+message AudioSendingStopped {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  string reason = 10;
+}
+
+// id = 10
+message AudioDisabled {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+}
+
+// id = 11
+message AudioEnabled {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+}
+
+// id = 12
+message FirstVideoPacketSent {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 codec = 10;
+}
+
+// id = 13
+message FirstVideoPacketReceived {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 codec = 10;
+}
+
+// id = 14
+message VideoSendingStopped {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  string reason = 10;
+}
+
+// id = 15
+message VideoDisabled {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+}
+
+// id = 16
+message VideoEnabled {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+}
+
+// id = 17
+message PeerOnlineStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+}
+
+// id = 18
+message PeerOfflineStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  string reason = 10;
+}
+
+// id = 19
+message AudioMutePeerStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  bool muted = 10;
+}
+
+// id = 20
+message VideoMutePeerStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  bool muted = 10;
+}
+
+// id = 21
+message AudioMuteAllStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  bool muted = 10;
+}
+
+// id = 22
+message VideoMuteAllStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  bool muted = 10;
+}
+
+// id = 23
+message RenewToken {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  string token = 10;
+}
+
+// id = 24
+message RenewTokenRes {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  int32 res_code = 10;
+}
+
+// id = 94
+message P2pStunLoginSuccess {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string serverIp = 10;
+  int32 vid = 11;
+}
+
+// id = 95
+message P2pStunLoginFailed {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string serverIp = 11;
+  int32 code = 12;
+  int32 vid = 13;
+}
+
+// id = 96
+message P2pPeerTryTouch {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string peerLanIp = 10;
+  string peerWanIp = 11;
+}
+
+// id = 97
+message P2pPeerConnected {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string peerIp = 10;
+}
+
+// id = 98
+message P2pPeerDisconnected {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string reason = 10;
+}
+
+// id = 99
+message P2pStart {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 threshold = 10;
+  string label = 11;
+}
+
+// id = 100
+message P2pStop {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string reason = 10;
+}
+
+// id = 116
+message ViLocalFrame {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 height = 10;
+  int32 width = 11;
+}
+
+// id = 117
+message ViRemoteFrame {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int64 peerUid = 10;
+  int32 height = 11;
+  int32 width = 12;
+  string codec = 13;
+}
+
+// id = 118
+message Rating {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string vk = 10;
+  int32 rating = 11;
+  string description = 12;
+}
+
+// id = 119
+message ACodec {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string codec = 10;
+  int32 frames = 11;
+  int32 interleaves = 12;
+}
+
+// id = 120
+message Peer {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int64 peerUid = 10;
+}
+
+// id = 121
+message VideoBandwidthAggressiveLevel{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 level = 10;
+}
+
+// id = 122
+message AppSetMinPlayoutDelay{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 playoutDelay = 10;
+}
+
+// id = 123
+message AppSetVideoStartBitRate{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 startVideoBitRate = 10;
+}
+
+// id = 124
+message SendVideoPaced{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  bool isEnabled = 10;
+}
+
+// id = 125
+message ABTest{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string feature = 10;
+  string tag = 11;
+  string params = 12;
+}
+
+// id = 126
+message VideoInitialOptions{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  bool isSendVideoPacedEnabled = 10;
+  bool isVideoFecEnabled = 11;
+  int32 videoFecMethod = 12;
+  int32 localFallbackOption = 13;
+  int32 remoteFallbackOption = 14;
+}
+
+// id = 127
+message VqcStat{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 totalFrames = 10;
+  int32 averageScore = 11;
+  int32 llRatio = 12;
+  int32 hhRatio = 13;
+}
+
+// id = 128, network change information
+message NetworkInformation {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 networkType = 10;
+  int32 networkSubType = 11;
+  string localIp = 12;
+  string ssid = 13;
+  string bssid = 14;
+  int32 siglevel = 15;
+  int32 rssi = 16;
+}
+
+// id = 129
+message DnsParserInfo{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string domain = 10;
+  bool isSuccess = 11;
+  bool isCached = 12;
+  int32 timeConsumed = 13;
+  int32 errorCode = 14;
+  string ip1 = 15;
+  string ip2 = 16;
+  string ip3 = 17;
+}
+
+// id = 130
+message TimeConsumption{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string itemName = 10;
+  int32 itemId = 11;
+  int32 timeConsumed = 12;
+}
+
+// id = 131
+message ConnectionStateChange{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 oldState = 10;
+  int32 newState = 11;
+  int32 reason = 12;
+  int32 timeConsumed = 13;
+}
+
+// id = 132,   the event of video stream switch
+message SwitchVideoStream {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 eventType = 10;       // begin, end, timeout
+  int32 expectedStream = 11;  // expected stream type
+  int32 requestId = 12;       // request id of switch
+  int64 beginTs = 13;         // optional
+  int64 endTs = 14;           // optional
+}
+
+// id = 133
+message DeviceStatChange {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 deviceType = 10;
+  int32 StateType = 11;
+  string deviceId = 12;
+  string deviceName = 13;
+}
+
+message CameraInfoItem {
+  string friendName = 1;
+  string deviceId = 2;
+  bool bUse = 3;
+}
+
+// id = 134
+message CameraInfo {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  repeated CameraInfoItem items = 10;
+}
+
+// id = 135
+message MaxVideoPayloadSet {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 maxPayload = 10;
+}
+
+// id = 136
+message FirstVideoFrameDecoded {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 width = 10;
+  int32 height = 11;
+}
+
+// id = 137
+message FirstVideoFrameDrawed {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 width = 10;
+  int32 height = 11;
+}
+
+// id = 138
+message VideoStreamSelected {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 streamType = 10; // VIDEO_STREAM_HIGH = 0, VIDEO_STREAM_LOW = 1
+}
+
+// id = 139
+message VideoStreamChangeRequest {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 streamType = 10; // VIDEO_STREAM_HIGH = 0, VIDEO_STREAM_LOW = 1
+}
+
+// id = 140
+message FirstDataPacketSent {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 transportType = 10; // reliable = 1 << 15, ordered = 1 << 14
+}
+
+// id = 141
+message FirstDataPacketReceived {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 transportType = 10; // reliable = 1 << 15, ordered = 1 << 14
+}
+
+// id = 142
+message Error {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 errorNo = 10;
+  string description = 11;
+}
+
+// id = 143
+message DefaultPeerStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 streamType = 10; // audio enalbed = 1, video low = 2, video high = 4
+}
+
+// id = 144
+message APEvent {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 ec = 10;
+  int32 sc = 11;
+  string serverIp = 12;
+  bool firstSuccess = 13;
+  int32 responseTime = 14;
+  repeated string serverIpList = 15;
+  string ssid = 16;
+  string bssid = 17;
+  string localWanIp = 18;
+  string ispName = 19;
+  bool minorIsp = 20;
+  int32 flag = 21;
+  string serviceName = 22;
+  string detail = 23;
+  int32 connectType = 24;
+}
+
+// id = 145
+message ReportStats {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 allTotalTxPackets = 10;
+  int32 allTotalAckedPackets = 11;
+  int32 allValidTxPackets = 12;
+  int32 allValidAckedPackets = 13;
+  int32 counterTotalTxPackets = 14;
+  int32 counterTotalAckedPackets = 15;
+  int32 counterValidTxPackets = 16;
+  int32 counterValidAckedPackets = 17;
+  int32 eventTotalTxPackets = 18;
+  int32 eventTotalAckedPackets = 19;
+  int32 eventValidTxPackets = 20;
+  int32 eventValidAckedPackets = 21;
+}
+
+// id = 146
+message Lbes {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 lbesUri = 10;
+  string url = 11;
+  string payload = 12;
+  int32 server_code = 13;
+  int32 code = 14;
+  string traceId = 15;
+  string command = 16;
+  string type = 17;
+}
+
+// id = 147
+message SignalingMsgStat {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 txMsgCount = 10;
+  int32 rxClientMsgCount = 11;
+  int32 rxSignalingMsgCount = 12;
+  int32 rxDualMsgCount = 13;
+}
+
+message Endpoint {
+  int32 ipv4 = 1;
+  int32 port = 2;
+  string serviceName = 3;
+}
+
+message Annotation {
+  int64 timestamp = 1;
+  string value = 2;
+  Endpoint endpoint = 3;
+}
+
+message BinaryAnnotation {
+  string key = 1;
+  string value = 2;
+  Endpoint endpoint = 3;
+}
+
+// id = 148
+message TrackSpan {
+  string traceId = 1;
+  string id = 2;
+  string parentId = 3;
+  string spanName = 4;
+  repeated Annotation annotations = 5;
+  repeated BinaryAnnotation binaryAnnotations = 6;
+  bool debug = 7;
+  int64 timestamp = 8;
+  int64 duration = 9;
+  int64 traceIdHigh = 10;
+}
+
+message RecordingMixModeProperty {
+  bool mixMode = 1;
+  int32 mixedVidoAudioMode = 2;
+  int32 mixHigh = 3;
+  int32 mixLow = 4;
+  int32 mixFps = 5;
+  int32 mixKbps = 6;
+}
+
+message RecordingJoinRes15Fields {
+  int64 reserve19 = 1;
+  int64 reserve20 = 2;
+  int64 reserve21 = 3;
+  int64 reserve22 = 4;
+  int64 reserve23 = 5;
+  int64 reserve24 = 6;
+  int64 reserve25 = 7;
+  int64 reserve26 = 8;
+  int64 reserve27 = 9;
+  int64 reserve28 = 10;
+  int64 reserve29 = 11;
+  int64 reserve30 = 12;
+  int64 reserve31 = 13;
+  int64 reserve32 = 14;
+  int64 reserve33 = 15;
+}
+
+// id = 149
+message RecordingJoin {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  RecordingMixModeProperty property = 10;
+  int32 minUdpPort = 11;
+  int32 maxUdpPort = 12;
+  int32 decodeAudioType = 13;
+  int32 decodeVideoType = 14;
+  int32 liveMode = 15;
+  int64 idle = 16;
+  int32 audioOnly = 17;
+  int32 videoOnly = 18;   // new insert
+  int32 syslogFacility = 19;
+  int32 streamType = 20;
+  int32 triggerMode = 21;
+  int32 language = 22;
+  RecordingJoinRes15Fields res15Fields = 23; //fixed reserve 15 fields
+}
+
+message RecordingLeaveRes5Fields {
+  int64 reserve102 = 1;
+  int64 reserve103 = 2;
+  int64 reserve104 = 3;
+  int64 reserve105 = 4;
+  int64 reserve106 = 5;
+}
+
+// id = 150
+message RecordingLeave {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 leavePathCode = 10;
+  RecordingLeaveRes5Fields res5Fields =11; //fixed reserve 5 fields
+}
+
+message PrivilegeExpireInfo {
+  int32 privilege = 1;
+  int32 remainingTime = 2;
+  int64 expireTs = 3;
+}
+
+// id = 151
+message PPrivilegeWillExpire {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string token = 10;
+  repeated PrivilegeExpireInfo privilegeExpireInfos = 11;
+}
+
+// id = 152
+message LocalFallbackStatus {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 status = 10;   // 0 - video high, 1 - video low, 2 - video muted
+}
+
+// id = 153
+message RemoteFallbackStatus{
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  int32 src = 10; // 0 - video high, 1 - video low, 2 - video muted
+  int32 dst = 11;  // 0 - video high, 1 - video low, 2 - video muted
+}
+
+// id = 154
+message ApiExec {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  string ip = 5;
+  int64 uid = 6;
+  bool success = 7;
+  int64 elapse = 8;
+  int64 peer = 9;
+  
+  string apiPayload = 10;
+  bool isCache = 11;
+  bool isNotificationSuppressed = 12;
+}
+
+// id = 156
+message WorkerEvent {
+    string sid = 1;
+    string cname = 2;
+    int64 cid = 3;
+    int64 lts = 4;
+    string ip = 5;
+    int64 uid = 6;
+    bool success = 7;
+    int64 elapse = 8;
+    int64 peer = 9;
+  
+    string command = 10;
+    string actionType = 11;
+    string url = 12;
+    string payload = 13;
+    int32 server_code = 14;
+    int32 code = 15;
+    string traceId = 16;
+    int32 workerType = 17;
+    int32 responseTime = 18;
+}
+
+// id = 157
+message P2PPenetration {
+    string sid = 1;
+    string cname = 2;
+    int64 cid = 3;
+    int64 lts = 4;
+    string ip = 5;
+    int64 uid = 6;
+    bool success = 7;
+    int64 elapse = 8;
+    int64 peer = 9;
+  
+    int32 vid = 10;
+    repeated string stunIp = 11;
+}
+
+// id = 158
+message NetworkTestReport {
+    string sid = 1;
+    string cname = 2;
+    int64 cid = 3;
+    int64 lts = 4;
+    string ip = 5;
+    int64 uid = 6;
+    bool success = 7;
+    int64 elapse = 8;
+    int64 peer = 9;
+  
+    int64 duration = 10;
+    repeated string successDomains = 11;
+    repeated string failedDomains = 12;
+    repeated int32 successUdpPorts = 13;
+    repeated int32 failedUdpPorts = 14;
+    int32 mtu = 15;
+    bool isTcpAvailable = 16;
+}
+
+message CommonIndex {
+  string index1 = 1;
+  string index2 = 2;
+  string index3 = 3;
+}
+
+// id = 159
+message CustomizedData {
+    int32 eventType = 1;
+    string sid = 2;
+    string avcUid = 3;
+    int32 netType = 4;
+    bool success = 5;
+    int32 elapsed = 6;
+    string requestType = 7;
+    int32 deviceType = 8;
+    int32 osType = 9;
+    string osVersion = 10;
+    string appVersion = 11;
+    int64 lts = 12;
+    int32 errorCode = 13;
+    string reservedValue = 14;
+    CommonIndex index = 15;
+    int32 elapse = 16;
+    int32 ec = 17;
+}
+
+// id = 160
+message APWorkerEvent {
+    string sid = 1;
+    string cname = 2;
+    int64 cid = 3;
+    int64 lts = 4;
+    string ip = 5;
+    int64 uid = 6;
+    bool success = 7;
+    int64 elapse = 8;
+    int64 peer = 9;
+  
+    int32 ec = 10;
+    int32 sc = 11;
+    string serverIp = 12;
+    bool firstSuccess = 13;
+    int32 responseTime = 14;
+    string serviceName = 15;
+    string response_detail = 16;
+}
+
+// id = 192
+message LogUploadStart {
+    string sid = 1;
+    string installId = 2;
+    string requestId = 3;
+    int64 lts = 4;
+    int32 sessionId = 5;
+}
+
+// id = 193
+message LogUploadEnd {
+    string sid = 1;
+    string installId = 2;
+    string requestId = 3;
+    int64 lts = 4;
+    int32 sessionId = 5;
+    int32 code = 6;
+    int32 elapsed = 7;
+}
+
+// id = 194
+message FirstJoinVosSuccess {
+  string sid = 1;
+  string cname = 2;
+  int64 cid = 3;
+  int64 lts = 4;
+  int64 uid = 5;
+  int64 elapse = 6;
+  string serverIp = 7;
+  int32 responseTime = 8;
+  string ackedLoginServerIp = 9;
+  string wanIp = 10;
+  string configServiceVersion = 11;
+  int32 configElapsed = 12;
+  bool isABTestSuccess = 13;
+  bool isStoreParamsSuccess = 14;
+  int32 storeParamsElapsed = 15;
+}
+
+// id = 10000
+message UserAnalytics {
+    string sid = 1;
+    int64 lts = 2;
+    string reportId = 3;
+    string category = 4;
+    string event = 5;
+    string label = 6;
+    int64 value = 7;
+}
+
+// id = 382
+message PeerFirstAudioFrameDecoded {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 elapse = 5;
+  int64 peeruid = 6;
+  int64 peerPublishDuration = 7;
+  int64 joinChannelSuccessElapse = 8;
+  bool availablePublish = 9;
+  int64 firstDrawnElapse = 10;
+  int64 uid = 11;
+}
+
+// id = 383
+message PeerFirstVideoFrameDecoded {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 elapse = 5;
+  int64 peeruid = 6;
+  int64 peerPublishDuration = 7;
+  int64 joinChannelSuccessElapse = 8;
+  bool availablePublish = 9;
+  int64 firstDrawnElapse = 10;
+  int64 uid = 11;
+}
+
+// id = 384
+message PublishAudioTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int32 timeout = 6;
+  int64 elapse = 7;
+}
+
+// id = 401
+message PublishVideoTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int32 timeout = 6;
+  int64 elapse = 7;
+}
+
+// id = 402
+message SubscribeAudioTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int64 peeruid = 6;
+  int32 timeout = 7;
+  int64 elapse = 8;
+}
+
+// id = 403
+message SubscribeVideoTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int64 peeruid = 6;
+  int32 timeout = 7;
+  int64 elapse = 8;
+}
+
+// id = 404
+message PeerFirstAudioFrameDecodedTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int64 peeruid = 6;
+  int32 timeout = 7;
+  int64 elapse = 8;
+  int64 peerPublishDuration = 9;
+  int64 joinChannelSuccessElapse = 10;
+  bool availablePublish = 11;
+}
+
+// id = 405
+message PeerFirstVideoFrameDecodedTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int64 peeruid = 6;
+  int32 timeout = 7;
+  int64 elapse = 8;
+  int64 peerPublishDuration = 9;
+  int64 joinChannelSuccessElapse = 10;
+  bool availablePublish = 11;
+}
+
+// id = 406
+message JoinChannelTimeout {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int32 timeout = 6;
+  int64 elapse = 7;
+}
+
+// id = 515
+message VideoEncoderGPUID {
+  int64 lts = 1;
+  string sid = 3;
+  string cname = 4;
+  int64 cid = 5;
+  int64 uid = 6;
+  string gpuid = 7;
+}
+
+// id = 345
+message CrashEvent {
+  int64 lts = 1;
+  string sid = 2;
+  string cname = 3;
+  int64 cid = 4;
+  int64 uid = 5;
+  int64 elapse = 6;
+  int32 crashVer = 7;
+  int32 dmpType = 8;
+  int64 lstLts = 9;
+  int64 lstCrashAddr = 10;
+  int64 lstLdBegin = 11;
+  int64 lstLdEnd = 12;
+  string lstServiceId = 13;
+  string lstSessionId = 14;
+  string lstChannelName = 15;
+  string lstSdkVer = 16;
+  int32 lstNetwork = 17;
+  int32 lstChannelMode = 18;
+  int32 lstChannelProfile = 19;
+  int32 lstClientType = 20;
+  int32 lstClientRole = 21;
+  string lstCrashUid = 22;
+  int32 lstBuildNo = 23;
+  bool isDumpFile = 24;
+  int32 os = 25;
+  string deviceid = 26;
+  string installid = 27;
+  string appid = 28;
+  int32 cpuarch = 29;
+}

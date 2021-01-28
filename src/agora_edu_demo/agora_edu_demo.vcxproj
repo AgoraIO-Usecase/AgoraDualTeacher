@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4A869BF0-F6F1-4861-A853-80F196862B21}</ProjectGuid>
+    <Keyword>QtVS_v303</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">10.0.17134.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src/agora_edu_sdk/interface/edu_sdk;$(SolutionDir)src/agora_edu_sdk/interface/base;$(ProjectDir);$(ProjectDir)src;$(ProjectDir)ui;$(ProjectDir)ctrl;$(ProjectDir)util;.\;.\ui;BugTrap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(SolutionDir)$(ConfigurationName)/agora_edu_sdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>BugTrap;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)sdk\agora_video_source\dll\agora_videosource_sdk.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\agora_video_source\dll\VideoSource.exe"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\rtc\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\rtm\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(ProjectDir)BugTrap\*.dll"  "$(SolutionDir)$(Configuration)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)sdk\agora_video_source\dll\agora_videosource_sdk.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\agora_video_source\dll\VideoSource.exe"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\rtc\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\rtm\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(ProjectDir)BugTrap\*.dll"  "$(SolutionDir)$(Configuration)"</Command>
+    </PostBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src/agora_edu_sdk/interface/edu_sdk;$(SolutionDir)src/agora_edu_sdk/interface/base;$(ProjectDir);$(ProjectDir)src;$(ProjectDir)ui;$(ProjectDir)ctrl;$(ProjectDir)util;.\;.\ui;$(ProjectDir)BugTrap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(SolutionDir)$(ConfigurationName)/agora_edu_sdk.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
+
+      <AdditionalLibraryDirectories>$(ProjectDir)BugTrap;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>false</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="QtSettings">
+    <QtInstall>QT_5.12_x86</QtInstall>
+    <QtModules>core;gui;network;opengl;openglextensions;widgets;winextras</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="QtSettings">
+    <QtInstall>QT_5.12_x86</QtInstall>
+    <QtModules>core;gui;network;opengl;openglextensions;widgets;winextras</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ctrl\AgoraChatWidget.cpp" />
+    <ClCompile Include="ctrl\AgoraInnerChatContent.cpp" />
+    <ClCompile Include="ctrl\AgoraSlider.cpp" />
+    <ClCompile Include="ctrl\AgoraVideoWidget.cpp" />
+    <ClCompile Include="ctrl\AgoraVolumeWidget.cpp" />
+    <ClCompile Include="ctrl\video_render_opengl.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\login_widget_manager.cpp" />
+    <ClCompile Include="src\student_widget_manager.cpp" />
+    <ClCompile Include="src\teacher_widget_manager.cpp" />
+    <ClCompile Include="ui\AgoraSelectShareDlg.cpp" />
+    <ClCompile Include="ui\AgoraStudentWidget.cpp" />
+    <ClCompile Include="ui\AgoraTeacherWidget.cpp" />
+    <ClCompile Include="ui\AgoraVideoListWidget.cpp" />
+    <ClCompile Include="ui\AgoraClassRoomListWidget.cpp" />
+    <ClCompile Include="ui\AgoraClassroomWidget.cpp" />
+    <ClCompile Include="ui\AgoraLoginWidget.cpp" />
+    <ClCompile Include="ui\AgoraSettingDialog.cpp" />
+    <ClCompile Include="ui\AgoraTipsDialog.cpp" />
+    <ClCompile Include="util\util.cpp" />
+    <QtRcc Include="agora_edu_demo.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\login_widget_manager.h" />
+    <QtMoc Include="ui\AgoraLoginWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="ui\AgoraChatWidget.ui" />
+    <QtUic Include="ui\AgoraSelectShareDlg.ui" />
+    <QtUic Include="ui\AgoraStudentWidget.ui" />
+    <QtUic Include="ui\AgoraTeacherWidget.ui" />
+    <QtUic Include="ui\AgoraVideoListWidget.ui" />
+    <QtUic Include="ui\AgoraClassroomWidget.ui" />
+    <QtUic Include="ui\AgoraClassroomListWidget.ui" />
+    <QtUic Include="ui\AgoraLoginWidget.ui" />
+    <QtUic Include="ui\AgoraSettingDialog.ui" />
+    <QtUic Include="ui\AgoraTipsWidget.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ui\AgoraTipsDialog.h" />
+    <QtMoc Include="ui\AgoraSettingDialog.h" />
+    <QtMoc Include="src\teacher_widget_manager.h" />
+    <QtMoc Include="ui\AgoraClassroomWidget.h" />
+    <QtMoc Include="src\student_widget_manager.h" />
+    <QtMoc Include="ctrl\AgoraChatWidget.h" />
+    <QtMoc Include="ctrl\AgoraInnerChatContent.h" />
+    <QtMoc Include="ctrl\AgoraSlider.h" />
+    <QtMoc Include="ctrl\AgoraVideoWidget.h" />
+    <QtMoc Include="ctrl\AgoraVolumeWidget.h" />
+    <ClInclude Include="ctrl\video_render_opengl.h" />
+    <QtMoc Include="ui\AgoraStudentWidget.h" />
+    <QtMoc Include="ui\AgoraClassRoomListWidget.h" />
+    <QtMoc Include="ui\AgoraVideoListWidget.h" />
+    <QtMoc Include="ui\AgoraSelectShareDlg.h" />
+    <QtMoc Include="ui\AgoraTeacherWidget.h" />
+    <ClInclude Include="util\util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource\agora_edu_demo.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

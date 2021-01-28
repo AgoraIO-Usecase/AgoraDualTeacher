@@ -1,0 +1,4 @@
+LIBRARY
+EXPORTS
+    createAgoraEduManager @1
+	getEduVersion @2

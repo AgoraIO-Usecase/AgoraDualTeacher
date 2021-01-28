@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package io.agora.pb.message;
+
+message Message {
+    int32 id = 1;
+    bytes msg = 2;
+}

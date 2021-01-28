@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="interface">
+      <UniqueIdentifier>{81413e9d-c529-40ed-bcf5-4a01328b62a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{a80a19ea-fa49-4610-94b4-a2deb30e9cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils">
+      <UniqueIdentifier>{c04fedc6-da00-4d9e-86e8-3c1208453431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\facilities">
+      <UniqueIdentifier>{f2b693e2-01ee-4781-874a-69af6432365a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\include">
+      <UniqueIdentifier>{204a4d60-ec62-43ba-b589-0e16d91d8e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\interface">
+      <UniqueIdentifier>{e34a754b-daad-4731-a645-0071a6245f13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\main">
+      <UniqueIdentifier>{81995446-0d2c-4d3d-b1f9-fbfefcffd8e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\rtc_base">
+      <UniqueIdentifier>{6ecdf08e-9e0b-4580-b708-32b0d895acfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\rte">
+      <UniqueIdentifier>{6309dfea-b572-4e37-8302-f43eafdf8c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\rtm">
+      <UniqueIdentifier>{f1404fc5-bac9-45d2-92b8-fd7d3193280d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\third_party">
+      <UniqueIdentifier>{f69800be-a2c4-48af-bbb2-7aeda30f4acc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\alogrithm">
+      <UniqueIdentifier>{7f3c5df7-3f36-415b-bf6b-443420a01cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\crypto">
+      <UniqueIdentifier>{c0f12b26-a8ca-4d31-bbbc-1b9a2219a65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\files">
+      <UniqueIdentifier>{4690fe0d-ff99-4c90-8158-004617e14407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\lock">
+      <UniqueIdentifier>{0f9b5eb9-3544-4b4e-bab3-46d6db86c31b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\log">
+      <UniqueIdentifier>{33756974-ed92-4134-823f-cb0c3eda8fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\mgnt">
+      <UniqueIdentifier>{f27ee9b7-d2da-4eba-bd79-756771d243f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\net">
+      <UniqueIdentifier>{34825b63-486f-40f9-b1d4-a3e0beb9a5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\object">
+      <UniqueIdentifier>{84f056a6-86c6-48e4-8a45-b5c40cab956d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\strings">
+      <UniqueIdentifier>{54946169-a9ac-44d0-af71-70c8528676e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\thread">
+      <UniqueIdentifier>{3c4e4d10-9cad-4026-be84-666b87973646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\tools">
+      <UniqueIdentifier>{de292f4d-f8cc-4b47-822f-4d695fdc3485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\utils\thread\internal">
+      <UniqueIdentifier>{df3897e8-9c39-4cc2-83ff-30d7e33b2a72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\rte\transfer">
+      <UniqueIdentifier>{ec117c93-4af9-4ea9-b6b5-646651109266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\rte\utils">
+      <UniqueIdentifier>{795c3e96-d105-42c5-9baf-2d573e46b301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\third_party\spdlog">
+      <UniqueIdentifier>{2c6a3d0c-fbfd-4673-bd28-0822319f27f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\rte\media">
+      <UniqueIdentifier>{b2abbb82-89b0-4107-aacb-3638ad05a4cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{fe385de7-a426-4b03-9778-cf99796e859c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interface\base">
+      <UniqueIdentifier>{eb27e6f4-ad43-442f-a2fe-86bd67ed1d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interface\edu_sdk">
+      <UniqueIdentifier>{87751a4f-d227-4836-9a51-9fbee61bc425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proccess">
+      <UniqueIdentifier>{ab874178-f1d6-42ae-b481-8fbb266e4d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\service">
+      <UniqueIdentifier>{c1ca4f47-3c09-4573-8f66-c28cefdef6a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\device">
+      <UniqueIdentifier>{af0e808e-194c-466e-b8ec-03de39e5aff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\event">
+      <UniqueIdentifier>{d3bf56fe-1d3f-4c71-842a-f9f2ad4968cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base\utils\tools\c_json.cpp">
+      <Filter>base\utils\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\tools\json_wrapper.cpp">
+      <Filter>base\utils\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\tools\sys_compat_win32.cpp">
+      <Filter>base\utils\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\tools\util.cpp">
+      <Filter>base\utils\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\files\file.cc">
+      <Filter>base\utils\files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\files\file_path.cc">
+      <Filter>base\utils\files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\files\file_path_constants.cc">
+      <Filter>base\utils\files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\files\file_win.cc">
+      <Filter>base\utils\files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\lock\locks.cpp">
+      <Filter>base\utils\lock</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\lock\urcu.cpp">
+      <Filter>base\utils\lock</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\lock\waitable_event.cpp">
+      <Filter>base\utils\lock</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\lock\waitable_number.cpp">
+      <Filter>base\utils\lock</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\log\console_logger.cpp">
+      <Filter>base\utils\log</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\log\empty_logger.cpp">
+      <Filter>base\utils\log</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\log\file_logger.cpp">
+      <Filter>base\utils\log</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\log\log.cpp">
+      <Filter>base\utils\log</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\log\logger.cpp">
+      <Filter>base\utils\log</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\log\memory_logger.cpp">
+      <Filter>base\utils\log</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\mgnt\util_globals.cpp">
+      <Filter>base\utils\mgnt</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\dns_parser.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\event_dns_parser.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\event_http_client.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\event_tcp_client.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\event_udp_server.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\packet_lost_simulator.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\port_allocator.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\stream_buffer.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\object\object_table.cpp">
+      <Filter>base\utils\object</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\strings\string_piece.cc">
+      <Filter>base\utils\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\strings\string_split.cc">
+      <Filter>base\utils\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\strings\string_util.cc">
+      <Filter>base\utils\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\strings\string_util_constants.cc">
+      <Filter>base\utils\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\thread\internal\event_engine.cpp">
+      <Filter>base\utils\thread\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\thread\base_worker.cpp">
+      <Filter>base\utils\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\thread\thread_checker.cpp">
+      <Filter>base\utils\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\thread\thread_control_block.cpp">
+      <Filter>base\utils\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\thread\thread_foot_print.cpp">
+      <Filter>base\utils\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\thread\thread_pool.cpp">
+      <Filter>base\utils\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="base\facilities\tools\api_logger.cpp">
+      <Filter>base\facilities</Filter>
+    </ClCompile>
+    <ClCompile Include="base\main\user_id_manager.cpp">
+      <Filter>base\main</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\transfer\http_data_request.cpp">
+      <Filter>base\rte\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\transfer\rest_api_utility.cpp">
+      <Filter>base\rte\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\transfer\rtm_data_receiver.cpp">
+      <Filter>base\rte\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\transfer\transfer_factory.cpp">
+      <Filter>base\rte\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\utils\http_client.cpp">
+      <Filter>base\rte\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\scene_user_manager.cpp">
+      <Filter>base\rte</Filter>
+    </ClCompile>
+    <ClCompile Include="base\rte\media\media_control.cpp">
+      <Filter>base\rte\media</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\net\event_http_client2.cpp">
+      <Filter>base\utils\net</Filter>
+    </ClCompile>
+    <ClCompile Include="base\utils\tools\wmi_win32.cpp">
+      <Filter>base\utils\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_manager_impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_message_impl.h">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_collection_impl.h">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_classroom_manager_impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_service_restful_api.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_student_service_impl.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_teacher_service_impl.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_user_service_impl.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rtc_conn_manager.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_assistant_service_impl.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_device_manager_impl.cpp">
+      <Filter>src\device</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_video_frame_impl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_event.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edu_service.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base\utils\build_config.h">
+      <Filter>base\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\compiler_specific.h">
+      <Filter>base\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\refcountedobject.h">
+      <Filter>base\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\tools\c_json.h">
+      <Filter>base\utils\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\tools\cpu_usage.h">
+      <Filter>base\utils\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\tools\json_wrapper.h">
+      <Filter>base\utils\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\tools\sys_compat.h">
+      <Filter>base\utils\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\tools\sys_type.h">
+      <Filter>base\utils\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\tools\util.h">
+      <Filter>base\utils\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\crypto\btea.h">
+      <Filter>base\utils\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\crypto\uuid.h">
+      <Filter>base\utils\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\algorithm\algorithm.h">
+      <Filter>base\utils\alogrithm</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\files\file.h">
+      <Filter>base\utils\files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\files\file_path.h">
+      <Filter>base\utils\files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\lock\locks.h">
+      <Filter>base\utils\lock</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\lock\urcu.h">
+      <Filter>base\utils\lock</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\lock\waitable_event.h">
+      <Filter>base\utils\lock</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\lock\waitable_number.h">
+      <Filter>base\utils\lock</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\log\console_logger.h">
+      <Filter>base\utils\log</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\log\empty_logger.h">
+      <Filter>base\utils\log</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\log\file_logger.h">
+      <Filter>base\utils\log</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\log\log.h">
+      <Filter>base\utils\log</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\log\logger.h">
+      <Filter>base\utils\log</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\log\memory_logger.h">
+      <Filter>base\utils\log</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\mgnt\util_globals.h">
+      <Filter>base\utils\mgnt</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\dns_parser.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\event_http_client.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\event_tcp_client.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\event_udp_server.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\ip_type.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\packet_lost_simulator.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\port_allocator.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\socks5_client.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\stream_buffer.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\object\object_entry.h">
+      <Filter>base\utils\object</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\object\object_entry_ref_counted.h">
+      <Filter>base\utils\object</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\object\object_entry_std_shared.h">
+      <Filter>base\utils\object</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\object\object_table.h">
+      <Filter>base\utils\object</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\strings\char_traits.h">
+      <Filter>base\utils\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\strings\string_piece.h">
+      <Filter>base\utils\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\strings\string_piece_forward.h">
+      <Filter>base\utils\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\strings\string_split.h">
+      <Filter>base\utils\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\strings\string_util.h">
+      <Filter>base\utils\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\base_worker.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\io_engine.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\io_engine_base.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\thread_checker.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\thread_control_block.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\thread_foot_print.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\thread_invoker.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\thread\thread_pool.h">
+      <Filter>base\utils\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="base\facilities\tools\api_logger.h">
+      <Filter>base\facilities</Filter>
+    </ClInclude>
+    <ClInclude Include="base\facilities\tools\rtc_callback.h">
+      <Filter>base\facilities</Filter>
+    </ClInclude>
+    <ClInclude Include="base\include\base\base_type.h">
+      <Filter>base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="base\interface\cpp\rte\IAgoraRteLocalUser.h">
+      <Filter>base\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="base\interface\cpp\rte\internal\IAgoraRteSceneWithTest.h">
+      <Filter>base\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="base\interface\cpp\rte\internal\IAgoraRteTransferProtocol.h">
+      <Filter>base\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="base\main\ui_thread.h">
+      <Filter>base\main</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rtc_base\atomicops.h">
+      <Filter>base\rtc_base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rtc_base\constructormagic.h">
+      <Filter>base\rtc_base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\transfer\base_http_fetch.h">
+      <Filter>base\rte\transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\transfer\http_data_request.h">
+      <Filter>base\rte\transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\transfer\rest_api_utility.h">
+      <Filter>base\rte\transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\transfer\restful_data_defines.h">
+      <Filter>base\rte\transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\transfer\rtm_data_receiver.h">
+      <Filter>base\rte\transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\transfer\transfer_factory.h">
+      <Filter>base\rte\transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\utils\http_client.h">
+      <Filter>base\rte\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\scene_user_manager.h">
+      <Filter>base\rte</Filter>
+    </ClInclude>
+    <ClInclude Include="base\third_party\spdlog\include\spdlog\details\registry.h">
+      <Filter>base\third_party\spdlog</Filter>
+    </ClInclude>
+    <ClInclude Include="base\rte\media\media_control.h">
+      <Filter>base\rte\media</Filter>
+    </ClInclude>
+    <ClInclude Include="base\utils\net\event_http_client2.h">
+      <Filter>base\utils\net</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\EduBaseTypes.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\EduClassroom.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\EduStream.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\EduUser.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\EduVideoEncoderConfiguration.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\ErrorCode.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\AgoraRefPtr.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduAssistantService.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduClassroomManager.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduManager.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduStudentService.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduTeacherService.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduUserService.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_manager_impl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\base\EduMessage.h">
+      <Filter>interface\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\refcountedobject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_classroom_manager_impl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_service_restful_api.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_student_service_impl.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_teacher_service_impl.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="edu_user_service_base.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_user_service_impl.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rtc_conn_manager.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_assistant_service_impl.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sdk\rtm\include\IAgoraRtmCallManager.h">
+      <Filter>base\rtm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sdk\rtm\include\IAgoraRtmService.h">
+      <Filter>base\rtm</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduDeviceManager.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_device_manager_impl.h">
+      <Filter>src\device</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_video_frame_impl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\edu_sdk\IEduVideoFrame.h">
+      <Filter>interface\edu_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sdk\agora_video_source\include\IAgoraVideoSourceEngine.h">
+      <Filter>proccess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_event.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edu_service.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="export.def">
+      <Filter>src</Filter>
+    </None>
+    <None Include="export.def" />
+  </ItemGroup>
+</Project>

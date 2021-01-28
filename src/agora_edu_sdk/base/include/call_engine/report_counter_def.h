@@ -1,0 +1,190 @@
+//
+//  Agora Media SDK
+//
+//  Created by Sting Feng in 2015-05.
+//  Copyright (c) 2019 Agora IO. All rights reserved.
+//
+#pragma once
+
+// https://argus.agoralab.co/meta
+
+namespace agora {
+
+namespace rtc {
+namespace report {
+enum COUNTER {
+  A_OVERRUN = 0,           // aoc
+  A_UNDERRUN,              // auc
+  A_ENGINE_RESTART,        // aerc
+  A_APM_BUFFER,            // apmb
+  A_AEC_DELAY,             // aecd
+  A_AEC_ERL,               // alep
+  A_AEC_ERLE,              // asp
+  A_NEAROUT_SIGNAL_LEVEL,  //
+  A_NEARIN_SIGNAL_LEVEL,   //
+  A_ENCODEIN_SIGNAL_LEVEL,
+  A_ATTRIBUTE_BITS,
+  A_AUDIO_ADM,
+  A_AUDIO_PROFILE,
+  A_FARIN_SIGNAL_LEVEL,  //
+  A_HOWLING_STATE,       // ahs
+  A_AEC_HNL1,            // ads
+  A_ADM_PLAYOUT_GLITCH,  // amc
+
+  A_AUDIO_RECORD_FREQUENCY,
+  A_AUDIO_PLAYBACK_FREQUENCY,
+  A_AUDIO_ENGINE_STAT2,  // aaes2
+
+  A_AUDIO_ROUTE,  // aar
+  A_MAGIC_ID,     // ami
+
+  A_TX_RATE,  // atxr
+  A_RX_RATE,  // arxr
+
+  A_SEND_CODEC_TYPE,
+  A_BROADCASTER_RECV_RENDER_FREEZE_RATE,
+  A_BROADCASTER_RECV_RENDER_FREEZE_TIME,
+  A_AUDIENCE_RECV_RENDER_FREEZE_RATE,
+  A_AUDIENCE_RECV_RENDER_FREEZE_TIME,
+  A_AUDIO_SEND_LOST,
+  A_AUDIO_SEND_RTT,
+  A_AUDIO_SEND_JITTER,
+
+  A_TX_AUDIO_CODEC,          // atc
+  A_TX_VIDEO_CODEC,          // atc
+  A_FRAMES_PER_PACKET,       // afpp
+  A_INTERLEAVES_PER_PACKET,  // aipp
+
+  A_AUDIO_MAX_TX_INTERVAL,
+  A_VIDEO_MAX_TX_INTERVAL,
+
+  A_VIDEO_ENCODER_TIME,
+  A_VIDEO_DECODER_TIME,
+
+  S_AUDIO_ENCRYPTION_TIME,
+  S_AUDIO_DECRYPTION_TIME,
+  S_VIDEO_ENCRYPTION_TIME,
+  S_VIDEO_DECRYPTION_TIME,
+#if TARGET_OS_IOS
+  A_AUDIO_SAMPLE_RATE,
+  A_AUDIO_IO_BUFFER_DURATION,
+  A_AUDIO_OUTPUT_LATENCY,
+  A_AUDIO_INPUT_LATENCY,
+#endif
+  A_AEC_FRAC,
+  A_AEC_QUALITY,
+  V_HARDWARE_ENCODER,
+  S_LAST_ERROR,
+  S_LAST_ERROR_1,
+  S_LAST_ERROR_2,
+
+  S_REPORT_RESEND,           // srrc
+  S_MUTE_STATUS,             // sms
+  S_CPU_APP,                 // cpua
+  S_CPU_TOTAL,               // cput
+  S_CPU_QUALITY,             //
+  S_TOTAL_CORE,              // stc
+  S_ACTIVE_CORE,             // sac
+  S_CURRENT_CORE_FREQUENCY,  // scf
+  S_BATTERY_LIFE,
+  S_IN_TASK_PICKUP_COUNT,  // sitc
+  S_IN_TASK_PICKUP_TIME,   // sitt
+  S_IN_TASK_QUEUE_SIZE,    // siqs
+  S_TIMER_ACCURACY,        // sta
+  S_AUTIO_TX_TIME,
+  S_AUDIO_RX_TIME,
+  S_VIDEO_TX_TIME,
+  S_VIDEO_RX_TIME,
+  S_CLIENT_ROLE,
+  S_REPORT_CACHED_SIZE,
+
+  N_TX_RATE,         // ntxr
+  N_RX_RATE,         // nrxr
+  N_TX_BYTES,        // ntxb
+  N_RX_BYTES,        // nrxb
+  N_TX_PACKET_RATE,  // ntpr
+  N_RX_PACKET_RATE,  // nrpr
+  //  N_P2P_SENT_BYTES, // nptxb
+  N_P2P_SENT_RATE,      // nptxr
+  N_P2P_PEER_DELAY,     // nppd
+  N_BROADCAST_TX_RATE,  // nbtxr
+  N_BROADCAST_RX_RATE,  // nbrxr
+  N_REPORT_TX_RATE,     // nrtxr
+  N_ONLINE_PEERS,       // nop
+  N_NET_CHANGED,        // nntc
+
+  N_WAN_RTT,
+  N_GATEWAY_RTT,
+  N_SUBSCRIBE_STREAM_TYPE,
+  // trace counters
+  // local audio
+  T_LA_RECORDING_RATE,
+  T_LA_PLAYOUT_RATE,
+  T_LA_ENCODER_TX_FRAMES,
+  T_LA_ENCODER_TX_PACKETS,
+  // remote audio
+  T_RA_FEC_SAVED_LOSS_RATE,
+  T_RA_NETEQ_RX_PACKETS,
+  T_RA_NETEQ_RX_FRAMES,
+  T_RA_RX_EXPIRED_FRAMES,
+  T_RA_DECODER_IN_FRAMES,
+  T_RA_DECODER_OUT_FRAMES,
+  T_RA_RX_PACKETS,
+  // local video
+  T_LV_CAPTURE_WIDTH,
+  T_LV_CAPTURE_HEIGHT,
+  T_LV_CAPTURE_FRAMES,
+  T_LV_ENCODER_IN_FRAMES,
+  T_LV_ENCODER_OUT_FRAMES,
+  T_LV_ENCODER_FAILED_FRAMES,
+  T_LV_ENCODER_SKIP_FRAMES,
+  T_LV_ENCODER_DROPPED_FRAMES,
+  T_LV_TX_PACKETS_LOW,
+  T_LV_TX_FRAMES_LOW,
+  T_LV_TX_RATE_LOW,
+  T_LV_TX_PACKETS_HIGH,
+  T_LV_TX_FRAMES_HIGH,
+  T_LV_TX_RATE_HIGH,
+  // remote video
+  T_RV_RX_PACKETS,
+  T_RV_DECODER_FAILED_FRAMES,
+  T_RV_DECODER_OUT_FRAMES,
+  T_RV_RENDERER_IN_FRAMES,
+  T_RV_RENDERER_OUT_FRAMES,
+  // sdk audio
+  T_SDK_A_TX_PACKETS,
+  T_SDK_A_TX_FRAME_RATE,
+  T_SDK_A_TX_DTX_PACKETS,
+  T_SDK_A_RX_PACKETS,
+  T_SDK_A_TX_DROPPED_PACKETS,
+  T_SDK_A_RX_DROPPED_PACKETS,
+  // sdk audio
+  T_SDK_V_TX_PACKETS,
+  T_SDK_V_RX_PACKETS,
+  T_SDK_V_TX_DROPPED_PACKETS,
+  T_SDK_V_RX_DROPPED_PACKETS,
+  // packet lost
+  SDK_T_VOS_R_A_LOSS,
+  SDK_T_VOS_R_V_LOSS,
+  SDK_R_VOS_T_A_LOSS,
+  SDK_R_VOS_T_V_LOSS,
+  // p2p
+  N_P2P_SEND_RATE,
+  N_P2P_RECEIVE_RATE,
+  N_P2P_TX_LOST,
+  N_P2P_RX_LOST,
+  // damaged/exceed MTU packets
+  S_DAMAGED_PACKETS,
+  S_EXCEED_MTU_PACKETS,
+  N_SDK_R_VOS_T_A_LOSS,
+  N_SDK_R_VOS_T_V_LOSS,
+  N_SDK_T_VOS_R_A_LOSS,
+  N_SDK_T_VOS_R_V_LOSS,
+  T_LV_ENCODER_KEY_FRAMES,
+  S_LOAD_AVERAGE,
+  NUM_EVENTS
+};
+}  // namespace report
+
+}  // namespace rtc
+}  // namespace agora

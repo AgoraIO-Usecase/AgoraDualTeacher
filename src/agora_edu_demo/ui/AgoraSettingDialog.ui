@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AgoraSettingDialog</class>
+ <widget class="QWidget" name="AgoraSettingDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>598</width>
+    <height>570</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AgoraSettingDialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);
+QGroupBox{border:none}
+QLabel{color:gray}
+background: #F1F1F7;
+box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
+border-radius: 6px;
+
+
+
+
+
+</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,8,5,0">
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <item>
+      <widget class="QWidget" name="top_widget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: #F1F1F7;
+box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
+border-radius: 6px;</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_top" stretch="20,1">
+        <item>
+         <spacer name="horizontalSpacer_">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ExitPushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#ExitPushButton{
+border-image:url(&quot;:/image/resource/icon-close-gray@2x.png&quot;);
+}
+
+#ExitPushButton:hover{
+border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;);
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_video_test">
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1,8,1">
+          <item>
+           <widget class="QLabel" name="lab_camera_cap_1">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>摄像头</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmb_video_source_1">
+            <property name="styleSheet">
+             <string notr="true">
+QComboBox {
+    border: 1px solid #CCCCCC;
+    border-radius: 16px;
+    padding: 8px 18px 8px 3px;
+    padding-left:16px;
+	font:  14px &quot;微软雅黑&quot;;
+}
+
+QComboBox:on {
+     border: 1px solid #44A2FC;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    width: 20px;
+    border:none;
+    padding-right:10;
+}
+
+QComboBox::down-arrow {
+    image: url(&quot;:/image/resource/icon-arrow up.png&quot;);
+}
+QComboBox::down-arrow:on {
+    image: url(&quot;:/image/resource/icon-arrow down.png&quot;);
+}
+
+QComboBox QListView{
+    outline: 0px solid gray;  
+	border: 1px solid #E2E2F0;  
+	color: #191919;
+    background-color: white;   
+	border-radius: 6px;
+	selection-color:#000;
+    selection-background-color: #EEEEEE;   
+}
+
+QComboBox QListView::item{
+	margin:5px;
+	padding: 5px;
+};
+
+QComboBox QListView::item:text{
+	padding-left: 16px;
+};</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>无视频源</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="video_render_1" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QGroupBox" name="groupBox_video_source_1">
+            <property name="styleSheet">
+             <string notr="true">border:none;</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <property name="spacing">
+              <number>32</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="rdo_hight_level_video_1">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>清晰度优先</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="rdo_low_level_video_1">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>流畅度优先</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,1,8,1">
+          <item>
+           <widget class="QLabel" name="lab_camera_cap_2">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>摄像头</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmb_video_source_2">
+            <property name="styleSheet">
+             <string notr="true">
+QComboBox {
+    border: 1px solid #CCCCCC;
+    border-radius: 16px;
+    padding: 8px 18px 8px 3px;
+    padding-left:16px;
+	font:  14px &quot;微软雅黑&quot;;
+}
+
+QComboBox:on {
+     border: 1px solid #44A2FC;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    width: 20px;
+    border:none;
+    padding-right:10;
+}
+
+QComboBox::down-arrow {
+    image: url(&quot;:/image/resource/icon-arrow up.png&quot;);
+}
+QComboBox::down-arrow:on {
+    image: url(&quot;:/image/resource/icon-arrow down.png&quot;);
+}
+
+QComboBox QListView{
+    outline: 0px solid gray;  
+	border: 1px solid #E2E2F0;  
+	color: #191919;
+    background-color: white;   
+	border-radius: 6px;
+	selection-color:#000;
+    selection-background-color: #EEEEEE;   
+}
+
+QComboBox QListView::item{
+	margin:5px;
+	padding: 5px;
+};
+
+QComboBox QListView::item:text{
+	padding-left: 16px;
+};</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>无视频源</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="video_render_2" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QGroupBox" name="groupBox_video_source_2">
+            <property name="styleSheet">
+             <string notr="true">border:none;</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <property name="spacing">
+              <number>32</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="rdo_low_level_video_3">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>清晰度优先</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="rdo_low_level_video_2">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>流畅度优先</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="1,1">
+       <item>
+        <widget class="QWidget" name="widget_5" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,2,1">
+          <item>
+           <widget class="QLabel" name="lab_audio_cap">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>麦克风</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmb_audio_cap">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+QComboBox {
+    border: 1px solid #CCCCCC;
+    border-radius: 16px;
+    padding: 8px 18px 8px 3px;
+    padding-left:16px;
+	font:  14px &quot;微软雅黑&quot;;
+}
+
+QComboBox:on {
+     border: 1px solid #44A2FC;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    width: 20px;
+    border:none;
+    padding-right:10;
+}
+
+QComboBox::down-arrow {
+    image: url(&quot;:/image/resource/icon-arrow up.png&quot;);
+}
+QComboBox::down-arrow:on {
+    image: url(&quot;:/image/resource/icon-arrow down.png&quot;);
+}
+
+QComboBox QListView{
+    outline: 0px solid gray;  
+	border: 1px solid #E2E2F0;  
+	color: #191919;
+    background-color: white;   
+	border-radius: 6px;
+	selection-color:#000;
+    selection-background-color: #EEEEEE;   
+}
+
+QComboBox QListView::item{
+	margin:5px;
+	padding: 5px;
+};
+
+QComboBox QListView::item:text{
+	padding-left: 16px;
+};</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QLabel" name="lab_audio_cap_vol">
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>微软雅黑</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>音量</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="AgoraSlider" name="sldier_cap" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="AgoraVolumeWidget" name="cap_widget_render" native="true">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>32</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_audio_cap_test">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>26</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>26</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>微软雅黑</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">width: 50px;
+height: 26px;
+border-radius: 6px;
+border: 1px solid #E2E2F0;
+color: #0073FF;</string>
+              </property>
+              <property name="text">
+               <string>检测</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_6" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,2,2,1">
+          <item>
+           <widget class="QLabel" name="lab_audio_playback">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>扬声器</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cmb_audio_playback">
+            <property name="styleSheet">
+             <string notr="true">
+QComboBox {
+    border: 1px solid #CCCCCC;
+    border-radius: 16px;
+    padding: 8px 18px 8px 3px;
+    padding-left:16px;
+	font:  14px &quot;微软雅黑&quot;;
+}
+
+QComboBox:on {
+     border: 1px solid #44A2FC;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    width: 20px;
+    border:none;
+    padding-right:10;
+}
+
+QComboBox::down-arrow {
+    image: url(&quot;:/image/resource/icon-arrow up.png&quot;);
+}
+QComboBox::down-arrow:on {
+    image: url(&quot;:/image/resource/icon-arrow down.png&quot;);
+}
+
+QComboBox QListView{
+    outline: 0px solid gray;  
+	border: 1px solid #E2E2F0;  
+	color: #191919;
+    background-color: white;   
+	border-radius: 6px;
+	selection-color:#000;
+    selection-background-color: #EEEEEE;   
+}
+
+QComboBox QListView::item{
+	margin:5px;
+	padding: 5px;
+};
+
+QComboBox QListView::item:text{
+	padding-left: 16px;
+};</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_16">
+            <item>
+             <widget class="QLabel" name="lab_audio_playback_vol">
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>微软雅黑</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>音量</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="AgoraSlider" name="sldier_playback" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <widget class="AgoraVolumeWidget" name="playback_widget_render" native="true">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>32</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_audio_playback_test">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>26</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>26</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>微软雅黑</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">width: 50px;
+height: 26px;
+border-radius: 6px;
+border: 1px solid #E2E2F0;
+color: #0073FF;</string>
+              </property>
+              <property name="text">
+               <string>检测</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QWidget" name="bottom_layout" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>74</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>74</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: #F1F1F7;
+box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
+border-radius: 6px;</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="3,1,3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>1</number>
+        </property>
+        <property name="bottomMargin">
+         <number>1</number>
+        </property>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_applay">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>34</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>34</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border:1px solid;
+border-radius:6px;
+border-color:gray;
+background-color:#0073FF;
+color:white</string>
+          </property>
+          <property name="text">
+           <string>应用</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>AgoraSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">AgoraSlider.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AgoraVolumeWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">AgoraVolumeWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../agora_edu_demo.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>rdo_hight_level_video_1</sender>
+   <signal>clicked()</signal>
+   <receiver>AgoraSettingDialog</receiver>
+   <slot>OnMasterPreferred()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>83</x>
+     <y>295</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>889</x>
+     <y>-183</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rdo_low_level_video_3</sender>
+   <signal>clicked()</signal>
+   <receiver>AgoraSettingDialog</receiver>
+   <slot>OnSlavePreferred()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>406</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>870</x>
+     <y>-191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rdo_low_level_video_1</sender>
+   <signal>clicked()</signal>
+   <receiver>AgoraSettingDialog</receiver>
+   <slot>OnMasterPreferred()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>284</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rdo_low_level_video_2</sender>
+   <signal>clicked()</signal>
+   <receiver>AgoraSettingDialog</receiver>
+   <slot>OnSlavePreferred()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>504</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>284</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnMasterPreferred()</slot>
+  <slot>OnSlavePreferred()</slot>
+ </slots>
+</ui>

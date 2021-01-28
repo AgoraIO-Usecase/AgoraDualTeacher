@@ -1,0 +1,104 @@
+<RCC>
+    <qresource prefix="/wav">
+        <file>resource/ID_TEST_AUDIO.wav</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>resource/icon-arrow down.png</file>
+        <file>resource/icon-arrow up.png</file>
+        <file>resource/icon-camera-off.png</file>
+        <file>resource/icon-camera-off@2x.png</file>
+        <file>resource/icon-classroom.png</file>
+        <file>resource/icon-classroom@2x.png</file>
+        <file>resource/icon-classroom-hover.png</file>
+        <file>resource/icon-classroom-hover@2x.png</file>
+        <file>resource/icon-classroom-name.png</file>
+        <file>resource/icon-classroom-name@2x.png</file>
+        <file>resource/icon-close.png</file>
+        <file>resource/icon-close@2x.png</file>
+        <file>resource/icon-close-gray.png</file>
+        <file>resource/icon-close-gray@2x.png</file>
+        <file>resource/icon-close-gray-hover.png</file>
+        <file>resource/icon-close-gray-hover@2x.png</file>
+        <file>resource/icon-close-hover.png</file>
+        <file>resource/icon-close-hover@2x.png</file>
+        <file>resource/icon-close-white.png</file>
+        <file>resource/icon-close-white@2x.png</file>
+        <file>resource/icon-close-white-hover.png</file>
+        <file>resource/icon-close-white-hover@2x.png</file>
+        <file>resource/icon-delete.png</file>
+        <file>resource/icon-delete@2x.png</file>
+        <file>resource/icon-delete-hover.png</file>
+        <file>resource/icon-delete-hover@2x.png</file>
+        <file>resource/icon-exit.png</file>
+        <file>resource/icon-exit@2x.png</file>
+        <file>resource/icon-exit-hover.png</file>
+        <file>resource/icon-exit-hover@2x.png</file>
+        <file>resource/icon-Hidden.png</file>
+        <file>resource/icon-max.png</file>
+        <file>resource/icon-message active-hover.png</file>
+        <file>resource/icon-message active-hover@2x.png</file>
+        <file>resource/icon-message off-hover.png</file>
+        <file>resource/icon-message off-hover@2x.png</file>
+        <file>resource/icon-message on.png</file>
+        <file>resource/icon-message on@2x.png</file>
+        <file>resource/icon-message on-hover.png</file>
+        <file>resource/icon-message on-hover@2x.png</file>
+        <file>resource/icon-message.png</file>
+        <file>resource/icon-message@2x.png</file>
+        <file>resource/icon-message-active.png</file>
+        <file>resource/icon-message-active@2x.png</file>
+        <file>resource/icon-message-hover.png</file>
+        <file>resource/icon-message-hover@2x.png</file>
+        <file>resource/icon-message-off.png</file>
+        <file>resource/icon-message-off@2x.png</file>
+        <file>resource/icon-microphone.png</file>
+        <file>resource/icon-microphone@2x.png</file>
+        <file>resource/icon-microphone-off.png</file>
+        <file>resource/icon-microphone-off@2x.png</file>
+        <file>resource/icon-microphone-off-hover.png</file>
+        <file>resource/icon-microphone-off-hover@2x.png</file>
+        <file>resource/icon-microphone-on.png</file>
+        <file>resource/icon-microphone-on@2x.png</file>
+        <file>resource/icon-microphone-on-hover.png</file>
+        <file>resource/icon-microphone-on-hover@2x.png</file>
+        <file>resource/icon-min.png</file>
+        <file>resource/icon-open.png</file>
+        <file>resource/icon-open@2x.png</file>
+        <file>resource/icon-open-hover.png</file>
+        <file>resource/icon-open-hover@2x.png</file>
+        <file>resource/icon-setting.png</file>
+        <file>resource/icon-setting@2x.png</file>
+        <file>resource/icon-setting-hover.png</file>
+        <file>resource/icon-setting-hover@2x.png</file>
+        <file>resource/icon-share.png</file>
+        <file>resource/icon-share@2x.png</file>
+        <file>resource/icon-share-active.png</file>
+        <file>resource/icon-share-active@2x.png</file>
+        <file>resource/icon-share-active-hover.png</file>
+        <file>resource/icon-share-active-hover@2x.png</file>
+        <file>resource/icon-share-hover.png</file>
+        <file>resource/icon-share-hover@2x.png</file>
+        <file>resource/icon-speaker.png</file>
+        <file>resource/icon-speaker@2x.png</file>
+        <file>resource/icon-username.png</file>
+        <file>resource/icon-username@2x.png</file>
+        <file>resource/icon-上台.png</file>
+        <file>resource/icon-上台@2x.png</file>
+        <file>resource/icon-上台-hover.png</file>
+        <file>resource/icon-上台-hover@2x.png</file>
+        <file>resource/icon-已上台.png</file>
+        <file>resource/icon-已上台@2x.png</file>
+        <file>resource/icon-已上台-hover.png</file>
+        <file>resource/icon-已上台-hover@2x.png</file>
+        <file>resource/logo-双师.png</file>
+        <file>resource/pic-blue.png</file>
+        <file>resource/pic-blue@2x.png</file>
+        <file>resource/logo-dual-teacher@2x.png</file>
+        <file>resource/icon-max@2x.png</file>
+        <file>resource/icon-max-hover.png</file>
+        <file>resource/icon-max-hover@2x.png</file>
+        <file>resource/icon-min@2x.png</file>
+        <file>resource/icon-min-hover.png</file>
+        <file>resource/icon-min-hover@2x.png</file>
+    </qresource>
+</RCC>

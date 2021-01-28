@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{BF3E35DE-9A21-45C5-B511-736EAABA703B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>agoraedusdk</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;AGORAEDUSDK_EXPORTS;_WINDOWS;_USRDLL;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;FEATURE_EVENT_ENGINE;SPDLOG_NO_EXCEPTIONS;WEBRTC_WIN;WIN32_LEAN_AND_MEAN;FEATURE_HTTP;AGORARTC_EXPORT;AGORAEDU_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\rtc\include;$(SolutionDir)src\agora_edu_sdk;$(SolutionDir)sdk\agora_video_source\include;$(SolutionDir)sdk\rtm\include;base;base\event2\include;base\event2\win;base\rte;base\interface/cpp;base\third_party/spdlog/include;base\interface\cpp\api2;base\interface/cpp/rte;base\main;base\include;base\interface/cpp/base;base/rtm/include;.;base\interface\cpp\rtc_engine;interface/base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>export.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\agora_video_source\lib;$(SolutionDir)sdk\rtc\lib;$(SolutionDir)sdk\rtm\lib;base\utils\windows\x86\vs2017_mt\Debug;base/rtm/lib;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>agora_videosource_sdk.lib;agora_rtc_sdk.lib;libevent.lib;Rpcrt4.lib;wbemuuid.lib;agora_rtm_sdk.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;AGORAEDUSDK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>export.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;AGORAEDUSDK_EXPORTS;_WINDOWS;_USRDLL;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;FEATURE_EVENT_ENGINE;SPDLOG_NO_EXCEPTIONS;WEBRTC_WIN;WIN32_LEAN_AND_MEAN;FEATURE_HTTP;AGORARTC_EXPORT;AGORAEDU_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\rtc\include;$(SolutionDir)src\agora_edu_sdk;$(SolutionDir)sdk\agora_video_source\include;$(SolutionDir)sdk\rtm\include;base;base\event2\include;base\event2\win;base\rte;base\interface/cpp;base\third_party/spdlog/include;base\interface\cpp\api2;base\interface/cpp/rte;base\main;base\include;base\interface/cpp/base;base/rtm/include;.;base\interface\cpp\rtc_engine;interface/base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>export.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\agora_video_source\lib;$(SolutionDir)sdk\rtc\lib;$(SolutionDir)sdk\rtm\lib;base\utils\windows\x86\vs2017_mt\Debug;base/rtm/lib;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>agora_videosource_sdk.lib;agora_rtc_sdk.lib;libevent.lib;Rpcrt4.lib;wbemuuid.lib;agora_rtm_sdk.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)sdk\agora_video_source\dll\agora_videosource_sdk.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\agora_video_source\dll\VideoSource.exe"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\rtc\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;AGORAEDUSDK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>export.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="base\facilities\tools\api_logger.cpp" />
+    <ClCompile Include="base\main\user_id_manager.cpp" />
+    <ClCompile Include="base\rte\media\media_control.cpp" />
+    <ClCompile Include="base\rte\scene_user_manager.cpp" />
+    <ClCompile Include="base\rte\transfer\http_data_request.cpp" />
+    <ClCompile Include="base\rte\transfer\rest_api_utility.cpp" />
+    <ClCompile Include="base\rte\transfer\rtm_data_receiver.cpp" />
+    <ClCompile Include="base\rte\transfer\transfer_factory.cpp" />
+    <ClCompile Include="base\rte\utils\http_client.cpp" />
+    <ClCompile Include="base\utils\files\file.cc" />
+    <ClCompile Include="base\utils\files\file_path.cc" />
+    <ClCompile Include="base\utils\files\file_path_constants.cc" />
+    <ClCompile Include="base\utils\files\file_win.cc" />
+    <ClCompile Include="base\utils\lock\locks.cpp" />
+    <ClCompile Include="base\utils\lock\urcu.cpp" />
+    <ClCompile Include="base\utils\lock\waitable_event.cpp" />
+    <ClCompile Include="base\utils\lock\waitable_number.cpp" />
+    <ClCompile Include="base\utils\log\console_logger.cpp" />
+    <ClCompile Include="base\utils\log\empty_logger.cpp" />
+    <ClCompile Include="base\utils\log\file_logger.cpp" />
+    <ClCompile Include="base\utils\log\log.cpp" />
+    <ClCompile Include="base\utils\log\logger.cpp" />
+    <ClCompile Include="base\utils\log\memory_logger.cpp" />
+    <ClCompile Include="base\utils\mgnt\util_globals.cpp" />
+    <ClCompile Include="base\utils\net\dns_parser.cpp" />
+    <ClCompile Include="base\utils\net\event_dns_parser.cpp" />
+    <ClCompile Include="base\utils\net\event_http_client.cpp" />
+    <ClCompile Include="base\utils\net\event_http_client2.cpp" />
+    <ClCompile Include="base\utils\net\event_tcp_client.cpp" />
+    <ClCompile Include="base\utils\net\event_udp_server.cpp" />
+    <ClCompile Include="base\utils\net\packet_lost_simulator.cpp" />
+    <ClCompile Include="base\utils\net\port_allocator.cpp" />
+    <ClCompile Include="base\utils\net\stream_buffer.cpp" />
+    <ClCompile Include="base\utils\object\object_table.cpp" />
+    <ClCompile Include="base\utils\strings\string_piece.cc" />
+    <ClCompile Include="base\utils\strings\string_split.cc" />
+    <ClCompile Include="base\utils\strings\string_util.cc" />
+    <ClCompile Include="base\utils\strings\string_util_constants.cc" />
+    <ClCompile Include="base\utils\thread\base_worker.cpp" />
+    <ClCompile Include="base\utils\thread\internal\event_engine.cpp" />
+    <ClCompile Include="base\utils\thread\thread_checker.cpp" />
+    <ClCompile Include="base\utils\thread\thread_control_block.cpp" />
+    <ClCompile Include="base\utils\thread\thread_foot_print.cpp" />
+    <ClCompile Include="base\utils\thread\thread_pool.cpp" />
+    <ClCompile Include="base\utils\tools\c_json.cpp" />
+    <ClCompile Include="base\utils\tools\json_wrapper.cpp" />
+    <ClCompile Include="base\utils\tools\sys_compat_win32.cpp" />
+    <ClCompile Include="base\utils\tools\util.cpp" />
+    <ClCompile Include="base\utils\tools\wmi_win32.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="src\edu_assistant_service_impl.cpp" />
+    <ClCompile Include="src\edu_classroom_manager_impl.cpp" />
+    <ClCompile Include="src\edu_collection_impl.h" />
+    <ClCompile Include="src\edu_device_manager_impl.cpp" />
+    <ClCompile Include="src\edu_event.cpp" />
+    <ClCompile Include="src\edu_message_impl.h" />
+    <ClCompile Include="src\edu_service_restful_api.cpp" />
+    <ClCompile Include="src\edu_student_service_impl.cpp" />
+    <ClCompile Include="src\edu_teacher_service_impl.cpp" />
+    <ClCompile Include="src\edu_user_service_impl.cpp" />
+    <ClCompile Include="src\edu_manager_impl.cpp" />
+    <ClCompile Include="src\edu_service.cpp" />
+    <ClCompile Include="src\edu_video_frame_impl.cpp" />
+    <ClCompile Include="src\rtc_conn_manager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="export.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\sdk\agora_video_source\include\IAgoraVideoSourceEngine.h" />
+    <ClInclude Include="..\..\sdk\rtm\include\IAgoraRtmCallManager.h" />
+    <ClInclude Include="..\..\sdk\rtm\include\IAgoraRtmService.h" />
+    <ClInclude Include="base\facilities\tools\api_logger.h" />
+    <ClInclude Include="base\facilities\tools\rtc_callback.h" />
+    <ClInclude Include="base\include\base\base_type.h" />
+    <ClInclude Include="base\interface\cpp\rte\IAgoraRteLocalUser.h" />
+    <ClInclude Include="base\interface\cpp\rte\internal\IAgoraRteSceneWithTest.h" />
+    <ClInclude Include="base\interface\cpp\rte\internal\IAgoraRteTransferProtocol.h" />
+    <ClInclude Include="base\main\ui_thread.h" />
+    <ClInclude Include="base\rtc_base\atomicops.h" />
+    <ClInclude Include="base\rtc_base\constructormagic.h" />
+    <ClInclude Include="base\rte\media\media_control.h" />
+    <ClInclude Include="base\rte\scene_user_manager.h" />
+    <ClInclude Include="base\rte\transfer\base_http_fetch.h" />
+    <ClInclude Include="base\rte\transfer\http_data_request.h" />
+    <ClInclude Include="base\rte\transfer\restful_data_defines.h" />
+    <ClInclude Include="base\rte\transfer\rest_api_utility.h" />
+    <ClInclude Include="base\rte\transfer\rtm_data_receiver.h" />
+    <ClInclude Include="base\rte\transfer\transfer_factory.h" />
+    <ClInclude Include="base\rte\utils\http_client.h" />
+    <ClInclude Include="base\third_party\spdlog\include\spdlog\details\registry.h" />
+    <ClInclude Include="base\utils\algorithm\algorithm.h" />
+    <ClInclude Include="base\utils\build_config.h" />
+    <ClInclude Include="base\utils\compiler_specific.h" />
+    <ClInclude Include="base\utils\crypto\btea.h" />
+    <ClInclude Include="base\utils\crypto\uuid.h" />
+    <ClInclude Include="base\utils\files\file.h" />
+    <ClInclude Include="base\utils\files\file_path.h" />
+    <ClInclude Include="base\utils\lock\locks.h" />
+    <ClInclude Include="base\utils\lock\urcu.h" />
+    <ClInclude Include="base\utils\lock\waitable_event.h" />
+    <ClInclude Include="base\utils\lock\waitable_number.h" />
+    <ClInclude Include="base\utils\log\console_logger.h" />
+    <ClInclude Include="base\utils\log\empty_logger.h" />
+    <ClInclude Include="base\utils\log\file_logger.h" />
+    <ClInclude Include="base\utils\log\log.h" />
+    <ClInclude Include="base\utils\log\logger.h" />
+    <ClInclude Include="base\utils\log\memory_logger.h" />
+    <ClInclude Include="base\utils\mgnt\util_globals.h" />
+    <ClInclude Include="base\utils\net\dns_parser.h" />
+    <ClInclude Include="base\utils\net\event_http_client.h" />
+    <ClInclude Include="base\utils\net\event_http_client2.h" />
+    <ClInclude Include="base\utils\net\event_tcp_client.h" />
+    <ClInclude Include="base\utils\net\event_udp_server.h" />
+    <ClInclude Include="base\utils\net\ip_type.h" />
+    <ClInclude Include="base\utils\net\packet_lost_simulator.h" />
+    <ClInclude Include="base\utils\net\port_allocator.h" />
+    <ClInclude Include="base\utils\net\socks5_client.h" />
+    <ClInclude Include="base\utils\net\stream_buffer.h" />
+    <ClInclude Include="base\utils\object\object_entry.h" />
+    <ClInclude Include="base\utils\object\object_entry_ref_counted.h" />
+    <ClInclude Include="base\utils\object\object_entry_std_shared.h" />
+    <ClInclude Include="base\utils\object\object_table.h" />
+    <ClInclude Include="base\utils\refcountedobject.h" />
+    <ClInclude Include="base\utils\strings\char_traits.h" />
+    <ClInclude Include="base\utils\strings\string_piece.h" />
+    <ClInclude Include="base\utils\strings\string_piece_forward.h" />
+    <ClInclude Include="base\utils\strings\string_split.h" />
+    <ClInclude Include="base\utils\strings\string_util.h" />
+    <ClInclude Include="base\utils\thread\base_worker.h" />
+    <ClInclude Include="base\utils\thread\io_engine.h" />
+    <ClInclude Include="base\utils\thread\io_engine_base.h" />
+    <ClInclude Include="base\utils\thread\thread_checker.h" />
+    <ClInclude Include="base\utils\thread\thread_control_block.h" />
+    <ClInclude Include="base\utils\thread\thread_foot_print.h" />
+    <ClInclude Include="base\utils\thread\thread_invoker.h" />
+    <ClInclude Include="base\utils\thread\thread_pool.h" />
+    <ClInclude Include="base\utils\tools\cpu_usage.h" />
+    <ClInclude Include="base\utils\tools\c_json.h" />
+    <ClInclude Include="base\utils\tools\json_wrapper.h" />
+    <ClInclude Include="base\utils\tools\sys_compat.h" />
+    <ClInclude Include="base\utils\tools\sys_type.h" />
+    <ClInclude Include="base\utils\tools\util.h" />
+    <ClInclude Include="edu_user_service_base.h" />
+    <ClInclude Include="interface\base\AgoraRefPtr.h" />
+    <ClInclude Include="interface\base\EduBaseTypes.h" />
+    <ClInclude Include="interface\base\EduClassroom.h" />
+    <ClInclude Include="interface\base\EduMessage.h" />
+    <ClInclude Include="interface\base\EduStream.h" />
+    <ClInclude Include="interface\base\EduUser.h" />
+    <ClInclude Include="interface\base\EduVideoEncoderConfiguration.h" />
+    <ClInclude Include="interface\base\ErrorCode.h" />
+    <ClInclude Include="interface\edu_sdk\IEduAssistantService.h" />
+    <ClInclude Include="interface\edu_sdk\IEduClassroomManager.h" />
+    <ClInclude Include="interface\edu_sdk\IEduDeviceManager.h" />
+    <ClInclude Include="interface\edu_sdk\IEduManager.h" />
+    <ClInclude Include="interface\edu_sdk\IEduStudentService.h" />
+    <ClInclude Include="interface\edu_sdk\IEduTeacherService.h" />
+    <ClInclude Include="interface\edu_sdk\IEduUserService.h" />
+    <ClInclude Include="interface\edu_sdk\IEduVideoFrame.h" />
+    <ClInclude Include="src\edu_assistant_service_impl.h" />
+    <ClInclude Include="src\edu_classroom_manager_impl.h" />
+    <ClInclude Include="src\edu_device_manager_impl.h" />
+    <ClInclude Include="src\edu_event.h" />
+    <ClInclude Include="src\edu_service_restful_api.h" />
+    <ClInclude Include="src\edu_student_service_impl.h" />
+    <ClInclude Include="src\edu_teacher_service_impl.h" />
+    <ClInclude Include="src\edu_user_service_impl.h" />
+    <ClInclude Include="src\edu_manager_impl.h" />
+    <ClInclude Include="src\edu_service.h" />
+    <ClInclude Include="src\edu_video_frame_impl.h" />
+    <ClInclude Include="src\refcountedobject.h" />
+    <ClInclude Include="src\rtc_conn_manager.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
