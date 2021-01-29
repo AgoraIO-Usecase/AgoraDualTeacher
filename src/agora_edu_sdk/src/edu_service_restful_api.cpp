@@ -13,8 +13,9 @@ namespace edu {
 void ServiceRestfulHelper::Initialize(std::string app_id,
                                       std::string scene_uuid,
                                       std::string user_uuid, std::string auth,
-    std::string http_token, utils::worker_type parser_worker,
-    rte::DataRequestType req) {
+                                      std::string http_token,
+                                      utils::worker_type parser_worker,
+                                      rte::DataRequestType req) {
   rtc::ui_thread_sync_call(LOCATION_HERE, [=] {
     app_id_ = app_id;
     scene_uuid_ = scene_uuid;
@@ -327,7 +328,7 @@ int ServiceRestfulHelper::UnmuteLocalMediaStream(EduStream stream,
     if (unmute_audio) {
       param->AddInt(PARAM_AUDIO_STATE, 1);
     }
-    auto shared_this= shared_from_this();
+    auto shared_this = shared_from_this();
 
     rte::FetchUtility::CallPublishTrack(
         param, req_, parser_worker_,
@@ -376,7 +377,7 @@ int ServiceRestfulHelper::CreateLocalStream(
     if (stream.has_video) {
       param->AddInt(PARAM_VIDEO_SOURCE_TYPE, stream.source_type);
       param->AddInt(PARAM_VIDEO_STATE, 0);
-    }
+    } 
     if (stream.has_audio) {
       param->AddInt(PARAM_AUDIO_SOURCE_TYPE, 1);
       param->AddInt(PARAM_AUDIO_STATE, 0);

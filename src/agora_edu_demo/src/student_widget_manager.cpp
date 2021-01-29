@@ -236,7 +236,6 @@ void StudentWidgetManager::OnRoomCustomMessageReceived(
     }
   });
 }
-
 // stream
 void StudentWidgetManager::OnRemoteStreamsAdded(
     agora_refptr<IStreamInfoCollection> stream_info_collection,
@@ -250,8 +249,10 @@ void StudentWidgetManager::OnRemoteStreamsAdded(
 
       if (stream.user_info.role == EDU_ROLE_TYPE_TEACHER) {
         // auto subscribe teacher
-        shared_this->user_service_->SubscribeStream(stream,
-                                                    EduSubscribeOptions());
+        EduSubscribeOptions options;
+        options.subscribe_video =  stream.has_video;
+        options.subscribe_audio =  stream.has_audio;
+        shared_this->user_service_->SubscribeStream(stream, options);
       }
     }
   });

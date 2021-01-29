@@ -454,7 +454,7 @@ void TeacherWidgetManager::OnConnectionStateChanged(
         if (!setting_config_.video_source_slave.device_id.isEmpty()) {
           auto slave_camera_config = CreateRandUuidStreamConfig(
               TEACHER_SECOND_STREAM_UUID, "slave_camera_stream",
-              EDU_VIDEO_SOURCE_TYPE_CAMERA, true, true);
+              EDU_VIDEO_SOURCE_TYPE_CAMERA, true, false);
           user_service_->CreateLocalStream(slave_camera_config,
                                            edu_slave_stream);
         }

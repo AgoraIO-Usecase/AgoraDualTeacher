@@ -24,6 +24,8 @@ struct RtcInfo {
   std::string token;
   std::string channel_name;
   std::string info;
+  bool enable_video;
+  bool enable_audio;
   rtc::uid_t_ uid;
   rtc::CHANNEL_PROFILE_TYPE_ profile;
 };
@@ -64,7 +66,7 @@ class RtcConnManager {
 
   int CreateRtcConnnection(const StreamId& stream_id, std::string app_id,
                            std::string token, std::string channel_name,
-                           std::string info, rtc::uid_t_ uid = 0);
+                           std::string info,bool enable_video,bool enable_auido, rtc::uid_t_ uid = 0);
 
   int SetVideoConfig(const StreamId& stream_id, const EduVideoConfig& config);
 
@@ -105,6 +107,7 @@ class RtcConnManager {
 
  private:
   bool is_custom_render = false;
+  int count_should_publish_audio = 0;
   std::unordered_map<std::string, RtcInfo> map_rtc_info_;
   std::unordered_set<std::string> map_subscribed_audio_stream_;
   std::unordered_set<std::string> map_subscribed_video_stream_;

@@ -24,10 +24,10 @@ enum StreamUuidType {
 
 enum RoomMessageType {
   ROOM_ENTER_READY, SWITCH_WIDGET, KICK_MSG };
-
 #define APP_ID ""
 #define CUSTOMER_ID ""
 #define CUSTOMER_CERTIFICATE ""
+
 
 #define RAISE_KEY "Raise"
 #define RAISE_TRUE "True"

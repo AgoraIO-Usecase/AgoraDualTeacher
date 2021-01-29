@@ -255,6 +255,7 @@ RtmSceneDataReceiver::~RtmSceneDataReceiver() {
   });
 }
 
+// TODO(jxm): should sync call
 int RtmSceneDataReceiver::SetParam(agora_refptr<IDataParam> param) {
   API_LOGGER_MEMBER(nullptr);
 
@@ -263,41 +264,33 @@ int RtmSceneDataReceiver::SetParam(agora_refptr<IDataParam> param) {
     return ERR_INVALID_ARGUMENT;
   }
 
-  (void)rtc::ui_thread_sync_call(LOCATION_HERE, [=] {
-    param_ = param;
-    return ERR_OK;
-  });
-
+  param_ = param;
   return ERR_OK;
 }
 
+// TODO(jxm): should sync call
 int RtmSceneDataReceiver::Join() {
   API_LOGGER_MEMBER(nullptr);
 
-  (void)rtc::ui_thread_sync_call(LOCATION_HERE, [=] {
-    if (!rte_receiver_) {
-      LOG_ERR_AND_RET_INT(ERR_FAILED, "no rte_receiver_");
-    }
+  if (!rte_receiver_) {
+    LOG_ERR_AND_RET_INT(ERR_FAILED, "no rte_receiver_");
+  }
 
-    RtmRteDataReceiver* recevier =
-        static_cast<RtmRteDataReceiver*>(rte_receiver_.get());
-    if (!recevier || !recevier->GetRtmService()) {
-      LOG_ERR_AND_RET_INT(ERR_FAILED,
-                          "can't get rtm_service from rte_receiver_");
-    }
+  RtmRteDataReceiver* recevier =
+      static_cast<RtmRteDataReceiver*>(rte_receiver_.get());
+  if (!recevier || !recevier->GetRtmService()) {
+    LOG_ERR_AND_RET_INT(ERR_FAILED, "can't get rtm_service from rte_receiver_");
+  }
 
-    rtm_channel_ =
-        recevier->GetRtmService()->createChannel(scene_uuid_.c_str(), this);
-    if (!rtm_channel_) {
-      LOG_ERR_AND_RET_INT(ERR_FAILED, "failed to create RTM channel");
-    }
+  rtm_channel_ =
+      recevier->GetRtmService()->createChannel(scene_uuid_.c_str(), this);
+  if (!rtm_channel_) {
+    LOG_ERR_AND_RET_INT(ERR_FAILED, "failed to create RTM channel");
+  }
 
-    if (rtm_channel_->join() != ERR_OK) {
-      LOG_ERR_AND_RET_INT(ERR_FAILED, "failed to join RTM channel");
-    }
-
-    return ERR_OK_;
-  });
+  if (rtm_channel_->join() != ERR_OK) {
+    LOG_ERR_AND_RET_INT(ERR_FAILED, "failed to join RTM channel");
+  }
 
   return ERR_OK;
 }

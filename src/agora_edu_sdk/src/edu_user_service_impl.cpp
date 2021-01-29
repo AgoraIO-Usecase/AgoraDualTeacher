@@ -541,6 +541,8 @@ EduUserService::EduUserService(const EduUserServiceConfig& config)
                 config.rtc_token,
                 config.channel_name,
                 "",
+                true,
+                true,
                 (rtc::uid_t_)atoll(config.stream_uuid.c_str()),
                 rtc::CHANNEL_PROFILE_LIVE_BROADCASTING_
 
@@ -574,24 +576,28 @@ EduError EduUserService::_CreateLocalStream(EduStreamConfig config,
   strcpy(stream.user_info.user_uuid, local_user_.user_uuid);
   strcpy(stream.user_info.user_name, local_user_.user_name);
   rtc_info_.uid = config.stream_uuid;
+  rtc_info_.enable_audio = config.enable_microphone;
+  rtc_info_.enable_video = config.enable_camera;
+  auto rtc_temp = rtc_info_;
   auto shared_rest_api = rest_api_helper_->shared_from_this();
   agora_refptr<IEduUserService> shared_this = this;
   rtc::ui_thread_sync_call(
       LOCATION_HERE,
-      [this, shared_rest_api, shared_this, notify_exist, &stream,
+      [this, rtc_temp, shared_rest_api, shared_this, notify_exist, &stream,
        &err]() -> int {
         if (-1 == local_streams_->ExistStream(stream.stream_uuid)) {
           local_streams_->AddStreamInfo(stream);
           if (err) return ERR_FAILED;
           err = shared_rest_api->CreateLocalStream(
-              stream,
-              [this, shared_this, &stream, &err](std::string rtc_token) {
-                rtc_info_.uid = atoll(stream.stream_uuid);
-                rtc_info_.token = rtc_token;
+              stream, [this, rtc_temp, shared_this, &stream,
+                       &err](std::string rtc_token)mutable {
+                rtc_temp.uid = atoll(stream.stream_uuid);
+                rtc_temp.token = rtc_token;
                 rtc::ui_thread_sync_call(
-                    LOCATION_HERE, [this, stream, rtc_token, &err] {
+                    LOCATION_HERE,
+                    [this, rtc_temp, stream, shared_this, rtc_token, &err] {
                       err = rtc_manager_->CreateLocalStream(
-                          stream.stream_uuid, stream, rtc_info_, rtc_token);
+                          stream.stream_uuid, stream, rtc_temp, rtc_token);
                       if (err) return ERR_FAILED;
                       if (auto_publish_) this->PublishStream(stream);
                     });

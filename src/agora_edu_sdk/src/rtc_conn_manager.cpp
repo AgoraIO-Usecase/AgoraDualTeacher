@@ -70,7 +70,8 @@ bool RtcConnManager::IsLocalStream(const StreamId& stream_uuid) {
 int RtcConnManager::CreateRtcConnnection(const StreamId& stream_id,
                                          std::string app_id, std::string token,
                                          std::string channel_name,
-                                         std::string info, rtc::uid_t_ uid) {
+                                         std::string info, bool enable_video,
+                                         bool enable_auido, rtc::uid_t_ uid) {
   int err = ERR_OK;
   if (stream_id.empty()) return ERR_FAILED;
   auto iter = map_rtc_engines_.find(stream_id);
@@ -94,7 +95,8 @@ int RtcConnManager::CreateRtcConnnection(const StreamId& stream_id,
   engine->setChannelProfile(rtc::CHANNEL_PROFILE_LIVE_BROADCASTING_);
   engine->setCustomRender(is_custom_render);
   LOG_INFO("initialize engine succsed !");
-  map_rtc_info_[stream_id] = {app_id, token, channel_name, info, uid};
+  map_rtc_info_[stream_id] = {app_id,       token,        channel_name, info,
+                              enable_video, enable_auido, uid};
   map_event_[stream_id] = new EduEvent(false);
   return err;
 }
@@ -217,7 +219,8 @@ int RtcConnManager::CreateLocalStream(const StreamId& stream_id,
   if (rtc_iter == map_rtc_engines_.end()) {
     int err = CreateRtcConnnection(stream_id, rtc_config.app_id, rtc_token,
                                    rtc_config.channel_name, rtc_config.info,
-                                   rtc_config.uid);
+                                   rtc_config.enable_video,
+                                   rtc_config.enable_audio, rtc_config.uid);
     if (err) {
       LOG_ERR("RtcConnManager::StartOrUpdateLocalStream failed! err:%d", err);
       return err;
@@ -239,6 +242,9 @@ int RtcConnManager::CreateLocalStream(const StreamId& stream_id,
     default_stream_->enableLocalAudio(false);
     default_stream_->setDefaultMuteAllRemoteAudioStreams(true);
   } else {
+    //    rtc_iter->second->enableLocalAudio(rtc_config.enable_audio);
+
+    rtc_iter->second->enableLocalAudio(false);
     rtc_iter->second->muteAllRemoteAudioStreams(true);
     rtc_iter->second->enableDualStreamMode(true);
     default_stream_->muteRemoteAudioStream(atoll(stream_id.c_str()), true);
@@ -345,7 +351,7 @@ int RtcConnManager::StartShareScreen(const EduShareScreenConfig& config,
       rc_tmp.bottom -= rc_tmp.top;
       rc_tmp.left = 0;
       rc_tmp.top = 0;
-      //GetWindowRect(GetDesktopWindow(), &rc_tmp);
+      // GetWindowRect(GetDesktopWindow(), &rc_tmp);
     }
     rc.left = rc_tmp.left;
     rc.right = rc_tmp.right;
@@ -434,6 +440,8 @@ int RtcConnManager::SubscribeStream(const EduStream& stream,
     LOG_ERR("local stream is not err:%d", stream.stream_uuid, err);
     return err;
   }
+  err = default_stream_->muteRemoteAudioStream(atoll(stream.stream_uuid),
+                                               !options.subscribe_audio);
   auto iter_audio_subscribed =
       map_subscribed_audio_stream_.find(stream.stream_uuid);
   if (options.subscribe_audio &&
@@ -447,8 +455,6 @@ int RtcConnManager::SubscribeStream(const EduStream& stream,
     LOG_ERR("MuteStream failed! stream uuid:%s is exist err:%d",
             stream.stream_uuid, err);
   } else {
-    err = default_stream_->muteRemoteAudioStream(atoll(stream.stream_uuid),
-                                                 !options.subscribe_audio);
     if (err) {
       err = ERR_FAILED;
       LOG_ERR("stream_id:%s muteRemoteAudioStream audio faild err:%d",
@@ -463,6 +469,8 @@ int RtcConnManager::SubscribeStream(const EduStream& stream,
       }
     }
   }
+  err = default_stream_->muteRemoteVideoStream(atoll(stream.stream_uuid),
+                                               !options.subscribe_video);
   auto iter_video_subscribed =
       map_subscribed_video_stream_.find(stream.stream_uuid);
   if (options.subscribe_video &&
@@ -476,9 +484,6 @@ int RtcConnManager::SubscribeStream(const EduStream& stream,
     LOG_ERR("MuteStream failed! stream uuid:%s is exist err:%d",
             stream.stream_uuid, err);
   } else {
-    
-    err = default_stream_->muteRemoteVideoStream(atoll(stream.stream_uuid),
-                                                 !options.subscribe_video);
     if (err) {
       err = ERR_FAILED;
       LOG_ERR("stream_id:%s muteRemoteVideoStream video faild err:%d",
@@ -511,8 +516,7 @@ int RtcConnManager::SubscribeStream(const EduStream& stream,
         stream.stream_uuid, options.subscribe_audio, options.subscribe_video,
         options.video_stream_type);
   }
-  if (!IsLocalStream(stream.stream_uuid))
-  {
+  if (!IsLocalStream(stream.stream_uuid)) {
     rtc::REMOTE_VIDEO_STREAM_TYPE_ type = rtc::REMOTE_VIDEO_STREAM_LOW_;
     if (options.video_stream_type == EDU_VIDEO_STREAM_TYPE_HIGH) {
       type = rtc::REMOTE_VIDEO_STREAM_HIGH_;
@@ -611,6 +615,7 @@ int RtcConnManager::MuteStream(const EduStream& stream, bool mute_video,
         LOG_ERR("stream_id:%s muteRemoteVideoStream video faild err:%d",
                 stream.stream_uuid, err);
       } else {
+
         LOG_INFO("stream_id:%s muteRemoteVideoStream video succeed",
                  stream.stream_uuid);
       }
@@ -666,11 +671,21 @@ int RtcConnManager::MuteStream(const EduStream& stream, bool mute_video,
       LOG_ERR("MuteStream failed! stream uuid:%s is exist err:%d",
               stream.stream_uuid, err);
     } else {
-      err = iter->second->muteLocalAudioStream(mute_audio);
+      //err = iter->second->muteLocalAudioStream(mute_audio);
       if (err) {
         LOG_ERR("stream_id:%s muteLocalStream audio faild err:%d",
                 stream.stream_uuid, err);
       } else {
+        if (map_rtc_info_[stream.stream_uuid].enable_audio) {
+          if (mute_audio)
+            count_should_publish_audio--;
+          else
+            count_should_publish_audio++;
+          if (count_should_publish_audio > 0)
+            default_stream_->enableLocalAudio(true);
+          if (count_should_publish_audio <= 0)
+            default_stream_->enableLocalAudio(false);
+        }
         LOG_INFO("stream_id:%s muteLocalxStream audio succeed",
                  stream.stream_uuid);
         if (!mute_audio)
