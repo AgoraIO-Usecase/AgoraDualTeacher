@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>598</width>
-    <height>570</height>
+    <width>560</width>
+    <height>569</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);
 QGroupBox{border:none}
-QLabel{color:gray}
 background: #F1F1F7;
-box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
-border-radius: 6px;
 
 
 
@@ -32,21 +29,21 @@ border-radius: 6px;
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,8,5,0">
      <property name="spacing">
-      <number>5</number>
+      <number>0</number>
      </property>
      <item>
       <widget class="QWidget" name="top_widget" native="true">
@@ -64,12 +61,45 @@ border-radius: 6px;
        </property>
        <property name="styleSheet">
         <string notr="true">background: #F1F1F7;
-box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
-border-radius: 6px;</string>
+border-top-left-radius:6px;
+border-top-right-radius:6px;</string>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_top" stretch="20,1">
+       <layout class="QHBoxLayout" name="horizontalLayout_top" stretch="0,0,0,1">
         <item>
-         <spacer name="horizontalSpacer_">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="title_label">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#title_label{
+	color: rgb(25, 25, 25);
+}
+
+</string>
+          </property>
+          <property name="text">
+           <string>设备检测</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -118,12 +148,18 @@ border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;);
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_video_test">
+       <property name="spacing">
+        <number>6</number>
+       </property>
        <item>
         <widget class="QWidget" name="widget" native="true">
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1,8,1">
+          <property name="leftMargin">
+           <number>20</number>
+          </property>
           <item>
            <widget class="QLabel" name="lab_camera_cap_1">
             <property name="maximumSize">
@@ -137,6 +173,9 @@ border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;);
               <family>微软雅黑</family>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(138, 138, 154);</string>
+            </property>
             <property name="text">
              <string>摄像头</string>
             </property>
@@ -145,17 +184,16 @@ border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;);
           <item>
            <widget class="QComboBox" name="cmb_video_source_1">
             <property name="styleSheet">
-             <string notr="true">
-QComboBox {
-    border: 1px solid #CCCCCC;
-    border-radius: 16px;
-    padding: 8px 18px 8px 3px;
-    padding-left:16px;
-	font:  14px &quot;微软雅黑&quot;;
+             <string notr="true">QComboBox {
+	border:none;
+	border-bottom:1px solid #E2E2F0;
+    padding: 8px 8px 8px 2px;
+	color: rgb(25, 25, 25);
+	font:  11px  &quot;微软雅黑&quot;;
 }
 
 QComboBox:on {
-     border: 1px solid #44A2FC;
+    
 }
 
 QComboBox::drop-down {
@@ -173,19 +211,27 @@ QComboBox::down-arrow:on {
 }
 
 QComboBox QListView{
-    outline: 0px solid gray;  
-	border: 1px solid #E2E2F0;  
+    outline: 0px solid #E2E2F0;  
 	color: #191919;
+	margin:2px;
     background-color: white;   
-	border-radius: 6px;
-	selection-color:#000;
-    selection-background-color: #EEEEEE;   
 }
 
-QComboBox QListView::item{
-	margin:5px;
-	padding: 5px;
-};
+
+QComboBox QAbstractItemView::item:selected {
+	border:hide;
+	border-radius:6px;
+    color: #0073FF;
+    background-color:  #EEEEEE;
+}
+
+
+QComboBox QAbstractItemView::item {
+	border:hide;
+	height:25 px;
+	border: 1px solid rgba(0,0,0,0);
+	border-radius:6px;
+}
 
 QComboBox QListView::item:text{
 	padding-left: 16px;
@@ -205,6 +251,13 @@ QComboBox QListView::item:text{
               <width>16777215</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: url(&quot;:/image/resource/icon-camera-off@2x.png&quot;);
+</string>
             </property>
            </widget>
           </item>
@@ -228,6 +281,27 @@ QComboBox QListView::item:text{
                  <pointsize>9</pointsize>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton:unchecked {
+	color: #8a8a9a;
+}
+
+QRadioButton::indicator:unchecked {
+    width:                  10px;
+    height:                 10px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 1px solid #8a8a9a;
+}
+
+QRadioButton::indicator:checked {
+    width:                  5px;
+    height:                 5px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 4px solid #0073ff;
+}</string>
+               </property>
                <property name="text">
                 <string>清晰度优先</string>
                </property>
@@ -244,6 +318,27 @@ QComboBox QListView::item:text{
                  <pointsize>9</pointsize>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton:unchecked {
+	color: #8a8a9a;
+}
+
+QRadioButton::indicator:unchecked {
+    width:                  10px;
+    height:                 10px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 1px solid #8a8a9a;
+}
+
+QRadioButton::indicator:checked {
+    width:                  5px;
+    height:                 5px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 4px solid #0073ff;
+}</string>
+               </property>
                <property name="text">
                 <string>流畅度优先</string>
                </property>
@@ -253,11 +348,18 @@ QComboBox QListView::item:text{
            </widget>
           </item>
          </layout>
+         <zorder>cmb_video_source_1</zorder>
+         <zorder>lab_camera_cap_1</zorder>
+         <zorder>video_render_1</zorder>
+         <zorder>groupBox_video_source_1</zorder>
         </widget>
        </item>
        <item>
         <widget class="QWidget" name="widget_2" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,1,8,1">
+          <property name="rightMargin">
+           <number>20</number>
+          </property>
           <item>
            <widget class="QLabel" name="lab_camera_cap_2">
             <property name="maximumSize">
@@ -271,6 +373,9 @@ QComboBox QListView::item:text{
               <family>微软雅黑</family>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(138, 138, 154);</string>
+            </property>
             <property name="text">
              <string>摄像头</string>
             </property>
@@ -279,17 +384,16 @@ QComboBox QListView::item:text{
           <item>
            <widget class="QComboBox" name="cmb_video_source_2">
             <property name="styleSheet">
-             <string notr="true">
-QComboBox {
-    border: 1px solid #CCCCCC;
-    border-radius: 16px;
-    padding: 8px 18px 8px 3px;
-    padding-left:16px;
-	font:  14px &quot;微软雅黑&quot;;
+             <string notr="true">QComboBox {
+	border:none;
+	border-bottom:1px solid #E2E2F0;
+    padding: 8px 8px 8px 2px;
+	color: rgb(25, 25, 25);
+	font:  11px  &quot;微软雅黑&quot;;
 }
 
 QComboBox:on {
-     border: 1px solid #44A2FC;
+    
 }
 
 QComboBox::drop-down {
@@ -307,19 +411,27 @@ QComboBox::down-arrow:on {
 }
 
 QComboBox QListView{
-    outline: 0px solid gray;  
-	border: 1px solid #E2E2F0;  
+    outline: 0px solid #E2E2F0;  
 	color: #191919;
+	margin:2px;
     background-color: white;   
-	border-radius: 6px;
-	selection-color:#000;
-    selection-background-color: #EEEEEE;   
 }
 
-QComboBox QListView::item{
-	margin:5px;
-	padding: 5px;
-};
+
+QComboBox QAbstractItemView::item:selected {
+	border:hide;
+	border-radius:6px;
+    color: #0073FF;
+    background-color:  #EEEEEE;
+}
+
+
+QComboBox QAbstractItemView::item {
+	border:hide;
+	height:25 px;
+	border: 1px solid rgba(0,0,0,0);
+	border-radius:6px;
+}
 
 QComboBox QListView::item:text{
 	padding-left: 16px;
@@ -340,6 +452,9 @@ QComboBox QListView::item:text{
               <height>16777215</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">border-radious:6px;</string>
+            </property>
            </widget>
           </item>
           <item alignment="Qt::AlignHCenter">
@@ -355,12 +470,33 @@ QComboBox QListView::item:text{
               <number>32</number>
              </property>
              <item>
-              <widget class="QRadioButton" name="rdo_low_level_video_3">
+              <widget class="QRadioButton" name="rdo_hight_level_video_2">
                <property name="font">
                 <font>
                  <family>微软雅黑</family>
                  <pointsize>9</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton:unchecked {
+	color: #8a8a9a;
+}
+
+QRadioButton::indicator:unchecked {
+    width:                  10px;
+    height:                 10px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 1px solid #8a8a9a;
+}
+
+QRadioButton::indicator:checked {
+    width:                  5px;
+    height:                 5px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 4px solid #0073ff;
+}</string>
                </property>
                <property name="text">
                 <string>清晰度优先</string>
@@ -377,6 +513,27 @@ QComboBox QListView::item:text{
                  <family>微软雅黑</family>
                  <pointsize>9</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QRadioButton:unchecked {
+	color: #8a8a9a;
+}
+
+QRadioButton::indicator:unchecked {
+    width:                  10px;
+    height:                 10px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 1px solid #8a8a9a;
+}
+
+QRadioButton::indicator:checked {
+    width:                  5px;
+    height:                 5px;
+    border-radius:          6px;
+    background-color:       #fff;
+    border:                 4px solid #0073ff;
+}</string>
                </property>
                <property name="text">
                 <string>流畅度优先</string>
@@ -396,6 +553,9 @@ QComboBox QListView::item:text{
        <item>
         <widget class="QWidget" name="widget_5" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,2,1">
+          <property name="leftMargin">
+           <number>20</number>
+          </property>
           <item>
            <widget class="QLabel" name="lab_audio_cap">
             <property name="maximumSize">
@@ -408,6 +568,9 @@ QComboBox QListView::item:text{
              <font>
               <family>微软雅黑</family>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(138, 138, 154);</string>
             </property>
             <property name="text">
              <string>麦克风</string>
@@ -423,17 +586,16 @@ QComboBox QListView::item:text{
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">
-QComboBox {
-    border: 1px solid #CCCCCC;
-    border-radius: 16px;
-    padding: 8px 18px 8px 3px;
-    padding-left:16px;
-	font:  14px &quot;微软雅黑&quot;;
+             <string notr="true">QComboBox {
+	border:none;
+	border-bottom:1px solid #E2E2F0;
+    padding: 8px 8px 8px 2px;
+	color: rgb(25, 25, 25);
+	font:  11px  &quot;微软雅黑&quot;;
 }
 
 QComboBox:on {
-     border: 1px solid #44A2FC;
+    
 }
 
 QComboBox::drop-down {
@@ -451,19 +613,27 @@ QComboBox::down-arrow:on {
 }
 
 QComboBox QListView{
-    outline: 0px solid gray;  
-	border: 1px solid #E2E2F0;  
+    outline: 0px solid #E2E2F0;  
 	color: #191919;
+	margin:2px;
     background-color: white;   
-	border-radius: 6px;
-	selection-color:#000;
-    selection-background-color: #EEEEEE;   
 }
 
-QComboBox QListView::item{
-	margin:5px;
-	padding: 5px;
-};
+
+QComboBox QAbstractItemView::item:selected {
+	border:hide;
+	border-radius:6px;
+    color: #0073FF;
+    background-color:  #EEEEEE;
+}
+
+
+QComboBox QAbstractItemView::item {
+	border:hide;
+	height:25 px;
+	border: 1px solid rgba(0,0,0,0);
+	border-radius:6px;
+}
 
 QComboBox QListView::item:text{
 	padding-left: 16px;
@@ -472,12 +642,12 @@ QComboBox QListView::item:text{
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="0,0">
             <item>
              <widget class="QLabel" name="lab_audio_cap_vol">
               <property name="maximumSize">
                <size>
-                <width>50</width>
+                <width>45</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -486,8 +656,17 @@ QComboBox QListView::item:text{
                 <family>微软雅黑</family>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(138, 138, 154);</string>
+              </property>
               <property name="text">
                <string>音量</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::AutoText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -496,13 +675,13 @@ QComboBox QListView::item:text{
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
              </widget>
@@ -569,6 +748,9 @@ color: #0073FF;</string>
        <item>
         <widget class="QWidget" name="widget_6" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,2,2,1">
+          <property name="rightMargin">
+           <number>20</number>
+          </property>
           <item>
            <widget class="QLabel" name="lab_audio_playback">
             <property name="maximumSize">
@@ -582,6 +764,9 @@ color: #0073FF;</string>
               <family>微软雅黑</family>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(138, 138, 154);</string>
+            </property>
             <property name="text">
              <string>扬声器</string>
             </property>
@@ -590,17 +775,16 @@ color: #0073FF;</string>
           <item>
            <widget class="QComboBox" name="cmb_audio_playback">
             <property name="styleSheet">
-             <string notr="true">
-QComboBox {
-    border: 1px solid #CCCCCC;
-    border-radius: 16px;
-    padding: 8px 18px 8px 3px;
-    padding-left:16px;
-	font:  14px &quot;微软雅黑&quot;;
+             <string notr="true">QComboBox {
+	border:none;
+	border-bottom:1px solid #E2E2F0;
+    padding: 8px 8px 8px 2px;
+	color: rgb(25, 25, 25);
+	font:  11px  &quot;微软雅黑&quot;;
 }
 
 QComboBox:on {
-     border: 1px solid #44A2FC;
+    
 }
 
 QComboBox::drop-down {
@@ -618,19 +802,27 @@ QComboBox::down-arrow:on {
 }
 
 QComboBox QListView{
-    outline: 0px solid gray;  
-	border: 1px solid #E2E2F0;  
+    outline: 0px solid #E2E2F0;  
 	color: #191919;
+	margin:2px;
     background-color: white;   
-	border-radius: 6px;
-	selection-color:#000;
-    selection-background-color: #EEEEEE;   
 }
 
-QComboBox QListView::item{
-	margin:5px;
-	padding: 5px;
-};
+
+QComboBox QAbstractItemView::item:selected {
+	border:hide;
+	border-radius:6px;
+    color: #0073FF;
+    background-color:  #EEEEEE;
+}
+
+
+QComboBox QAbstractItemView::item {
+	border:hide;
+	height:25 px;
+	border: 1px solid rgba(0,0,0,0);
+	border-radius:6px;
+}
 
 QComboBox QListView::item:text{
 	padding-left: 16px;
@@ -639,12 +831,12 @@ QComboBox QListView::item:text{
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="0,0">
             <item>
              <widget class="QLabel" name="lab_audio_playback_vol">
               <property name="maximumSize">
                <size>
-                <width>50</width>
+                <width>45</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -652,6 +844,9 @@ QComboBox QListView::item:text{
                <font>
                 <family>微软雅黑</family>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(138, 138, 154);</string>
               </property>
               <property name="text">
                <string>音量</string>
@@ -663,13 +858,13 @@ QComboBox QListView::item:text{
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>40</height>
+                <height>30</height>
                </size>
               </property>
              </widget>
@@ -748,8 +943,9 @@ color: #0073FF;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">background: #F1F1F7;
-box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
-border-radius: 6px;</string>
+border-bottom-left-radius:6px;
+border-bottom-right-radius:6px;
+</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="3,1,3">
         <property name="spacing">
@@ -800,11 +996,23 @@ border-radius: 6px;</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">border:1px solid;
-border-radius:6px;
-border-color:gray;
+           <string notr="true">QPushButton{
 background-color:#0073FF;
-color:white</string>
+border-radius:6px;
+color:white
+}
+
+QPushButton:hover{
+background-color:#3590FF;
+border-radius:6px;
+color:white
+}
+
+QPushButton:pressed{
+background-color: #0E62C8;
+border-radius:6px;
+color:white
+}</string>
           </property>
           <property name="text">
            <string>应用</string>
@@ -867,7 +1075,7 @@ color:white</string>
    </hints>
   </connection>
   <connection>
-   <sender>rdo_low_level_video_3</sender>
+   <sender>rdo_hight_level_video_2</sender>
    <signal>clicked()</signal>
    <receiver>AgoraSettingDialog</receiver>
    <slot>OnSlavePreferred()</slot>

@@ -258,6 +258,9 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\edu_service.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\edu_message_impl.h">
       <Filter>src</Filter>
     </ClCompile>
@@ -293,9 +296,6 @@
     </ClCompile>
     <ClCompile Include="src\edu_event.cpp">
       <Filter>src\event</Filter>
-    </ClCompile>
-    <ClCompile Include="src\edu_service.cpp">
-      <Filter>src\service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -554,6 +554,9 @@
     <ClInclude Include="src\edu_manager_impl.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\edu_service.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="interface\base\EduMessage.h">
       <Filter>interface\base</Filter>
     </ClInclude>
@@ -607,9 +610,6 @@
     </ClInclude>
     <ClInclude Include="src\edu_event.h">
       <Filter>src\event</Filter>
-    </ClInclude>
-    <ClInclude Include="src\edu_service.h">
-      <Filter>src\service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

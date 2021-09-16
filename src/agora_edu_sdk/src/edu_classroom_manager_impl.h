@@ -112,6 +112,8 @@ class EduClassroomManager : public IEduClassroomManager,
   std::string stream_uuid_;
   std::string rtc_token_;
   bool custom_render_;
+  bool enable_hwdec_;
+  bool enable_hwenc_;
 
   EngagementUserInfo edu_user_info_;
   EduRoleType role_type_ = EDU_ROLE_TYPE_INVALID;

@@ -1,6 +1,10 @@
 #ifndef AGORAVIDEOWIDGET_H
 #define AGORAVIDEOWIDGET_H
 
+#define STR(str) #str
+
+#include <QFlags>
+#include <QTextEdit>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QOpenglWidget>
 #include <QtWidgets/QPushButton>
@@ -12,40 +16,50 @@
 #include "IEduUserService.h"
 #include "IEduVideoFrame.h"
 
-namespace agora {}  // namespace agora
-
 struct WidgetInfo {
   agora::edu::EduStream stream_info;
 };
+
+static char* edu_role_type_to_str(const agora::edu::EduRoleType& type) {
+  switch (type) {
+    case agora::edu::EDU_ROLE_TYPE_ASSISTANT:
+      return "Assistant";
+    case agora::edu::EDU_ROLE_TYPE_TEACHER:
+      return "Teacher";
+    case agora::edu::EDU_ROLE_TYPE_STUDENT:
+      return "Student";
+    case agora::edu::EDU_ROLE_TYPE_INVALID:
+    default:
+      return "Invalid Role Type";
+  }
+}
 
 class VideoRendererOpenGL;
 class AgoraVideoWidget : public QOpenGLWidget {
   // friend class AgoraVideoLayoutManager;
   Q_OBJECT
+ public:
+  enum FunctionalFlag {
+    NONE = 0,
+    SHOW_INFO = 1,
+    SUPPORT_DRAG = 2,
+  };
 
+  Q_DECLARE_FLAGS(FunctionalFlags, FunctionalFlag)
  public:
   explicit AgoraVideoWidget(QWidget* parent = 0);
   ~AgoraVideoWidget();
 
-  void SetEduStream(const agora::edu::EduStream* stream) {
-    std::lock_guard<std::mutex> _(m_mutex);
-    if (stream == nullptr) {
-      if (m_stream_info) {
-        delete m_stream_info;
-        m_stream_info = nullptr;
-      }
-      if (m_frame) m_frame->release();
-      m_frame = nullptr;
-      update();
-      return;
-    }
+  void SetEduUserInfo(const agora::edu::EduUser& user_info);
 
-    if (m_stream_info == nullptr) m_stream_info = new agora::edu::EduStream;
-    *m_stream_info = *stream;
-    update();
-  }
+  void SetEduStream(const agora::edu::EduStream* stream);
 
   agora::edu::EduStream* GetEduStream() { return m_stream_info; };
+
+  void SetFuntionalFlags(FunctionalFlags flags);
+  void AppendFuntionalFlags(FunctionalFlags flags) {
+    SetFuntionalFlags(func_flags_ | flags);
+  }
 
   int setViewProperties(int zOrder, float left, float top, float right,
                         float bottom);
@@ -65,7 +79,10 @@ class AgoraVideoWidget : public QOpenGLWidget {
   virtual void initializeGL() Q_DECL_OVERRIDE;
   virtual void resizeGL(int w, int h) Q_DECL_OVERRIDE;
   virtual void paintGL() Q_DECL_OVERRIDE;
-  virtual void mouseDoubleClickEvent(QMouseEvent* event);
+  virtual void mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+  virtual void mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+  virtual void mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+  virtual void mouseDoubleClickEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
 
  private:
   void InitChildWidget();
@@ -87,6 +104,14 @@ class AgoraVideoWidget : public QOpenGLWidget {
   QFrame* line;
   QFrame* widgetFrame;
 
+  FunctionalFlags func_flags_ = SHOW_INFO;
+  QTextEdit* m_infoTestEdit = nullptr;
+
+  bool is_drag_ = false;
+  QPoint mouse_start_point_;
+  QPoint window_top_left_point_;
+
+  agora::edu::EduUser m_user_info;
   agora::edu::EduStream* m_stream_info = nullptr;
   // agora video frame
   std::unique_ptr<VideoRendererOpenGL> m_render;
@@ -103,5 +128,7 @@ class AgoraVideoWidget : public QOpenGLWidget {
 
   bool start_switch = true;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(AgoraVideoWidget::FunctionalFlags)
 
 #endif  // AGORAVIDEOWIDGET_H

@@ -38,6 +38,9 @@ class ShareItemButton : public QPushButton {
 class AgoraSelectShareDlg : public QDialog {
   Q_OBJECT
 
+protected:
+  void paintEvent(QPaintEvent* event);
+
  public:
   AgoraSelectShareDlg(QWidget* parent = 0);
   ~AgoraSelectShareDlg();

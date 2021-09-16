@@ -1,7 +1,8 @@
 #include <QtPlatformHeaders/QWindowsWindowFunctions>
-
-#include "AgoraStudentWidget.h"
+#include <QBitmap>
+#include <QPainter>
 #include "AgoraChatWidget.h"
+#include "AgoraStudentWidget.h"
 #include "AgoraTipsDialog.h"
 
 AgoraStudentWidget::AgoraStudentWidget(
@@ -20,11 +21,6 @@ AgoraStudentWidget::AgoraStudentWidget(
 
   chat_widget_.reset(new AgoraChatWidget);
   chat_widget_->SetUserName(user_name);
-
-  if (control_widget_ == nullptr) {
-    control_widget_ = new QWidget(this);
-    control_widget_->setAutoFillBackground(true);
-  }
 
   chat_pushbutton_ = new QPushButton(this);
   QObject::connect(chat_widget_.get(), SIGNAL(ChatWidgetExitSig(bool)),
@@ -85,7 +81,6 @@ void AgoraStudentWidget::mousePressEvent(QMouseEvent* event) {
 
   if (event->button() == Qt::LeftButton && rect.contains(current_pos)) {
     is_drag_ = true;
-    //获得鼠标的初始位置
     mouse_start_point_ = event->globalPos();
     setCursor(Qt::OpenHandCursor);
   }
@@ -95,9 +90,7 @@ void AgoraStudentWidget::mousePressEvent(QMouseEvent* event) {
 
 void AgoraStudentWidget ::mouseMoveEvent(QMouseEvent* event) {
   if (is_drag_) {
-    //获得鼠标移动的距离
     QPoint distance = event->globalPos() - mouse_start_point_;
-    //改变窗口的位置
     this->move(window_top_left_point_ + distance);
   }
 
@@ -218,6 +211,10 @@ void AgoraStudentWidget::ShowScreen() {
   resize(1366, 768);
   show();
 
+  if (control_widget_ == nullptr) {
+    control_widget_ = new QWidget(video_widget_[0]);
+  }
+
   control_widget_->setLayout(new QHBoxLayout);
   chat_pushbutton_->setMaximumSize(38, 38);
   chat_pushbutton_->setMinimumSize(38, 38);
@@ -242,8 +239,14 @@ void AgoraStudentWidget::ShowScreen() {
 
   control_widget_->layout()->addWidget(chat_pushbutton_);
   control_widget_->layout()->setContentsMargins(6, 6, 6, 6);
-
-  control_widget_->setStyleSheet("background-color:rgba(255,255,255,1);");
+  control_widget_->setObjectName("control_widget_");
+  control_widget_->setStyleSheet(STR(
+		#control_widget_ { 
+		  background-color: rgb(255, 255, 255);
+          border : 1px solid #DBDBEA;
+          border-radius : 6px;
+		}
+	 ));
   control_widget_->move(20, 316);
   control_widget_->resize(50, 50);
   control_widget_->show();
@@ -255,6 +258,35 @@ void AgoraStudentWidget::HideScreen() {
   }
 
   hide();
+}
+
+void AgoraStudentWidget::paintEvent(QPaintEvent* event) {
+  Q_UNUSED(event);
+  QBitmap bmp(this->size());
+  bmp.fill();
+  QPainter painter(&bmp);
+  painter.setPen(Qt::black);
+  painter.setBrush(Qt::black);
+  painter.setRenderHints(QPainter::HighQualityAntialiasing |
+                         QPainter::SmoothPixmapTransform);
+  auto top_rect =
+      QRect(ui.top_widget->rect().x() + 1, ui.top_widget->rect().y() + 1,
+            ui.top_widget->rect().width(), ui.top_widget->rect().height());
+
+  auto bottom_rect = QRect(top_rect.x(), top_rect.y() + top_rect.height(),
+            ui.widget->rect().width(), ui.widget->rect().height());
+  QPainterPath path;
+  path.setFillRule(Qt::WindingFill);
+  path.addRoundedRect(top_rect, 8, 8);
+  path.addRoundedRect(bottom_rect, 8, 8);
+  QRect temp_top_rect(top_rect.left(), top_rect.top() + top_rect.height() / 2,
+                      top_rect.width(), top_rect.height());
+  QRect temp_bottom_rect(bottom_rect.left(), bottom_rect.top(),
+                         bottom_rect.width(), bottom_rect.height() / 2);
+  path.addRect(temp_top_rect);
+  path.addRect(temp_bottom_rect);
+  painter.fillPath(path, QBrush(QColor(93, 201, 87)));
+  setMask(bmp);
 }
 
 void AgoraStudentWidget::LayoutVideoWidget(bool is_raise) {
@@ -299,7 +331,8 @@ void AgoraStudentWidget::OnChangeSizePushButtonClicked() {
 }
 
 void AgoraStudentWidget::OnExitPushButtonClicked() {
-  if (AgoraTipsDialog::ExecTipsDialog(QString::fromLocal8Bit("退出教室？")) ==
+  if (AgoraTipsDialog::ExecTipsDialog(QString::fromLocal8Bit("退出确认"),
+                                      QString::fromLocal8Bit("退出教室？")) ==
       QDialog::Accepted) {
     student_widget_manager_->LeaveClassroom();
   }

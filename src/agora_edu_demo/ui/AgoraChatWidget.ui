@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>292</width>
-    <height>401</height>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,20 +21,32 @@
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="1,13,1">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="1,13,0">
      <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>
@@ -52,18 +64,27 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">width: 292px;
-height: 45px;
+        <string notr="true">QWidget{
 background: #F1F1F7;
-border-radius: 6px 6px 0px 0px;</string>
+}
+#top_widget{
+
+border-left:1px solid #DBDBEA;
+border-right:1px solid #DBDBEA;
+border-top:1px solid #DBDBEA;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+}
+
+</string>
        </property>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
           <x>126</x>
-          <y>0</y>
+          <y>10</y>
           <width>126</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="minimumSize">
@@ -144,7 +165,10 @@ border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;)
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border:none;</string>
+        <string notr="true">border-top:none;
+border-right:1px solid #DBDBEA;
+border-left:1px solid #DBDBEA;
+border-bottom:none;</string>
        </property>
        <property name="widgetResizable">
         <bool>true</bool>
@@ -154,8 +178,8 @@ border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;)
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>290</width>
-          <height>300</height>
+          <width>286</width>
+          <height>298</height>
          </rect>
         </property>
         <property name="minimumSize">
@@ -164,67 +188,80 @@ border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;)
           <height>100</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
        </widget>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="spacing">
-        <number>0</number>
+      <widget class="QWidget" name="bottomWidget" native="true">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+border-bottom:0.5px solid #DBDBEA;
+border-right:0.5px solid #DBDBEA;
+border-left:0.5px solid #DBDBEA;</string>
        </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
-       </property>
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="topMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <property name="bottomMargin">
-        <number>10</number>
-       </property>
-       <item>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>34</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>34</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>微软雅黑</family>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background: #FFFFFF;
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>34</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>34</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background: #FFFFFF;
 border-radius: 6px;
 border: 1px solid #D7D9E6;
 padding-left:10px;
 color:#191919</string>
-         </property>
-         <property name="placeholderText">
-          <string>说点什么</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+          </property>
+          <property name="placeholderText">
+           <string>说点什么</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </item>

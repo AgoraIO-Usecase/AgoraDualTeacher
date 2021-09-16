@@ -91,7 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;AGORAEDUSDK_EXPORTS;_WINDOWS;_USRDLL;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;FEATURE_EVENT_ENGINE;SPDLOG_NO_EXCEPTIONS;WEBRTC_WIN;WIN32_LEAN_AND_MEAN;FEATURE_HTTP;AGORARTC_EXPORT;AGORAEDU_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\rtc\include;$(SolutionDir)src\agora_edu_sdk;$(SolutionDir)sdk\agora_video_source\include;$(SolutionDir)sdk\rtm\include;base;base\event2\include;base\event2\win;base\rte;base\interface/cpp;base\third_party/spdlog/include;base\interface\cpp\api2;base\interface/cpp/rte;base\main;base\include;base\interface/cpp/base;base/rtm/include;.;base\interface\cpp\rtc_engine;interface/base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\rtc\include;$(SolutionDir)src\agora_edu_sdk;$(SolutionDir)sdk\agora_video_source\include;$(SolutionDir)sdk\rtm\include;base;base\event2\include;base\event2\win;base\rte;base\interface/cpp;base\third_party/spdlog/include;base\interface\cpp\api2;base\interface/cpp/rte;base\main;base\include;base\interface/cpp/base;base/rtm/include;.;base\interface\cpp\rtc_engine;interface/base;./BugReport;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -100,12 +100,18 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <ModuleDefinitionFile>export.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\agora_video_source\lib;$(SolutionDir)sdk\rtc\lib;$(SolutionDir)sdk\rtm\lib;base\utils\windows\x86\vs2017_mt\Debug;base/rtm/lib;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>agora_videosource_sdk.lib;agora_rtc_sdk.lib;libevent.lib;Rpcrt4.lib;wbemuuid.lib;agora_rtm_sdk.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\agora_video_source\lib;$(SolutionDir)sdk\rtc\lib;$(SolutionDir)sdk\rtm\lib;base\utils\windows\x86\vs2017_mt\Debug;base/rtm/lib;%(AdditionalIncludeDirectories);./BugReport</AdditionalLibraryDirectories>
+      <AdditionalDependencies>agora_videosource_sdk.lib;libevent.lib;Rpcrt4.lib;wbemuuid.lib;agora_rtm_sdk.lib;ws2_32.lib;xdump_report.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy "$(SolutionDir)sdk\agora_video_source\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\agora_video_source\dll\*.exe"  "$(SolutionDir)$(Configuration)"
+
+copy "$(SolutionDir)sdk\rtc\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(ProjectDir)BugReport\*.dll"  "$(SolutionDir)$(Configuration)"
+</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -114,7 +120,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -140,7 +146,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;AGORAEDUSDK_EXPORTS;_WINDOWS;_USRDLL;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;FEATURE_EVENT_ENGINE;SPDLOG_NO_EXCEPTIONS;WEBRTC_WIN;WIN32_LEAN_AND_MEAN;FEATURE_HTTP;AGORARTC_EXPORT;AGORAEDU_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)sdk\rtc\include;$(SolutionDir)src\agora_edu_sdk;$(SolutionDir)sdk\agora_video_source\include;$(SolutionDir)sdk\rtm\include;base;base\event2\include;base\event2\win;base\rte;base\interface/cpp;base\third_party/spdlog/include;base\interface\cpp\api2;base\interface/cpp/rte;base\main;base\include;base\interface/cpp/base;base/rtm/include;.;base\interface\cpp\rtc_engine;interface/base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sdk\rtc\include;$(SolutionDir)src\agora_edu_sdk;$(SolutionDir)sdk\agora_video_source\include;$(SolutionDir)sdk\rtm\include;base;base\event2\include;base\event2\win;base\rte;base\interface/cpp;base\third_party/spdlog/include;base\interface\cpp\api2;base\interface/cpp/rte;base\main;base\include;base\interface/cpp/base;base/rtm/include;.;base\interface\cpp\rtc_engine;interface/base;./BugReport;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -150,15 +156,17 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <ModuleDefinitionFile>export.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\agora_video_source\lib;$(SolutionDir)sdk\rtc\lib;$(SolutionDir)sdk\rtm\lib;base\utils\windows\x86\vs2017_mt\Debug;base/rtm/lib;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>agora_videosource_sdk.lib;agora_rtc_sdk.lib;libevent.lib;Rpcrt4.lib;wbemuuid.lib;agora_rtm_sdk.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk\agora_video_source\lib;$(SolutionDir)sdk\rtc\lib;$(SolutionDir)sdk\rtm\lib;base\utils\windows\x86\vs2017_mt\Debug;base/rtm/lib;%(AdditionalIncludeDirectories);./BugReport</AdditionalLibraryDirectories>
+      <AdditionalDependencies>agora_videosource_sdk.lib;libevent.lib;Rpcrt4.lib;wbemuuid.lib;agora_rtm_sdk.lib;ws2_32.lib;xdump_report.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)sdk\agora_video_source\dll\agora_videosource_sdk.dll"  "$(SolutionDir)$(Configuration)"
+      <Command>copy "$(SolutionDir)sdk\agora_video_source\dll\*.dll"  "$(SolutionDir)$(Configuration)"
 
-copy "$(SolutionDir)sdk\agora_video_source\dll\VideoSource.exe"  "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)sdk\agora_video_source\dll\*.exe"  "$(SolutionDir)$(Configuration)"
 
 copy "$(SolutionDir)sdk\rtc\dll\*.dll"  "$(SolutionDir)$(Configuration)"
+
+copy "$(ProjectDir)BugReport\*.dll"  "$(SolutionDir)$(Configuration)"
 </Command>
     </PostBuildEvent>
     <PreBuildEvent>
@@ -168,7 +176,7 @@ copy "$(SolutionDir)sdk\rtc\dll\*.dll"  "$(SolutionDir)$(Configuration)"
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>

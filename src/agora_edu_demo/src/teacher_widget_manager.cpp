@@ -1,4 +1,6 @@
 #include "teacher_widget_manager.h"
+#include <QDesktopWidget>
+#include <sstream>
 #include "AgoraClassroomWidget.h"
 #include "AgoraTipsDialog.h"
 #include "AgoraVideoWidget.h"
@@ -15,7 +17,9 @@ TeacherWidgetManager::TeacherWidgetManager(
       classroom_manager_(classroom_manager),
       options_(options),
       config_(config),
-      setting_config_(setting_config) {}
+      setting_config_(setting_config) {
+  cnt_screen_ = QApplication::desktop()->screenCount();
+}
 
 TeacherWidgetManager::~TeacherWidgetManager() {
   if (user_service_) {
@@ -75,13 +79,12 @@ void TeacherWidgetManager::ShowTeacherWidget() {
     teacher_screen_widget_ = std::make_unique<AgoraTeacherWidget>(
         config_.room_name, options_.user_name, this);
   }
-
   if (setting_config_.video_source_master.device_id.isEmpty() ||
       setting_config_.video_source_slave.device_id.isEmpty()) {
     teacher_screen_widget_->ShowScreen(true);
+  } else {
+    teacher_screen_widget_->ShowScreen(false);
   }
-
-  teacher_screen_widget_->ShowScreen(false);
 }
 
 void TeacherWidgetManager::SubScribeStream(const EduStream& stream,
@@ -142,8 +145,10 @@ void TeacherWidgetManager::OnChatMessageSend(ChatMessage message) {
 }
 
 void TeacherWidgetManager::OnMuteAllClassroomClicked() {
-  if (AgoraTipsDialog::ExecTipsDialog(QString::fromLocal8Bit(
-          "关闭所有音频教室音频？")) == QDialog::Rejected) {
+  if (AgoraTipsDialog::ExecTipsDialog(
+          QString::fromLocal8Bit("关闭确认"),
+          QString::fromLocal8Bit("关闭所有音频教室音频？")) ==
+      QDialog::Rejected) {
     return;
   }
 
@@ -245,6 +250,7 @@ void TeacherWidgetManager::OnChatPushButtonClicked() {
 
 void TeacherWidgetManager::OnKickPushButtonClicked() {
   if (AgoraTipsDialog::ExecTipsDialog(
+          QString::fromLocal8Bit("退出确认"),
           QString::fromLocal8Bit("将此听讲教室退出？")) == QDialog::Rejected) {
     return;
   }
@@ -424,7 +430,6 @@ void TeacherWidgetManager::OnConnectionStateChanged(
       state == CONNECTION_STATE_RECONNECTING) {
     return;
   }
-
   auto shared_this = shared_from_this();
   AgoraEvent::PostAgoraEvent(new AgoraEvent, this, [=] {
     if (state == CONNECTION_STATE_CONNECTED) {
@@ -484,18 +489,24 @@ void TeacherWidgetManager::OnLocalStreamCreated(EduStream stream_info,
   if (err.code == ERR_OK ||
       strcmp(err.message, "stream uuid is created!") == 0) {
     auto shared_this = shared_from_this();
+    agora::edu::EduVideoConfig video_config;
+    if (cnt_screen_ == 1) {
+      video_config.video_dimension_width = 960;
+      video_config.video_dimension_height = 540;
+      video_config.frame_rate = 30;
+	} else {
+      video_config.video_dimension_width = 1920;
+      video_config.video_dimension_height = 1080;
+      video_config.frame_rate = 30;
+    }
 
-    AgoraEvent::PostAgoraEvent(new AgoraEvent, this, [=] {
+    AgoraEvent::PostAgoraEvent(new AgoraEvent, this, [=]() mutable {
       if (strncmp(stream_info.stream_uuid, edu_master_stream_.stream_uuid,
                   kMaxStreamUuidSize) == 0) {
-        agora::edu::EduVideoConfig video_config;
-        video_config.video_dimension_width = 1280;
-        video_config.video_dimension_height = 1080;
-        video_config.frame_rate = 30;
-        user_service_->SetVideoConfig(edu_master_stream_, video_config);
         user_service_->SwitchCamera(
             edu_master_stream_,
             setting_config_.video_source_master.device_id.toLocal8Bit());
+        user_service_->SetVideoConfig(edu_master_stream_, video_config);
         user_service_->PublishStream(edu_master_stream_);
       }
 
@@ -505,10 +516,6 @@ void TeacherWidgetManager::OnLocalStreamCreated(EduStream stream_info,
           user_service_->StartShareScreen(share_screen_config_,
                                           edu_slave_stream);
         } else {
-          agora::edu::EduVideoConfig video_config;
-          video_config.video_dimension_width = 1280;
-          video_config.video_dimension_height = 1080;
-          video_config.frame_rate = 30;
           if (setting_config_.video_source_slave.preferred ==
               SHARPNESS_PREFERRED) {
             video_config.degradation_preference =

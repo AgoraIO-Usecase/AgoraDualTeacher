@@ -30,7 +30,7 @@ class AgoraClassroomListWidget : public QWidget {
   bool MuteClassroomChat(const std::string& user_uuid, bool is_muted);
   bool RaiseClassroom(const std::string& user_uuid, bool is_raise);
   void EnablePushButton(PushButtonType type, bool enable);
-
+  void mousePressEvent(QMouseEvent* event);
  private:
   Ui::AgoraClassroomListWidget ui;
   TeacherWidgetManager* teacher_widget_manager_ = nullptr;

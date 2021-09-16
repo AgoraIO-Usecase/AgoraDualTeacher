@@ -2,7 +2,7 @@
 #include <QPainter>
 #include <QVBoxLayout>
 
-#define SPACER 4
+#define SPACER 8
 #define CHAT_SPACER 10
 #define MAX_LINE_WIDTH 246
 AgoraChatItem::AgoraChatItem(QWidget* parent, ChatMessage message)
@@ -45,7 +45,7 @@ void AgoraChatItem::paintEvent(QPaintEvent* event) {
   QPen pen(1);
   QPoint pos;
   static QPen text_pen(1);
-  text_pen.setColor(QColor(0x19, 0x19, 0x19));
+  text_pen.setColor(QColor(0x58, 0x63, 0x76));
   pos = QPoint(0, fm_title.height());
   painter.setBrush(m_chatMessage.bk_color);
   painter.setFont(m_chatMessage.title_font);
@@ -54,7 +54,7 @@ void AgoraChatItem::paintEvent(QPaintEvent* event) {
   pen.setColor(QColor(0xD7, 0xD9, 0xE6));
   painter.setPen(pen);
   painter.drawRoundedRect(
-      QRect(pos.x(), fm_title.height() + SPACER, m_width - pos.x() - SPACER,
+      QRect(pos.x()+2, fm_title.height() + SPACER, m_width - pos.x() - SPACER,
             m_height - (fm_title.height() + SPACER) - 2),
       m_chatMessage.roundRadious, m_chatMessage.roundRadious);
   painter.setFont(m_chatMessage.chat_font);

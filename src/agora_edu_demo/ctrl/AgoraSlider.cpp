@@ -5,7 +5,8 @@ AgoraSlider::AgoraSlider(QWidget *parent) : QWidget(parent) {
   show();
   m_curPoint = QPoint(11, 0);
   m_circleBorderSize = 2;
-  m_circleRadious = (this->height() - 2 * m_circleBorderSize) / 5;
+  //m_circleRadious = (this->height() - 2 * m_circleBorderSize) / 5;
+  m_circleRadious = 3;
   m_circleBorderColor = QColor(0x00, 0x73, 0xFF);
   m_maxValue = 100;
   m_minValue = 0;
@@ -49,19 +50,24 @@ void AgoraSlider::paintEvent(QPaintEvent *e) {
   painter.setPen(Qt::NoPen);
   painter.setRenderHint(QPainter::HighQualityAntialiasing);
   painter.drawRoundedRect(
-      QRect(m_circleRadious + m_circleBorderSize, this->height() / 5 * 2, m_curPoint.x()- m_circleRadious + m_circleBorderSize, this->height() / 5), 1,
-      1);
+      QRect(m_circleRadious + m_circleBorderSize, this->height() / 5 * 2,
+            m_curPoint.x() - m_circleRadious + m_circleBorderSize,
+            this->height() / 5 /2),
+      this->height() / 5/2, this->height() / 5/2);
   painter.setBrush(m_frontColor);
   painter.drawRoundedRect(
       QRect(m_curPoint.x(), this->height() / 5 * 2,
-            this->width() - m_curPoint.x()- m_circleRadious - m_circleBorderSize, this->height() / 5),
-      1, 1);
+            this->width() - m_curPoint.x()- m_circleRadious - m_circleBorderSize, this->height() / 5/2),
+                          this->height() / 5 / 2, this->height() / 5 / 2);
   painter.setBrush(m_circleBorderColor);
-  painter.drawEllipse(QPointF(m_curPoint.x(), (this->height()) / 2),
+  painter.drawEllipse(
+      QPointF(m_curPoint.x(),
+              ((this->height() - m_circleRadious + m_circleBorderSize-1) /  2)),
                       m_circleRadious + m_circleBorderSize,
                       m_circleRadious + m_circleBorderSize);
   painter.setBrush(m_circleColor);
-  painter.drawEllipse(QPointF(m_curPoint.x(), (this->height()) / 2),
+  painter.drawEllipse(QPointF(m_curPoint.x(), 
+	  ((this->height() - m_circleRadious + m_circleBorderSize-1) / 2)),
                       m_circleRadious, m_circleRadious);
 }
 

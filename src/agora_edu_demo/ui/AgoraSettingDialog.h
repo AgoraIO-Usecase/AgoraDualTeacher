@@ -77,6 +77,8 @@ class AgoraSettingDialog : public QDialog,
   void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
   void mouseMoveEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
   void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+  void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+  void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
 
  private slots:
   void OnApplyButtonClicked();
@@ -106,6 +108,8 @@ class AgoraSettingDialog : public QDialog,
   QPoint window_top_left_point_;
 
   SettingConfig setting_config_;
+  QFrame * widgetFrame_1;
+  QFrame * widgetFrame_2;
   agora::edu::IEduDeviceManger *device_manager_;
   std::vector<agora::edu::EduDevice> device_audio_playbacks_;
   std::vector<agora::edu::EduDevice> device_audio_captures_;

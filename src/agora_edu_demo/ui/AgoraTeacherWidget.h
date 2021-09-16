@@ -62,12 +62,14 @@ class AgoraTeacherWidget : public QWidget {
   void mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
   void mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
   void showEvent(QShowEvent* event) Q_DECL_OVERRIDE;
+  void paintEvent(QPaintEvent* event);
+
  private:
   bool CheckNeedDualScreen();
-  bool AddClassroomVideoWidget(const std::string& user_uuid);
+  bool AddClassroomVideoWidget(const EduUser& user_info);
   bool RemoveClassroomVideoWidget(const std::string& user_uuid);
   void LayoutClassroomVideoWidget(const size_t& video_count);
-  void ShowControlWidget(bool enable_share_screen = false);
+  void ShowControlWidget();
 
  public slots:
   void OnClassPushButtonClicked();
@@ -92,11 +94,13 @@ class AgoraTeacherWidget : public QWidget {
   AgoraClassroomListWidget* classroom_list_widget_ = nullptr;
 
   AgoraVideoWidget* video_widget_[2];
+  bool enable_share_screen_ = false;
   bool subscribe_big_stream_;
   bool raise_;
   std::string raise_user_uuid_ = "";
   AgoraVideoWidget* raise_video_widget_ = nullptr;
   QWidget* control_widget_ = nullptr;
+  QWidget* class_widget = nullptr;
   QPushButton* class_pushbutton_ = nullptr;
   QPushButton* chat_pushbutton_ = nullptr;
   QPushButton* share_screen_pushbutton_ = nullptr;

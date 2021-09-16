@@ -111,8 +111,14 @@ struct EduClassroomJoinOptions {
   EduRoleType role_type;
   EduClassroomMediaOptions media_options;
   bool custom_render;
+  bool enable_hwenc;
+  bool enable_hwdec;
   EduClassroomJoinOptions()
-      : user_name{0}, custom_render(false), role_type(EDU_ROLE_TYPE_INVALID) {}
+      : user_name{0},
+        custom_render(false),
+        enable_hwenc(false),
+        enable_hwdec(false),
+        role_type(EDU_ROLE_TYPE_INVALID) {}
 };
 
 class IEduClassroomManager : public RefCountInterface {

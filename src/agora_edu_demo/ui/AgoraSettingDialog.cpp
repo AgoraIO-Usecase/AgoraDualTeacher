@@ -1,6 +1,11 @@
 #include "AgoraSettingDialog.h"
 #include <QApplication>
+#include <QBitmap>
+#include <QListView>
+#include <QPainter>
+#include <QPalette>
 #include <QScreen>
+#include <QStyledItemDelegate>
 #include "AgoraTipsDialog.h"
 #include "util.h"
 using namespace agora::edu;
@@ -30,6 +35,29 @@ AgoraSettingDialog::AgoraSettingDialog(QWidget *parent) : QDialog(parent) {
   ui.sldier_playback->setFrontColor(QColor(0xE2, 0xE2, 0xf0));
   ui.sldier_playback->setCircleColor(QColor(0xff, 0xff, 0xff));
   ui.sldier_playback->setMaxValue(255);
+
+  ui.cmb_audio_cap->setView(new QListView());
+  ui.cmb_audio_playback->setView(new QListView());
+  ui.cmb_video_source_1->setView(new QListView());
+  ui.cmb_video_source_2->setView(new QListView());
+  ui.video_render_1->setAutoFillBackground(true);
+  ui.video_render_1->setLayout(new QHBoxLayout(ui.video_render_1));
+  ui.video_render_2->setAutoFillBackground(true);
+  ui.video_render_2->setLayout(new QHBoxLayout(ui.video_render_2));
+  widgetFrame_1 = new QFrame(ui.video_render_1);
+  widgetFrame_1->setStyleSheet(
+      QLatin1String("background-color:#FFD8D8D8; background-image: "
+                    "url(\":/image/resource/icon-camera-off.png\"); "
+                    "background-repeat: none; background-position: "
+                    "center;"));
+  widgetFrame_2 = new QFrame(ui.video_render_2);
+  widgetFrame_2->setStyleSheet(
+      QLatin1String("background-color:#FFD8D8D8; background-image: "
+                    "url(\":/image/resource/icon-camera-off.png\"); "
+                    "background-repeat: none; background-position: "
+                    "center;"));
+  ui.video_render_1->layout()->addWidget(widgetFrame_1);
+  ui.video_render_2->layout()->addWidget(widgetFrame_2);
   connect(ui.sldier_cap, SIGNAL(PositonChangeSignal(qreal)), this,
           SLOT(OnSliderCapturePositonChange(qreal)));
   connect(ui.sldier_playback, SIGNAL(PositonChangeSignal(qreal)), this,
@@ -41,7 +69,8 @@ AgoraSettingDialog::AgoraSettingDialog(QWidget *parent) : QDialog(parent) {
   ui.playback_widget_render->setImage(
       QPixmap(":/image/resource/icon-speaker@2x.png"));
   device_manager_ = agora::edu::createaAgoraEduDeviceManger();
-  device_manager_->Initialize(APP_ID, 2);
+  auto config = GetConfig();
+  device_manager_->Initialize(config.app_id.c_str(), 2);
   device_manager_->RegisterEventHandler(this);
   InitViews();
 }
@@ -121,9 +150,7 @@ void AgoraSettingDialog::mousePressEvent(QMouseEvent *event) {
 
   if (event->button() == Qt::LeftButton && rect.contains(current_pos)) {
     is_drag_ = true;
-    //获得鼠标的初始位置
     mouse_start_point_ = event->globalPos();
-    // mouseStartPoint = event->pos();
     setCursor(Qt::OpenHandCursor);
   }
 
@@ -132,10 +159,7 @@ void AgoraSettingDialog::mousePressEvent(QMouseEvent *event) {
 
 void AgoraSettingDialog::mouseMoveEvent(QMouseEvent *event) {
   if (is_drag_) {
-    //获得鼠标移动的距离
     QPoint distance = event->globalPos() - mouse_start_point_;
-    // QPoint distance = event->pos() - mouseStartPoint;
-    //改变窗口的位置
     this->move(window_top_left_point_ + distance);
   }
 
@@ -149,6 +173,33 @@ void AgoraSettingDialog::mouseReleaseEvent(QMouseEvent *event) {
   }
 
   QWidget::mouseReleaseEvent(event);
+}
+
+void AgoraSettingDialog::resizeEvent(QResizeEvent *e) {
+  QWidget::resizeEvent(e);
+}
+
+void AgoraSettingDialog::paintEvent(QPaintEvent *event) {
+  Q_UNUSED(event);
+  QBitmap bmp(this->size());
+  bmp.fill();
+  QPainter painter(&bmp);
+  painter.setPen(Qt::black);
+  painter.setBrush(Qt::black);
+  painter.setRenderHints(QPainter::HighQualityAntialiasing |
+                         QPainter::SmoothPixmapTransform);
+  painter.drawRoundedRect(bmp.rect(), 7, 7);
+  setMask(bmp);
+
+  {
+    QPainter p(this);
+    p.setRenderHint(QPainter::HighQualityAntialiasing);
+    QPen pen(QColor(0xDB, 0xDB, 0xEA), 3);
+    p.setPen(pen);
+    p.drawRoundRect(QRect(bmp.rect().x() + 1, bmp.rect().y() + 1,
+                          bmp.rect().width() - 1, bmp.rect().height() - 1),
+                    2, 2);
+  }
 }
 
 void AgoraSettingDialog::InitViews() {
@@ -218,12 +269,14 @@ void AgoraSettingDialog::InitViews() {
 void AgoraSettingDialog::ShowViews() {
   if (video_capture_testing_master_) {
     setting_config_.video_source_master.device_id =
-        device_video_captures_[device_video_map_[ui.cmb_video_source_1->currentText().toStdString()]].id;
+        device_video_captures_[device_video_map_[ui.cmb_video_source_1
+                                                     ->currentText()
+                                                     .toStdString()]]
+            .id;
     device_manager_->SetDevice(
         0, setting_config_.video_source_master.device_id.toStdString().c_str());
 
-    device_manager_->StartDeviceTest(
-                0, (HWND)ui.video_render_1->winId());
+    device_manager_->StartDeviceTest(0, (HWND)ui.video_render_1->winId());
   } else {
     if (setting_config_.video_source_master.device_id.isEmpty()) {
       ui.cmb_video_source_1->setCurrentIndex(0);
@@ -243,7 +296,10 @@ void AgoraSettingDialog::ShowViews() {
   }
   if (video_capture_testing_slave_) {
     setting_config_.video_source_slave.device_id =
-        device_video_captures_[device_video_map_[ui.cmb_video_source_2->currentText().toStdString()]].id;
+        device_video_captures_[device_video_map_[ui.cmb_video_source_2
+                                                     ->currentText()
+                                                     .toStdString()]]
+            .id;
     device_manager_->SetDevice(
         1, setting_config_.video_source_slave.device_id.toStdString().c_str());
     device_manager_->StartDeviceTest(1, (HWND)ui.video_render_2->winId());
@@ -337,21 +393,21 @@ void AgoraSettingDialog::OnVideoSourceChanged_Master(int idx) {
     RefreshComboBox(ui.cmb_video_source_2, device_video_captures_);
     device_manager_->StopDeviceTest(0);
     ui.video_render_1->update();
+    ui.video_render_1->setStyleSheet(
+        "border-iamge:url(:/image/resource/icon-camera-off@2x.png);");
+
     video_capture_testing_master_ = false;
     return;
   }
   idx -= 1;  //去掉
   if (idx >= device_video_captures_.size()) return;
   auto copy = device_video_captures_;
-  copy.erase(
-      copy.begin() +
-      device_video_map_[ui.cmb_video_source_1->currentText().toStdString()]);
+  std::string current_device =
+      ui.cmb_video_source_1->currentText().toStdString();
+  copy.erase(copy.begin() + device_video_map_[current_device]);
   RefreshComboBox(ui.cmb_video_source_2, copy);
   device_manager_->SetDevice(
-      0, device_video_captures_[device_video_map_[ui.cmb_video_source_1
-                                                      ->currentText()
-                                                      .toStdString()]]
-             .id);
+      0, device_video_captures_[device_video_map_[current_device]].id);
   setting_config_.video_source_master.device_id =
       device_video_captures_[idx].id;
   device_manager_->StartDeviceTest(0, (HWND)ui.video_render_1->winId());
@@ -368,21 +424,21 @@ void AgoraSettingDialog::OnVideoSourceChanged_Slave(int idx) {
     RefreshComboBox(ui.cmb_video_source_1, device_video_captures_);
     device_manager_->StopDeviceTest(1);
     ui.video_render_2->update();
+    ui.video_render_2->setStyleSheet(
+        "border-iamge:url(:/image/resource/icon-camera-off@2x.png);");
+
     video_capture_testing_slave_ = false;
     return;
   }
   idx -= 1;  //去掉
   if (idx >= device_video_captures_.size()) return;
   auto copy = device_video_captures_;
-  copy.erase(
-      copy.begin() +
-      device_video_map_[ui.cmb_video_source_2->currentText().toStdString()]);
+  std::string current_device =
+      ui.cmb_video_source_2->currentText().toStdString();
+  copy.erase(copy.begin() + device_video_map_[current_device]);
   RefreshComboBox(ui.cmb_video_source_1, copy);
   device_manager_->SetDevice(
-      1, device_video_captures_[device_video_map_[ui.cmb_video_source_2
-                                                      ->currentText()
-                                                      .toStdString()]]
-             .id);
+      1, device_video_captures_[device_video_map_[current_device]].id);
   setting_config_.video_source_slave.device_id = device_video_captures_[idx].id;
   device_manager_->StartDeviceTest(1, (HWND)ui.video_render_2->winId());
   video_capture_testing_slave_ = true;
@@ -395,6 +451,7 @@ void AgoraSettingDialog::OnApplyButtonClicked() {
 
 void AgoraSettingDialog::OnCloseButtonClicked() {
   if (AgoraTipsDialog::ExecTipsDialog(
+          QString::fromLocal8Bit("设置确认"),
           QString::fromLocal8Bit("是否应用当前设置？")) == QDialog::Accepted) {
     OnApplyButtonClicked();
   } else {
@@ -411,7 +468,7 @@ void AgoraSettingDialog::OnMasterPreferred() {
 }
 
 void AgoraSettingDialog::OnSlavePreferred() {
-  if (ui.rdo_low_level_video_3->isChecked()) {
+  if (ui.rdo_hight_level_video_2->isChecked()) {
     setting_config_.video_source_master.preferred = SHARPNESS_PREFERRED;
   } else {
     setting_config_.video_source_master.preferred = FLUENCY_PREFERRED;

@@ -1,4 +1,5 @@
 #include <QGridLayout>
+#include <QMouseEvent>
 
 #include "AgoraClassroomListWidget.h"
 #include "AgoraClassroomWidget.h"
@@ -28,7 +29,7 @@ bool AgoraClassroomListWidget::AddClassroomWidget(const EduUser& user_info) {
     return false;
   }
 
-  auto classroom_widget = new AgoraClassroomWidget(user_info);
+  auto classroom_widget = new AgoraClassroomWidget(user_info,this);
   QObject::connect(classroom_widget->ui.MutePushButton, SIGNAL(clicked()),
                    teacher_widget_manager_, SLOT(OnMutePushButtonClicked()));
   QObject::connect(classroom_widget->ui.RaisePushButton, SIGNAL(clicked()),
@@ -41,8 +42,7 @@ bool AgoraClassroomListWidget::AddClassroomWidget(const EduUser& user_info) {
   classroom_widget->setMinimumSize(290, 44);
   classroom_widget->setMaximumSize(290, 44);
   classroom_widget->setAutoFillBackground(true);
-  classroom_widget->setStyleSheet(STR(background - color
-                                      : rgba(255, 255, 255, 1);));
+  classroom_widget->setStyleSheet(STR(background-color: rgba(255, 255, 255, 1);));
   ui.ClassroomListScrollArea->widget()->layout()->addWidget(classroom_widget);
   classroom_widgets_map_.insert({user_info.user_uuid, classroom_widget});
 
@@ -197,4 +197,8 @@ void AgoraClassroomListWidget::EnablePushButton(PushButtonType type,
         break;
     }
   }
+}
+
+void AgoraClassroomListWidget::mousePressEvent(QMouseEvent* event) {
+  event->accept();
 }

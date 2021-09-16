@@ -876,6 +876,8 @@ class IAgoraVideoSourceEngine {
   virtual int muteAllRemoteAudioStreams(bool mute) = 0;
   virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;
   virtual int setupRemoteVideo(VideoCanvas_ canvas, delegate_render render) = 0;
+  virtual int enableHardWareVideoEncoding(bool enabled) = 0;
+  virtual int enableHardWareVideoDecoding(bool enabled) = 0;
 };
 
 #define DEVICE_MAX_NUMBER 10

@@ -4,7 +4,7 @@
 //  Copyright © 2020 agora. All rights reserved.
 //
 #include "edu_manager_impl.h"
-
+#include "dump_report.h"
 #include "edu_message_impl.h"
 
 #include "AgoraRefPtr.h"
@@ -95,6 +95,14 @@ EduManager::~EduManager() {
   }
 }
 
+static std::string getProcessPath() {
+  char path[MAX_PATH] = {0};
+  GetModuleFileNameA(NULL, path, MAX_PATH);
+  std::string pathName = path;
+  size_t pos = pathName.find_last_of(("\\/"));
+  return pos == std::string::npos ? pathName : pathName.substr(0, pos);
+}
+
 int EduManager::Initialize(const EduConfiguration& config) {
   API_LOGGER_MEMBER(
       "EduConfiguration: (appid: %s, customer_id: %s, customer_certificate: "
@@ -114,7 +122,23 @@ int EduManager::Initialize(const EduConfiguration& config) {
   if (!config.user_uuid) {
     LOG_ERR_AND_RET_INT(ERR_INVALID_ARGUMENT, "no user_id specified.");
   }
-
+  auto service = GetDumpReportService();
+  std::string process_path = getProcessPath();
+  service->Initialize(process_path.c_str());
+  service->SetAppid(config.app_id);
+  service->SetCrashVer(1);
+  service->SetDmpType(0);
+  service->SetLstNetwork(2);
+  service->SetLstSessionId("FFE77D2F70F440029F5663E9E3BD4BBE");
+  service->SetLstServiceId("FFB3844D912F4A7BAD0E8DE19A95640E");
+  service->SetSid("FF236C3D7F0B4B628A4EEC708563B4EC");
+  service->SetLstSdkVer("DualTeacher_1.2");
+  service->SetLstClientRole(1);
+  service->SetIsDumpFile(false);
+  service->SetOs(5);
+  service->SetInstallid("0A236C3D7F0B4B628A4EEC708563B4EC");
+  service->SetCpuarch(0);
+  service->SetLstBuildNo(56536);
   edu_program_info_.app_id = config.app_id;
   edu_program_info_.customer_id = config.customer_id;
   edu_program_info_.customer_certificate = config.customer_certificate;

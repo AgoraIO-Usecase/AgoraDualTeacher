@@ -54,7 +54,6 @@ int RtcConnManager::CreateDefaultStream(const RtcInfo& rtc_config) {
   strcpy(stream.stream_uuid, std::to_string(rtc_config.uid).c_str());
   int err = CreateLocalStream(stream.stream_uuid, stream, rtc_config,
                               rtc_config.token);
-
   return err;
 }
 
@@ -94,6 +93,8 @@ int RtcConnManager::CreateRtcConnnection(const StreamId& stream_id,
   }
   engine->setChannelProfile(rtc::CHANNEL_PROFILE_LIVE_BROADCASTING_);
   engine->setCustomRender(is_custom_render);
+  engine->enableHardWareVideoDecoding(is_hwdec_);
+  engine->enableHardWareVideoEncoding(is_hwenc_);
   LOG_INFO("initialize engine succsed !");
   map_rtc_info_[stream_id] = {app_id,       token,        channel_name, info,
                               enable_video, enable_auido, uid};
@@ -195,12 +196,12 @@ int RtcConnManager::SetVideoConfig(const StreamId& stream_id,
 
   auto iter = map_rtc_engines_.find(stream_id);
   if (iter != map_rtc_engines_.end()) {
+
     err = iter->second->setVideoEncoderConfiguration(video_encoder_config);
-    err = iter->second->setVideoProfile(
-        getVideoSize(video_encoder_config.dimensions.width,
-                     video_encoder_config.dimensions.height,
-                     video_encoder_config.frameRate),
-        false);
+    // auto profile = getVideoSize(video_encoder_config.dimensions.width,
+    //                  video_encoder_config.dimensions.height,
+    //                  video_encoder_config.frameRate);
+    //err = iter->second->setVideoProfile(profile, false);
   } else {
     err = ERR_FAILED;
   }
@@ -242,7 +243,7 @@ int RtcConnManager::CreateLocalStream(const StreamId& stream_id,
     default_stream_->enableLocalAudio(false);
     default_stream_->setDefaultMuteAllRemoteAudioStreams(true);
   } else {
-    //    rtc_iter->second->enableLocalAudio(rtc_config.enable_audio);
+    rtc_iter->second->enableLocalAudio(rtc_config.enable_audio);
 
     rtc_iter->second->enableLocalAudio(false);
     rtc_iter->second->muteAllRemoteAudioStreams(true);
@@ -259,7 +260,7 @@ int RtcConnManager::CreateLocalStream(const StreamId& stream_id,
   err = rtc_iter->second->joinChannel(
       rtc_token.c_str(), info_iter->second.channel_name.c_str(),
       info_iter->second.info.c_str(), info_iter->second.uid);
-  map_event_[stream_id]->WaitFor(1000);
+  // map_event_[stream_id]->WaitFor(1000);
   if (err) {
     err = ERR_FAILED;
     LOG_ERR("joinChannel:%s uid:%d token:%s info:%s failed:code:%d",
@@ -615,7 +616,6 @@ int RtcConnManager::MuteStream(const EduStream& stream, bool mute_video,
         LOG_ERR("stream_id:%s muteRemoteVideoStream video faild err:%d",
                 stream.stream_uuid, err);
       } else {
-
         LOG_INFO("stream_id:%s muteRemoteVideoStream video succeed",
                  stream.stream_uuid);
       }
@@ -671,7 +671,7 @@ int RtcConnManager::MuteStream(const EduStream& stream, bool mute_video,
       LOG_ERR("MuteStream failed! stream uuid:%s is exist err:%d",
               stream.stream_uuid, err);
     } else {
-      //err = iter->second->muteLocalAudioStream(mute_audio);
+      err = iter->second->muteLocalAudioStream(mute_audio);
       if (err) {
         LOG_ERR("stream_id:%s muteLocalStream audio faild err:%d",
                 stream.stream_uuid, err);
@@ -708,7 +708,18 @@ int RtcConnManager::UpdateStream(const EduStream& stream) {
 
 int RtcConnManager::SetCustomRender(bool enabled) {
   is_custom_render = enabled;
-  return 0;
+
+  return ERR_OK;
+}
+
+int RtcConnManager::EnableHWEncoding(bool enabled) {
+  is_hwenc_ = enabled;
+  return ERR_OK;
+}
+
+int RtcConnManager::EnableHWDecoding(bool enabled) {
+  is_hwdec_ = enabled;
+  return ERR_OK;
 }
 
 int RtcConnManager::SetStreamView(EduStream stream, View* view) {

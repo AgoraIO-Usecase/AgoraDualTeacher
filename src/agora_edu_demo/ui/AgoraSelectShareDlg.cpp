@@ -1,6 +1,7 @@
 #include "agoraselectsharedlg.h"
 #include <Windows.h>
 #include <QPainter>
+#include <QBitmap>
 #include <QtGui/QScreen>
 #include <QtGui/QWindow>
 #include <QtWidgets/QScrollBar>
@@ -36,6 +37,24 @@ AgoraSelectShareDlg::AgoraSelectShareDlg(QWidget* parent)
 }
 
 AgoraSelectShareDlg::~AgoraSelectShareDlg() {}
+
+
+void AgoraSelectShareDlg::paintEvent(QPaintEvent* event) {
+  QBitmap bmp(this->size());
+  bmp.fill();
+  QPainter painter(&bmp);
+  painter.setPen(Qt::black);
+  painter.setBrush(Qt::black);
+  painter.setRenderHints(QPainter::HighQualityAntialiasing |
+                         QPainter::SmoothPixmapTransform);
+
+  QPainterPath path;
+  path.setFillRule(Qt::WindingFill);
+  path.addRoundedRect(rect(), 8, 8);
+  painter.fillPath(path, QBrush(QColor(93, 201, 87)));
+  setMask(bmp);
+
+}
 
 /**
  * https://chromium.googlesource.com/external/webrtc/+/lkgr/modules/desktop_capture/window_capturer_win.cc

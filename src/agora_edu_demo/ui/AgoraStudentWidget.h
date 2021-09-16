@@ -38,6 +38,7 @@ class AgoraStudentWidget : public QWidget {
   void mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
   void mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
   void showEvent(QShowEvent* event) Q_DECL_OVERRIDE;
+  void paintEvent(QPaintEvent* event);
 
  private:
   void LayoutVideoWidget(bool is_raise);

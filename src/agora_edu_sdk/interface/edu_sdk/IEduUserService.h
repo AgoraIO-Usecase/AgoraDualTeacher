@@ -1,4 +1,4 @@
-//
+﻿//
 //  EduUserService.h
 //
 //  Created by SRS on 2020/6/28.
@@ -243,6 +243,7 @@ class IEduUserService : public RefCountInterface {
   virtual EduError StartActionWithConfig(
       const EduStartActionConfig& config) = 0;
   virtual EduError StopActionWithConfig(const EduStopActionConfig& config) = 0;
+
 
   // property
   /* code:message

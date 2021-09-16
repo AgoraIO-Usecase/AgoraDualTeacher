@@ -1,18 +1,20 @@
 #include "util.h"
 
+#include "AgoraTipsDialog.h"
 #include "login_widget_manager.h"
 #include "student_widget_manager.h"
 #include "teacher_widget_manager.h"
 #include "ui/AgoraLoginWidget.h"
-#include "AgoraTipsDialog.h"
 
 LoginWidgetManager::LoginWidgetManager() {}
 
 LoginWidgetManager::~LoginWidgetManager() { ExitLoginWidget(); }
 
 void LoginWidgetManager::ShowLoginDialog() {
-  if (strcmp(APP_ID, "") == 0) {
-    AgoraTipsDialog::ExecTipsDialog(QString::fromLocal8Bit("请添加appid."));
+  auto app_id = GetConfig().app_id;
+  if (app_id.empty()) {
+    AgoraTipsDialog::ExecTipsDialog(QString::fromLocal8Bit("提示"),
+                                    QString::fromLocal8Bit("请添加appid."));
     ExitProcess(1);
   }
   if (!login_widget_) {
@@ -23,9 +25,7 @@ void LoginWidgetManager::ShowLoginDialog() {
         QIcon(":/image/resource/logo-dual-teacher@2x.png"));
     login_widget_->setWindowTitle("Login");
   }
-
   InitializeEduManager();
-
   login_widget_->show();
 }
 
@@ -37,23 +37,19 @@ int LoginWidgetManager::InitializeEduManager() {
   if (!edu_manager_) {
     edu_manager_ = createAgoraEduManager();
   }
-
+  auto user_config = GetConfig();
   SetInitStreamUuidFlag(false);
-
   std::string rand_uuid;
   SET_RANDOM_STR(rand_uuid);
-
   EduConfiguration config;
-  config.app_id = APP_ID;
-  config.customer_id = CUSTOMER_ID;
-  config.customer_certificate = CUSTOMER_CERTIFICATE;
+  config.app_id = user_config.app_id.c_str();
+  config.customer_id = user_config.customer_id.c_str();
+  config.customer_certificate = user_config.customer_cerificate_id.c_str();
   strncpy(config.user_uuid, rand_uuid.c_str(), kMaxUserUuidSize);
-
   auto res = edu_manager_->Initialize(config);
   if (res == ERR_OK) {
     edu_manager_->RegisterEventHandler(this);
   }
-
   return res;
 }
 
@@ -61,17 +57,18 @@ void LoginWidgetManager::CreateClassroom(const std::string& room_uuid,
                                          const std::string& room_name) {
   QNetworkAccessManager* manager = new QNetworkAccessManager(this);
   QNetworkRequest request;
+  auto user_config = GetConfig();
 
   QString url(QString("http://api.agora.io/scene/apps/%1/"
                       "v1/rooms/%2/config")
-                  .arg(APP_ID, room_uuid.c_str()));
+                  .arg(user_config.app_id.c_str(), room_uuid.c_str()));
 
   request.setUrl(QUrl(url));
   request.setRawHeader("Content-Type", "application/json");
-  QString raw_auth = CUSTOMER_ID;
+  QString raw_auth = user_config.customer_id.c_str();
   raw_auth += ":";
-  raw_auth += CUSTOMER_CERTIFICATE;
-  
+  raw_auth += user_config.customer_cerificate_id.c_str();
+
   QString encoded_auth = "Basic ";
   encoded_auth += raw_auth.toLocal8Bit().toBase64();
   request.setRawHeader("Authorization", encoded_auth.toLocal8Bit());
@@ -138,7 +135,8 @@ void LoginWidgetManager::CreateClassroomManager(const std::string& room_name,
   strncpy(options_.user_name, user_name.c_str(), kMaxUserUuidSize);
   options_.role_type = role_type;
   options_.custom_render = true;
-
+  options_.enable_hwdec = true;
+  options_.enable_hwenc = true;
   CreateClassroom(room_uuid, room_name);
 }
 

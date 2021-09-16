@@ -185,7 +185,7 @@ int VideoRendererOpenGL::prepare(int frameWidth, int frameHeight) {
   i = m_program->uniformLocation("Vtex");
   f->glUniform1i(i, 2); /* Bind Vtex to texture unit 2 */
 
-  f->glViewport(0, 0, m_targetWidth, m_targetHeight);
+  f->glViewport(1, 1, m_targetWidth, m_targetHeight);
 
   return 0;
 }

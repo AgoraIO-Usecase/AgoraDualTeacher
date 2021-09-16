@@ -556,11 +556,13 @@ EduUserService::EduUserService(const EduUserServiceConfig& config)
   auto_subscribe_ = config.media_options.auto_subscribe;
   rtc_manager_.reset(new RtcConnManager);
   SetCustomRender(config.custom_render);
+  rtc_manager_->EnableHWDecoding(config.enabled_hwdec);
+  rtc_manager_->EnableHWEncoding(config.enabled_hwenc);
   rtc_manager_->CreateDefaultStream(rtc_info_);
   rest_api_helper_ = std::make_shared<ServiceRestfulHelper>();
   rest_api_helper_->Initialize(config.app_id, config.scene_id, config.user_id,
-                               config.auth,config.http_token, config.parser_worker,
-                               config.req);
+                               config.auth, config.http_token,
+                               config.parser_worker, config.req);
 }
 
 EduError EduUserService::_CreateLocalStream(EduStreamConfig config,
@@ -581,25 +583,37 @@ EduError EduUserService::_CreateLocalStream(EduStreamConfig config,
   auto rtc_temp = rtc_info_;
   auto shared_rest_api = rest_api_helper_->shared_from_this();
   agora_refptr<IEduUserService> shared_this = this;
+  //int start_time = GetTickCount();
   rtc::ui_thread_sync_call(
       LOCATION_HERE,
       [this, rtc_temp, shared_rest_api, shared_this, notify_exist, &stream,
-       &err]() -> int {
+        &err]() -> int {
         if (-1 == local_streams_->ExistStream(stream.stream_uuid)) {
           local_streams_->AddStreamInfo(stream);
           if (err) return ERR_FAILED;
           err = shared_rest_api->CreateLocalStream(
-              stream, [this, rtc_temp, shared_this, &stream,
-                       &err](std::string rtc_token)mutable {
+              stream, [this, rtc_temp, shared_this, &stream,&err](std::string rtc_token) mutable {
                 rtc_temp.uid = atoll(stream.stream_uuid);
                 rtc_temp.token = rtc_token;
                 rtc::ui_thread_sync_call(
-                    LOCATION_HERE,
-                    [this, rtc_temp, stream, shared_this, rtc_token, &err] {
+                    LOCATION_HERE, [this, rtc_temp, stream, shared_this,
+                                    rtc_token, &err]() mutable {
+                      //std::stringstream ss;
+                      //int endtime = GetTickCount();
+                      //ss << "shared_rest_api->CreateLocalStream "
+                      //      "time:"
+                      //   << endtime-start_time << "\n";
+                      //start_time = endtime;
+
+                     /* OutputDebugStringA(ss.str().c_str());*/
                       err = rtc_manager_->CreateLocalStream(
                           stream.stream_uuid, stream, rtc_temp, rtc_token);
                       if (err) return ERR_FAILED;
                       if (auto_publish_) this->PublishStream(stream);
+                      //endtime = GetTickCount() - start_time;
+                      //ss << "rtc time:" << endtime << "\n";
+                      //OutputDebugStringA(ss.str().c_str());
+                      return ERR_OK;
                     });
               });
         } else {

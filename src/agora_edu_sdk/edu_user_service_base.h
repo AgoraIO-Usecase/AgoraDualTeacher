@@ -27,6 +27,8 @@ struct EduUserServiceConfig {
   EduRoleType role;
   bool is_chat_allowed;
   bool custom_render;
+  bool enabled_hwdec;
+  bool enabled_hwenc;
   EduClassroomMediaOptions media_options;
 };
 

@@ -325,6 +325,8 @@ void EduClassroomManager::OnJoinSuccess() {
                                   role_type_,
                                   true,
                                   custom_render_,
+                                  enable_hwdec_,
+                                  enable_hwenc_,
                                   classroom_media_options_};
 
       switch (role_type_) {
@@ -733,6 +735,8 @@ void EduClassroomManager::SetJoinData(const EduClassroomJoinOptions& options) {
   edu_user_info_.user_name = options.user_name;
   role_type_ = options.role_type;
   custom_render_ = options.custom_render;
+  enable_hwdec_ = options.enable_hwdec;
+  enable_hwenc_ = options.enable_hwenc;
   classroom_media_options_ = options.media_options;
   classroom_info_.room_properties = new RefCountedObject<PropertyCollection>;
 }

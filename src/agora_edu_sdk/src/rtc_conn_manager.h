@@ -99,6 +99,8 @@ class RtcConnManager {
 
   int UpdateStream(const EduStream& stream);
   int SetCustomRender(bool enabled);
+  int EnableHWEncoding(bool enabled);
+  int EnableHWDecoding(bool enabled);
   int SetStreamView(EduStream stream, View* view);
   int SetStreamView(EduStream stream, View* view,
                     const EduRenderConfig& config);
@@ -107,6 +109,8 @@ class RtcConnManager {
 
  private:
   bool is_custom_render = false;
+  bool is_hwenc_ = false;
+  bool is_hwdec_ = false;
   int count_should_publish_audio = 0;
   std::unordered_map<std::string, RtcInfo> map_rtc_info_;
   std::unordered_set<std::string> map_subscribed_audio_stream_;

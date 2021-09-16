@@ -1,134 +1,323 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QTipsWidget</class>
- <widget class="QWidget" name="QTipsWidget">
+ <class>BorderWidget</class>
+ <widget class="QWidget" name="BorderWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>304</width>
-    <height>184</height>
+    <width>298</width>
+    <height>196</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <property name="styleSheet">
-   <string notr="true">#QTipsWidget{
-	
-	background-color: rgb(255, 255, 255);
-}
-
-QPushButton{
-border:1px solid;
-border-radius:10px;
-border-color:gray;
-}</string>
+   <string notr="true"/>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="4,3">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="topMargin">
-      <number>0</number>
+    <widget class="QWidget" name="QTipsWidget" native="true">
+     <property name="styleSheet">
+      <string notr="true">#QTipsWidget{
+	border:1px solid #DBDBEA;
+	border-radius:10px;
+}</string>
      </property>
-     <item>
-      <widget class="QLabel" name="TipsLabel">
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-         <pointsize>11</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Tips</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
-     <property name="spacing">
-      <number>20</number>
-     </property>
-     <property name="leftMargin">
-      <number>25</number>
-     </property>
-     <property name="topMargin">
-      <number>20</number>
-     </property>
-     <property name="rightMargin">
-      <number>25</number>
-     </property>
-     <property name="bottomMargin">
-      <number>20</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="ConfirmPushButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color:#0073FF;
-color:white</string>
-       </property>
-       <property name="text">
-        <string>确 定</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="CancelPushButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-        </font>
-       </property>
-       <property name="text">
-        <string>取 消</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,4,0">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>1</number>
+      </property>
+      <property name="topMargin">
+       <number>1</number>
+      </property>
+      <property name="rightMargin">
+       <number>1</number>
+      </property>
+      <property name="bottomMargin">
+       <number>1</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="topWidget" stretch="0">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background:#F9F9FC;
+border-top-left-radius:10px;
+border-top-right-radius:10px;</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="TitleLabel">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>38</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+              </font>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Title</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ExitPushButton">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+                          #ExitPushButton{
+                          border-image:url(&quot;:/image/resource/icon-close-gray@2x.png&quot;)
+                          }
+
+                          #ExitPushButton:hover{
+                          border-image:url(&quot;:/image/resource/icon-close-gray-hover@2x.png&quot;)
+                          }
+                        </string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="TipsLabel">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);
+border-top:1px solid #DBDBEA;</string>
+          </property>
+          <property name="text">
+           <string>Tips</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QWidget" name="bottomWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">background: #FFF;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
+         <property name="spacing">
+          <number>20</number>
+         </property>
+         <property name="leftMargin">
+          <number>25</number>
+         </property>
+         <property name="topMargin">
+          <number>20</number>
+         </property>
+         <property name="rightMargin">
+          <number>25</number>
+         </property>
+         <property name="bottomMargin">
+          <number>20</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="ConfirmPushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>34</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>90</width>
+             <height>34</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+                      QPushButton{
+                      background-color:#0073FF;
+                      border-radius:6px;
+                      color:white
+                      }
+
+                      QPushButton:hover{
+                      background-color: #3590FF;
+                      border-radius:6px;
+                      color:white
+                      }
+
+                      QPushButton:pressed{
+                      background-color: #0E62C8;
+                      border-radius:6px;
+                      color:white
+                      }
+                    </string>
+           </property>
+           <property name="text">
+            <string>确 定</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="CancelPushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>90</width>
+             <height>34</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>90</width>
+             <height>34</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+                      QPushButton{
+                      border-radius:6px;
+                      border: 1px solid #E5E5F0;
+                      color:black
+                      }
+
+                      QPushButton:hover{
+                      border-radius:6px;
+                      border: 1px solid #3590FF;
+                      color:#3590FF
+                      }
+
+                      QPushButton:pressed{
+                      border-radius:6px;
+                      border: 1px solid #0E62C8;
+                      color:#0E62C8
+                      }
+                    </string>
+           </property>
+           <property name="text">
+            <string>取 消</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../agora_edu_demo.qrc"/>
+ </resources>
  <connections/>
 </ui>

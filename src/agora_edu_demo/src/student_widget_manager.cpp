@@ -72,6 +72,34 @@ void StudentWidgetManager::LeaveClassroom() {
   login_widget_manager_->ExitToLoginWidget();
 }
 
+void StudentWidgetManager::UpdateVideoEncoderConfigWithStudentCount(
+    size_t student_count) {
+  EduVideoConfig config;
+  switch (student_count) {
+    case 0:
+      return;
+    case 1:
+      config.frame_rate = 30;
+      config.video_dimension_width = 1920;
+      config.video_dimension_height = 1080;
+      break;
+    case 2:
+      config.frame_rate = 30;
+      config.video_dimension_width = 960;
+      config.video_dimension_height = 540;
+      break;
+    case 3:
+    case 4:
+      config.frame_rate = 15;
+      config.video_dimension_width = 640;
+      config.video_dimension_height = 480;
+	  break;
+	default:
+      break;
+  }
+  user_service_->SetVideoConfig(camera_stream_, config);
+}
+
 void StudentWidgetManager::customEvent(QEvent* event) {
   if (event->type() == AGORA_EVENT) {
     auto agora_event = static_cast<AgoraEvent*>(event);
@@ -100,7 +128,8 @@ void StudentWidgetManager::OnRemoteUsersJoined(
       if (user.role != EDU_ROLE_TYPE_STUDENT) {
         continue;
       }
-
+      UpdateVideoEncoderConfigWithStudentCount(
+          classroom_manager_->GetUserCount(EDU_ROLE_TYPE_STUDENT));
       for (size_t j = 0; j < user.properties->NumberOfProperties(); ++j) {
         Property property;
         user.properties->GetProperty(j, property);
@@ -134,7 +163,14 @@ void StudentWidgetManager::OnRemoteUsersJoined(
 
 void StudentWidgetManager::OnRemoteUsersLeft(
     agora_refptr<IUserEventCollection> user_event_collection,
-    EduClassroom from_classroom) {}
+    EduClassroom from_classroom) {
+  auto shared_this = shared_from_this();
+
+  AgoraEvent::PostAgoraEvent(new AgoraEvent, this, [=] {
+    UpdateVideoEncoderConfigWithStudentCount(
+        classroom_manager_->GetUserCount(EDU_ROLE_TYPE_STUDENT));
+  });
+}
 
 void StudentWidgetManager::OnRemoteUserStateUpdated(
     EduUserEvent user_event, EduUserStateChangeType type,
@@ -250,8 +286,6 @@ void StudentWidgetManager::OnRemoteStreamsAdded(
       if (stream.user_info.role == EDU_ROLE_TYPE_TEACHER) {
         // auto subscribe teacher
         EduSubscribeOptions options;
-        options.subscribe_video =  stream.has_video;
-        options.subscribe_audio =  stream.has_audio;
         shared_this->user_service_->SubscribeStream(stream, options);
       }
     }
@@ -458,11 +492,8 @@ void StudentWidgetManager::OnLocalStreamCreated(EduStream stream_info,
     auto shared_this = shared_from_this();
 
     AgoraEvent::PostAgoraEvent(new AgoraEvent, this, [=] {
-      agora::edu::EduVideoConfig video_config;
-      video_config.video_dimension_width = 1280;
-      video_config.video_dimension_height = 1080;
-      video_config.frame_rate = 30;
-      shared_this->user_service_->SetVideoConfig(camera_stream_, video_config);
+      UpdateVideoEncoderConfigWithStudentCount(
+          classroom_manager_->GetUserCount(EDU_ROLE_TYPE_STUDENT));
       user_service_->SwitchCamera(camera_stream_);
       user_service_->PublishStream(camera_stream_);
     });

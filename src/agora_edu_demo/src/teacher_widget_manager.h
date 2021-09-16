@@ -155,7 +155,7 @@ class TeacherWidgetManager
   const EduClassroomConfig config_;
   EduStream edu_master_stream_;
   EduStream edu_slave_stream;
-
+  int cnt_screen_;
   EduBaseUser user_info_;
   std::string raise_user_uuid_;
   std::string ready_raise_user_uuid_;

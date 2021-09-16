@@ -7,6 +7,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <tchar.h>
 
 #include "EduStream.h"
 #include "IEduClassroomManager.h"
@@ -22,12 +23,10 @@ enum StreamUuidType {
   RAND_STREAM_UUID
 };
 
-enum RoomMessageType {
-  ROOM_ENTER_READY, SWITCH_WIDGET, KICK_MSG };
-#define APP_ID ""
-#define CUSTOMER_ID ""
-#define CUSTOMER_CERTIFICATE ""
-
+enum RoomMessageType { ROOM_ENTER_READY, SWITCH_WIDGET, KICK_MSG };
+#define APP_ID "<enter your agora app id>"
+#define CUSTOMER_ID "<enter your customer id>"
+#define CUSTOMER_CERTIFICATE "<enter your customer certificate id>"
 
 #define RAISE_KEY "Raise"
 #define RAISE_TRUE "True"
@@ -71,6 +70,18 @@ EduStreamConfig CreateRandUuidStreamConfig(const StreamUuidType& index,
                                            std::string stream_name,
                                            EduVideoSourceType source_type,
                                            bool has_video, bool has_audio);
+
+struct Config {
+  std::string app_id;
+  std::string customer_id;
+  std::string customer_cerificate_id;
+};
+
+
+
+Config GetConfig();
+
+
 
 class AgoraEvent : public QEvent {
   const static Type TYPE = static_cast<Type>(AGORA_EVENT);

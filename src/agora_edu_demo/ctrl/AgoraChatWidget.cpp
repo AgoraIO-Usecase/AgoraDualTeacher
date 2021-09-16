@@ -2,6 +2,8 @@
 #include <QScrollBar>
 #include "AgoraInnerChatContent.h"
 #include "util.h"
+#include <QPainter>
+#include <QBitmap>
 
 AgoraChatWidget::AgoraChatWidget(QWidget *parent) : QWidget(parent) {
   ui.setupUi(this);
@@ -102,9 +104,7 @@ void AgoraChatWidget::mousePressEvent(QMouseEvent *event) {
 
   if (event->button() == Qt::LeftButton && rect.contains(current_pos)) {
     is_drag_ = true;
-    //获得鼠标的初始位置
     mouse_start_point_ = event->globalPos();
-    // mouseStartPoint = event->pos();
     setCursor(Qt::OpenHandCursor);
   }
 
@@ -113,10 +113,7 @@ void AgoraChatWidget::mousePressEvent(QMouseEvent *event) {
 
 void AgoraChatWidget ::mouseMoveEvent(QMouseEvent *event) {
   if (is_drag_) {
-    //获得鼠标移动的距离
     QPoint distance = event->globalPos() - mouse_start_point_;
-    // QPoint distance = event->pos() - mouseStartPoint;
-    //改变窗口的位置
     this->move(window_top_left_point_ + distance);
   }
 
@@ -130,6 +127,41 @@ void AgoraChatWidget::mouseReleaseEvent(QMouseEvent *event) {
   }
 
   QWidget::mouseReleaseEvent(event);
+}
+
+void AgoraChatWidget::paintEvent(QPaintEvent *event) {
+  Q_UNUSED(event);
+  QBitmap bmp(this->size());
+  bmp.fill();
+  QPainter painter(&bmp);
+  painter.setPen(Qt::black);
+  painter.setBrush(Qt::black);
+  painter.setRenderHints(QPainter::HighQualityAntialiasing |
+                         QPainter::SmoothPixmapTransform);
+  auto top_rect =
+      QRect(ui.top_widget->rect().x()+1 , ui.top_widget->rect().y()+1 ,
+            ui.top_widget->rect().width(), ui.top_widget->rect().height());
+  auto center_rect =
+      QRect(top_rect.x(), top_rect.y() + top_rect.height(),
+                           ui.scrollArea->rect().width(), ui.scrollArea->rect().height());
+  auto bottom_rect =
+      QRect(center_rect.x(), center_rect.y() + center_rect.height(),
+            ui.bottomWidget->rect().width() ,
+            ui.bottomWidget->rect().height() );
+  QPainterPath path;
+  path.setFillRule(Qt::WindingFill);
+  path.addRoundedRect(top_rect, 8, 8);
+  path.addRoundedRect(bottom_rect, 8, 8);
+  QRect temp_top_rect(top_rect.left(), top_rect.top() + top_rect.height() / 2,
+                      top_rect.width(), top_rect.height());
+  QRect temp_bottom_rect(bottom_rect.left(), bottom_rect.top(),
+                         bottom_rect.width(), bottom_rect.height() / 2);
+  path.addRect(temp_top_rect);
+  path.addRect(center_rect);
+  path.addRect(temp_bottom_rect);
+  painter.fillPath(path, QBrush(QColor(93, 201, 87)));
+  setMask(bmp);
+
 }
 
 void AgoraChatWidget::OnExitPushButtonClicked() {

@@ -31,11 +31,15 @@
     <Filter Include="ctrl">
       <UniqueIdentifier>{ca616e75-f2c2-4ac4-b518-c07dcb1ca550}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="agora_edu_demo.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
+    <Filter Include="gen">
+      <UniqueIdentifier>{07c356b4-c083-43ef-85de-7d02466d2a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\debug">
+      <UniqueIdentifier>{160c3009-cd7a-4f72-8c33-5bd4f95556c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\release">
+      <UniqueIdentifier>{a4c15b73-b975-4f34-a3b4-4f7645ce8db7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -96,103 +100,236 @@
     <ClCompile Include="ctrl\video_render_opengl.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="src\login_widget_manager.h">
-      <Filter>src</Filter>
-    </QtMoc>
-    <QtMoc Include="src\teacher_widget_manager.h">
-      <Filter>src</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraStudentWidget.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="src\student_widget_manager.h">
-      <Filter>src</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraVideoListWidget.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ctrl\AgoraChatWidget.h">
-      <Filter>ctrl</Filter>
-    </QtMoc>
-    <QtMoc Include="ctrl\AgoraInnerChatContent.h">
-      <Filter>ctrl</Filter>
-    </QtMoc>
-    <QtMoc Include="ctrl\AgoraSlider.h">
-      <Filter>ctrl</Filter>
-    </QtMoc>
-    <QtMoc Include="ctrl\AgoraVideoWidget.h">
-      <Filter>ctrl</Filter>
-    </QtMoc>
-    <QtMoc Include="ctrl\AgoraVolumeWidget.h">
-      <Filter>ctrl</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraSelectShareDlg.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraClassRoomListWidget.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraClassroomWidget.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraLoginWidget.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraSettingDialog.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraTipsDialog.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-    <QtMoc Include="ui\AgoraTeacherWidget.h">
-      <Filter>ui</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="ui\AgoraChatWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraVideoListWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraSelectShareDlg.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraClassroomListWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraClassroomWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraLoginWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraSettingDialog.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraTipsWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraStudentWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="ui\AgoraTeacherWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraChatWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraClassRoomListWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraClassroomWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraInnerChatContent.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraLoginWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraSelectShareDlg.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraSettingDialog.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraSlider.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraStudentWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraTeacherWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraTipsDialog.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraVideoListWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraVideoWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AgoraVolumeWidget.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_login_widget_manager.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_student_widget_manager.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_teacher_widget_manager.cpp">
+      <Filter>gen\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_agora_edu_demo.cpp">
+      <Filter>gen</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraChatWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraClassRoomListWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraClassroomWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraInnerChatContent.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraLoginWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraSelectShareDlg.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraSettingDialog.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraSlider.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraStudentWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraTeacherWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraTipsDialog.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraVideoListWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraVideoWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AgoraVolumeWidget.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_login_widget_manager.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_student_widget_manager.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_teacher_widget_manager.cpp">
+      <Filter>gen\release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\util.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="ctrl\video_render_opengl.h">
-      <Filter>opengl</Filter>
+    <ClInclude Include="GeneratedFiles\ui_AgoraChatWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraClassroomListWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraClassroomWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraLoginWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraSelectShareDlg.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraSettingDialog.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraStudentWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraTeacherWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraVideoListWidget.h">
+      <Filter>gen</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AgoraTipsWidget.h">
+      <Filter>gen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource\agora_edu_demo.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ui\AgoraChatWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraSelectShareDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraStudentWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraTeacherWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraVideoListWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraClassroomWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraClassroomListWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraLoginWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraSettingDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraTipsWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraClassRoomListWidget.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraLoginWidget.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraSelectShareDlg.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\student_widget_manager.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\teacher_widget_manager.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\login_widget_manager.h">
+      <Filter>src</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraStudentWidget.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraTeacherWidget.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraVideoListWidget.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraTipsDialog.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ctrl\AgoraVideoWidget.h">
+      <Filter>ctrl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ctrl\AgoraSlider.h">
+      <Filter>ctrl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ctrl\AgoraVolumeWidget.h">
+      <Filter>ctrl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ctrl\AgoraChatWidget.h">
+      <Filter>ctrl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ctrl\AgoraInnerChatContent.h">
+      <Filter>ctrl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="agora_edu_demo.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraClassroomWidget.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\AgoraSettingDialog.h">
+      <Filter>ui</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

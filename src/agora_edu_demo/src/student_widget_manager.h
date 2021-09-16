@@ -38,6 +38,7 @@ class StudentWidgetManager
     }
     user_service_->SetStreamView(stream, view, config);
   }
+  void UpdateVideoEncoderConfigWithStudentCount(size_t studnet_count);
 
  protected:
   void customEvent(QEvent* event);

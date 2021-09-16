@@ -1,6 +1,8 @@
+#include <QBitmap>
 #include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QPainter>
 #include <QVBoxLayout>
 #include <QtPlatformHeaders/QWindowsWindowFunctions>
 
@@ -32,42 +34,60 @@ AgoraTeacherWidget::AgoraTeacherWidget(
 
   QGridLayout* layout = new QGridLayout;
   layout->setContentsMargins(0, 0, 0, 0);
-  main_ui_.widget->setLayout(layout);
-
+  main_ui_.body_widget->setLayout(layout);
   if (display_mode_ == DUAL_SCREEN) {
     video_widget_[0] = new AgoraVideoWidget(this);
     video_widget_[1] = new AgoraVideoWidget(this);
-    main_ui_.widget->layout()->addWidget(video_widget_[0]);
-    class_pushbutton_ = new QPushButton(video_widget_[0]);
+    video_widget_[1]->AppendFuntionalFlags(AgoraVideoWidget::SUPPORT_DRAG);
+    main_ui_.body_widget->layout()->addWidget(video_widget_[0]);
+    class_widget = new QWidget(video_widget_[0]);
     classroom_list_widget_ =
         new AgoraClassroomListWidget(teacher_widget_manager_, video_widget_[0]);
   } else {
     video_widget_[0] = new AgoraVideoWidget(this);
     video_widget_[1] = new AgoraVideoWidget(this);
     video_list_widget_ = new AgoraVideoListWidget(this);
-    class_pushbutton_ = new QPushButton(this);
-    classroom_list_widget_ =
-        new AgoraClassroomListWidget(teacher_widget_manager_, this);
     LayoutClassroomVideoWidget(0);
+    class_widget = new QWidget(video_widget_[1]);
+    classroom_list_widget_ =
+        new AgoraClassroomListWidget(teacher_widget_manager_, video_widget_[1]);
   }
+  video_widget_[0]->SetEduStream(nullptr);
+  video_widget_[1]->SetEduStream(nullptr);
+
+  class_pushbutton_ = new QPushButton(class_widget);
+  class_pushbutton_->setMaximumSize(38, 38);
+  class_pushbutton_->setMinimumSize(38, 38);
+  QVBoxLayout *layout_class = new QVBoxLayout(class_widget);
+  layout_class->setContentsMargins(6, 6, 6, 6);
+  class_widget->resize(50, 50);
+  layout_class->addWidget(class_pushbutton_);
+  class_widget->setLayout(layout_class);
+  class_widget->setObjectName("class_widget");
+  class_widget->setStyleSheet(STR(
+#class_widget { 
+		  background-color: rgb(255, 255, 255);
+          border : 1px solid #DBDBEA;
+          border-radius : 6px;
+}
+         ));
+  classroom_list_widget_->raise();
   map_teacher_video_widgets_[0] = video_widget_[0];
   map_teacher_video_widgets_[1] = video_widget_[1];
-
+ 
   video_widget_list_.push_back(video_widget_[0]);
   video_widget_list_.push_back(video_widget_[1]);
 
-  classroom_list_widget_->setStyleSheet(
-      "background-color : rgba(255, 255, 255, 0.7); border-radius:6px;");
   class_pushbutton_->setStyleSheet(STR(
-	  QPushButton{
-		   border-image: url(":/image/resource/icon-classroom@2x.png");
-           border-radius:6px;
-		   background-color:rgba(255,255,255, 0.7);
+  QPushButton{
+	  border-image: url(":/image/resource/icon-classroom@2x.png");
+      border-radius:6px;
+	  background-color:rgba(255,255,255, 1);
 	  }
   QPushButton:hover{
 	  border-image: url(":/image/resource/icon-classroom-hover@2x.png");
 	  border-radius:6px;
-	  background-color:rgba(255,255,255, 0.7);
+	  background-color:rgba(255,255,255, 1);
 	  }));
 
   QObject::connect(main_ui_.ExitPushButton, SIGNAL(clicked()), this,
@@ -108,13 +128,21 @@ void AgoraTeacherWidget::closeEvent(QCloseEvent* event) {
 }
 
 void AgoraTeacherWidget::resizeEvent(QResizeEvent* event) {
-  class_pushbutton_->move(frameGeometry().width() - 38 - 20, 368);
-  classroom_list_widget_->move(
-      frameGeometry().width() - 310,
-      main_ui_.widget->frameGeometry().y() + 20 + 160 + 20);
+
   if (display_mode_ == DUAL_SCREEN) {
     video_widget_[1]->move(frameGeometry().width() - 310,
-                           main_ui_.widget->frameGeometry().y() + 20);
+                           main_ui_.body_widget->frameGeometry().y() + 20);
+    classroom_list_widget_->move(
+        frameGeometry().width() - 310,
+        main_ui_.body_widget->frameGeometry().y() + 20 + 160 + 20);
+    class_widget->move(frameGeometry().width() - 52 - 20, 368);
+
+  } else {
+    classroom_list_widget_->move(
+        video_widget_[1]->frameGeometry().width() - 310,
+        main_ui_.body_widget->frameGeometry().y() + 20 + 160 + 20);
+    class_widget->move(video_widget_[1]->frameGeometry().width() - 52 - 20, 368);
+  
   }
   if (video_list_widget_) {
     video_list_widget_->setMaximumHeight(frameGeometry().height() / 4);
@@ -129,7 +157,7 @@ void AgoraTeacherWidget::RemoteClassroomJoin(
     classroom_list_widget_->AddClassroomWidget(user_info);
     map_uuid_streamid_[user_info.user_uuid] = "";
     map_student_uuid_video_widgets_[user_info.user_uuid] = nullptr;
-    AddClassroomVideoWidget(user_info.user_uuid);
+    AddClassroomVideoWidget(user_info);
   }
 }
 
@@ -138,8 +166,8 @@ void AgoraTeacherWidget::RemoteClassroomLeave(
   for (size_t i = 0; i < user_event_collection->NumberOfUserEvent(); ++i) {
     EduUserEvent user_event;
     user_event_collection->GetUserEvent(i, user_event);
-    if (raise_ &&
-        strcmp(user_event.modified_user.user_uuid, raise_user_uuid_.c_str()) == 0) {
+    if (raise_ && strcmp(user_event.modified_user.user_uuid,
+                         raise_user_uuid_.c_str()) == 0) {
       UpdateVideoWidgetUi(raise_user_uuid_, false);
     }
     classroom_list_widget_->RemoveClassroomWidget(
@@ -175,7 +203,6 @@ void AgoraTeacherWidget::UpdateClassroomStateUi(std::string user_uuid,
     classroom_list_widget_->MuteClassroomChat(user_uuid, is_enable);
   } else if (type == CLASSROOM_STATE_CHANGE_TYPE_RAISE) {
     classroom_list_widget_->RaiseClassroom(user_uuid, is_enable);
-
     RaiseClassroom(user_uuid, is_enable);
   }
 }
@@ -337,27 +364,38 @@ void AgoraTeacherWidget::ShowScreen(bool enable_share_screen) {
   resize(1366, 768);
   show();
 
+  enable_share_screen_ = enable_share_screen;
+
   if (extend_widget_) {
     extend_widget_->setWindowTitle("extend Screen");
     extend_widget_->showFullScreen();
   }
 
-  class_pushbutton_->move(frameGeometry().width() - 38 - 20, 368);
-  class_pushbutton_->resize(38, 38);
-  class_pushbutton_->setContentsMargins(6, 6, 6, 6);
 
-  video_widget_[1]->setGeometry(frameGeometry().width() - 310,
-                                main_ui_.widget->frameGeometry().y() + 20, 290,
-                                160);
+
+  video_widget_[1]->move(frameGeometry().width() - 310,
+                         main_ui_.body_widget->frameGeometry().y() + 20);
+  video_widget_[1]->setMinimumSize(290, 160);
   video_widget_[1]->raise();
   video_widget_[1]->show();
 
-  classroom_list_widget_->move(
-      frameGeometry().width() - 310,
-      main_ui_.widget->frameGeometry().y() + 20 + 160 + 20);
+    if (display_mode_ == DUAL_SCREEN) {
+    class_widget->move(video_widget_[0]->frameGeometry().width() - 52 - 20,
+                       368);
+    video_widget_[1]->move(frameGeometry().width() - 310,
+                           main_ui_.body_widget->frameGeometry().y() + 20);
+    classroom_list_widget_->move(
+        frameGeometry().width() - 310,
+        main_ui_.body_widget->frameGeometry().y() + 20 + 160 + 20);
+  } else {
+      class_widget->move(video_widget_[0]->frameGeometry().width() - 52 - 20,
+                         368);
+    classroom_list_widget_->move(
+        video_widget_[1]->frameGeometry().width() - 310,
+        main_ui_.body_widget->frameGeometry().y() + 20 + 160 + 20);
+  }
   classroom_list_widget_->resize(290, 300);
-
-  ShowControlWidget(enable_share_screen);
+  ShowControlWidget();
 }
 
 void AgoraTeacherWidget::HideScreen() {
@@ -439,7 +477,38 @@ void AgoraTeacherWidget::mouseReleaseEvent(QMouseEvent* event) {
 
 void AgoraTeacherWidget::showEvent(QShowEvent* event) {
   QWidget::showEvent(event);
-  QWindowsWindowFunctions ::setHasBorderInFullScreen(windowHandle(),true);
+  QWindowsWindowFunctions ::setHasBorderInFullScreen(windowHandle(), true);
+}
+
+void AgoraTeacherWidget::paintEvent(QPaintEvent* event) {
+  Q_UNUSED(event);
+  QBitmap bmp(this->size());
+  bmp.fill();
+  QPainter painter(&bmp);
+  painter.setPen(Qt::black);
+  painter.setBrush(Qt::black);
+  painter.setRenderHints(QPainter::HighQualityAntialiasing |
+                         QPainter::SmoothPixmapTransform);
+  auto top_rect = QRect(main_ui_.top_widget->rect().x() + 1,
+                        main_ui_.top_widget->rect().y() + 1,
+                        main_ui_.top_widget->rect().width(),
+                        main_ui_.top_widget->rect().height());
+
+  auto bottom_rect = QRect(top_rect.x(), top_rect.y() + top_rect.height(),
+                           main_ui_.body_widget->rect().width(),
+                           main_ui_.body_widget->rect().height());
+  QPainterPath path;
+  path.setFillRule(Qt::WindingFill);
+  path.addRoundedRect(top_rect, 8, 8);
+  path.addRoundedRect(bottom_rect, 8, 8);
+  QRect temp_top_rect(top_rect.left(), top_rect.top() + top_rect.height() / 2,
+                      top_rect.width(), top_rect.height());
+  QRect temp_bottom_rect(bottom_rect.left(), bottom_rect.top(),
+                         bottom_rect.width(), bottom_rect.height() / 2);
+  path.addRect(temp_top_rect);
+  path.addRect(temp_bottom_rect);
+  painter.fillPath(path, QBrush(QColor(93, 201, 87)));
+  setMask(bmp);
 }
 
 bool AgoraTeacherWidget::CheckNeedDualScreen() {
@@ -464,14 +533,19 @@ bool AgoraTeacherWidget::CheckNeedDualScreen() {
   }
 }
 
-bool AgoraTeacherWidget::AddClassroomVideoWidget(const std::string& user_uuid) {
+bool AgoraTeacherWidget::AddClassroomVideoWidget(const EduUser& user_info) {
   size_t count = classroom_video_widgets_.size();
   if (count >= 4) {
     return false;
   }
-  map_student_uuid_video_widgets_[user_uuid] = new AgoraVideoWidget(this);
+  map_student_uuid_video_widgets_[user_info.user_uuid] =
+      new AgoraVideoWidget(this);
+  map_student_uuid_video_widgets_[user_info.user_uuid]->SetEduUserInfo(
+      user_info);
+
   classroom_video_widgets_.push_back(
-      {user_uuid, map_student_uuid_video_widgets_[user_uuid]});
+      {user_info.user_uuid,
+       map_student_uuid_video_widgets_[user_info.user_uuid]});
   LayoutClassroomVideoWidget(++count);
 
   if (display_mode_ == SINGLE_SCREEN) {
@@ -495,7 +569,7 @@ bool AgoraTeacherWidget::RemoveClassroomVideoWidget(
   if (display_mode_ == DUAL_SCREEN) {
     layout = static_cast<QGridLayout*>(extend_widget_->layout());
   } else {
-    layout = static_cast<QGridLayout*>(main_ui_.widget->layout());
+    layout = static_cast<QGridLayout*>(main_ui_.body_widget->layout());
   }
 
   auto find_it = std::find_if(
@@ -550,7 +624,7 @@ void AgoraTeacherWidget::LayoutClassroomVideoWidget(const size_t& video_count) {
     if (!video_list_widget_) {
       return;
     }
-    auto layout = static_cast<QGridLayout*>(main_ui_.widget->layout());
+    auto layout = static_cast<QGridLayout*>(main_ui_.body_widget->layout());
     if (video_count > 0) {
       layout->addWidget(video_list_widget_, 0, 0, 1, 2);
       layout->addWidget(video_widget_[0], 1, 0, 3, 1);
@@ -565,7 +639,7 @@ void AgoraTeacherWidget::LayoutClassroomVideoWidget(const size_t& video_count) {
   }
 }
 
-void AgoraTeacherWidget::ShowControlWidget(bool enable_share_screen) {
+void AgoraTeacherWidget::ShowControlWidget() {
   if (control_widget_ == nullptr) {
     control_widget_ = new QWidget(video_widget_[0]);
     share_screen_pushbutton_ = new QPushButton(control_widget_);
@@ -578,26 +652,24 @@ void AgoraTeacherWidget::ShowControlWidget(bool enable_share_screen) {
         QPushButton{
         border-image : url(":/image/resource/icon-share@2x.png");
 	    border-radius:6px;
-        background-color : rgba(255, 255, 255, 0.7);
+        background-color : rgba(255, 255, 255, 0);
         }
         QPushButton:hover{
         border-image : url(":/image/resource/icon-share-hover@2x.png");
 		border-radius:6px;
-        background-color : rgba(255, 255, 255, 0.7);
+        background-color : rgba(255, 255, 255, 0);
 	    }
         QPushButton:checked {
         border-image : url(":/image/resource/icon-share-active@2x.png");
 		border-radius:6px;
-        background-color : rgba(255, 255, 255, 0.7);
+        background-color : rgba(255, 255, 255, 0);
         }
-	  QPushButton:checked:hover {
+	    QPushButton:checked:hover {
         border-image : url(":/image/resource/icon-share-active-hover@2x.png");
 		border-radius:6px;
-        background-color : rgba(255, 255, 255, 0.7);
+        background-color : rgba(255, 255, 255, 0);
       }
 	  ));
-
-    share_screen_pushbutton_->setEnabled(enable_share_screen);
 
     chat_pushbutton_ = new QPushButton(control_widget_);
     chat_pushbutton_->setMaximumSize(38, 38);
@@ -629,13 +701,13 @@ void AgoraTeacherWidget::ShowControlWidget(bool enable_share_screen) {
 
     control_widget_->move(20, 316);
     control_widget_->resize(50, 90);
-    control_widget_->setContentsMargins(6, 6, 6, 6);
+    //control_widget_->setContentsMargins(6, 6, 6, 6);
 
     QVBoxLayout* v_layout = new QVBoxLayout(this);
     v_layout->addWidget(share_screen_pushbutton_);
     v_layout->addWidget(chat_pushbutton_);
     v_layout->setAlignment(Qt::AlignCenter);
-    v_layout->setContentsMargins(0, 0, 0, 0);
+    v_layout->setContentsMargins(6, 6, 6, 6);
 
     control_widget_->setLayout(v_layout);
     QObject::connect(share_screen_pushbutton_, SIGNAL(clicked()), this,
@@ -645,109 +717,129 @@ void AgoraTeacherWidget::ShowControlWidget(bool enable_share_screen) {
     QObject::connect(chat_widget_.get(), SIGNAL(ChatWidgetExitSig(bool)),
                      chat_pushbutton_, SLOT(setChecked(bool)));
   }
-
-  control_widget_->setStyleSheet("background-color:rgba(255,255,255,0.7);");
-  control_widget_->show();
+  control_widget_->setObjectName("control_widget_");
+  control_widget_->setStyleSheet(STR(
+#control_widget_ { 
+		  background-color: rgb(255, 255, 255);
+          border : 1px solid #DBDBEA;
+          border-radius : 6px;
 }
+         ));
+         control_widget_->show();
+         }
 
-void AgoraTeacherWidget::OnClassPushButtonClicked() {
-  classroom_list_widget_->show();
-}
+         void AgoraTeacherWidget::OnClassPushButtonClicked() {
+           classroom_list_widget_->show();
+           classroom_list_widget_->raise();
+         }
 
-void AgoraTeacherWidget::OnChangeSizePushButtonClicked() {
-  if (main_ui_.ChangeSizePushButton->isChecked()) {
-    showFullScreen();
-  } else {
-    showNormal();
-  }
-}
+         void AgoraTeacherWidget::OnChangeSizePushButtonClicked() {
+           if (main_ui_.ChangeSizePushButton->isChecked()) {
+             showFullScreen();
+           } else {
+             showNormal();
+           }
+         }
 
-void AgoraTeacherWidget::OnExitPushButtonClicked() {
-  if (AgoraTipsDialog::ExecTipsDialog(QString::fromLocal8Bit("退出教室？")) ==
-      QDialog::Accepted) {
-    teacher_widget_manager_->LeaveClassroom();
-  }
-}
+         void AgoraTeacherWidget::OnExitPushButtonClicked() {
+           if (AgoraTipsDialog::ExecTipsDialog(
+                   QString::fromLocal8Bit("退出确认"),
+                   QString::fromLocal8Bit("退出教室？")) == QDialog::Accepted) {
+             teacher_widget_manager_->LeaveClassroom();
+           }
+         }
 
-void AgoraTeacherWidget::OnChatPushButtonClicked() {
-  if (chat_pushbutton_->isChecked()) {
-    chat_widget_->setGeometry(frameGeometry().x() + 85,
-                              frameGeometry().y() + 357, 293, 390);
-    chat_widget_->show();
-  } else {
-    chat_widget_->hide();
-  }
-}
+         void AgoraTeacherWidget::OnChatPushButtonClicked() {
+           if (chat_pushbutton_->isChecked()) {
+             chat_widget_->setGeometry(frameGeometry().x() + 85,
+                                       frameGeometry().y() + 357, 293, 390);
+             chat_widget_->show();
+           } else {
+             chat_widget_->hide();
+           }
+         }
 
-void AgoraTeacherWidget::OnShareScreenPushButtonClicked() {
-  if (share_screen_pushbutton_->isChecked()) {
-    AgoraSelectShareDlg dlg;
-    dlg.getAvailableScreenId();
-    static bool bShareScreen = false;
-    if (QDialog::Accepted == dlg.exec() && dlg.bCapture) {
-      bShareScreen = true;
-      CaptureInfo captureinfo = dlg.selectedInfo;
-      EduShareScreenConfig share_config;
-      if (captureinfo.isDesktop) {
-        share_config.enableRect = false;
-        share_config.hwnd = GetDesktopWindow();
-      } else {
-        RECT rc;
-        rc.left = 0;
-        rc.top = 0;
-        rc.right = captureinfo.width;
-        rc.bottom = captureinfo.height;
-        share_config.hwnd = captureinfo.hwnd;
-      }
+         void AgoraTeacherWidget::OnShareScreenPushButtonClicked() {
+           if (!enable_share_screen_) {
+             share_screen_pushbutton_->setChecked(false);
+             AgoraTipsDialog::ExecTipsDialog(
+                 QString::fromLocal8Bit("提示"),
+                 QString::fromLocal8Bit("窗口已满，无法共享屏幕！"));
+             return;
+           }
 
-      teacher_widget_manager_->StartScreenShare(share_config);
+           if (share_screen_pushbutton_->isChecked()) {
+             AgoraSelectShareDlg dlg;
+             dlg.getAvailableScreenId();
+             static bool bShareScreen = false;
+             if (QDialog::Accepted == dlg.exec() && dlg.bCapture) {
+               bShareScreen = true;
+               CaptureInfo captureinfo = dlg.selectedInfo;
+               EduShareScreenConfig share_config;
+               if (captureinfo.isDesktop) {
+                 share_config.enableRect = false;
+                 share_config.hwnd = GetDesktopWindow();
+               } else {
+                 RECT rc;
+                 rc.left = 0;
+                 rc.top = 0;
+                 rc.right = captureinfo.width;
+                 rc.bottom = captureinfo.height;
+                 share_config.hwnd = captureinfo.hwnd;
+               }
 
-    } else {
-      share_screen_pushbutton_->setChecked(false);
-    }
-  } else {
-    teacher_widget_manager_->StopScreenShare();
-    share_screen_pushbutton_->setChecked(false);
-  }
-}
+               teacher_widget_manager_->StartScreenShare(share_config);
 
-void AgoraTeacherWidget::OnOpenGLWidgetTouched() {
-  std::lock_guard<std::mutex> _(mutex_);
-  auto edu_stream0 = video_widget_[0]->GetEduStream();
-  auto edu_stream1 = video_widget_[1]->GetEduStream();
+             } else {
+               share_screen_pushbutton_->setChecked(false);
+             }
+           } else {
+             teacher_widget_manager_->StopScreenShare();
+             share_screen_pushbutton_->setChecked(false);
+           }
+         }
 
-  EduStream copy_stream0;
-  if (edu_stream0) {
-    copy_stream0 = EduStream(*edu_stream0);
-  }
-  EduStream copy_stream1;
-  if (edu_stream1) {
-    copy_stream1 = EduStream(*edu_stream1);
-  }
-  if (raise_) {
-    if (map_teacher_video_widgets_[0] == video_widget_[0]) {
-      map_teacher_video_widgets_[0] = video_widget_[1];
-      map_student_uuid_video_widgets_[raise_user_uuid_] = video_widget_[0];
-    } else {
-      map_teacher_video_widgets_[0] = video_widget_[0];
-      map_student_uuid_video_widgets_[raise_user_uuid_] = video_widget_[1];
-    }
-  }
-  ResetStreamWidget(copy_stream0, video_widget_[0]);
-  ResetStreamWidget(copy_stream1, video_widget_[1]);
-  if (edu_stream0) {
-    AddSpecifiedLocalStream(1, copy_stream0);
-  }
-  if (edu_stream1) {
-    AddSpecifiedLocalStream(0, copy_stream1);
-  }
-  QJsonObject obj;
-  obj.insert("type", SWITCH_WIDGET);
-  obj.insert("widget0", copy_stream1.stream_uuid);
-  obj.insert("widget1", copy_stream0.stream_uuid);
+         void AgoraTeacherWidget::OnOpenGLWidgetTouched() {
+           std::lock_guard<std::mutex> _(mutex_);
+           auto edu_stream0 = video_widget_[0]->GetEduStream();
+           auto edu_stream1 = video_widget_[1]->GetEduStream();
 
-  QJsonDocument doc;
-  doc.setObject(obj);
-  teacher_widget_manager_->SendRoomCustomMessage(
-      doc.toJson(QJsonDocument::Compact));
-}
+           EduStream copy_stream0;
+           if (edu_stream0) {
+             copy_stream0 = EduStream(*edu_stream0);
+           }
+           EduStream copy_stream1;
+           if (edu_stream1) {
+             copy_stream1 = EduStream(*edu_stream1);
+           }
+           if (raise_) {
+             if (map_teacher_video_widgets_[0] == video_widget_[0]) {
+               map_teacher_video_widgets_[0] = video_widget_[1];
+               map_student_uuid_video_widgets_[raise_user_uuid_] =
+                   video_widget_[0];
+             } else {
+               map_teacher_video_widgets_[0] = video_widget_[0];
+               map_student_uuid_video_widgets_[raise_user_uuid_] =
+                   video_widget_[1];
+             }
+           }
+           if (edu_stream0) {
+             AddSpecifiedLocalStream(1, copy_stream0);
+           } else {
+             ResetStreamWidget(copy_stream0, video_widget_[1]);
+           }
+           if (edu_stream1) {
+             AddSpecifiedLocalStream(0, copy_stream1);
+           } else {
+             ResetStreamWidget(copy_stream1, video_widget_[0]);
+		   }
+           QJsonObject obj;
+           obj.insert("type", SWITCH_WIDGET);
+           obj.insert("widget0", copy_stream1.stream_uuid);
+           obj.insert("widget1", copy_stream0.stream_uuid);
+
+           QJsonDocument doc;
+           doc.setObject(obj);
+           teacher_widget_manager_->SendRoomCustomMessage(
+               doc.toJson(QJsonDocument::Compact));
+         }

@@ -1,5 +1,6 @@
 #include "util.h"
-
+#include <QBitmap>
+#include <QPainter>
 #include <QCloseEvent>
 #include <QRegExpValidator>
 #include "AgoraChatWidget.h"
@@ -18,7 +19,7 @@ AgoraLoginWidget::AgoraLoginWidget(
   setWindowFlags(Qt::FramelessWindowHint);
 
   ui.RoomNameLabel->setText(QString::fromLocal8Bit(
-      STR(<h4><font color = red> 请输入课堂号！</ font></ h4>)));
+      STR(<h4><font color = "#d42515"> 请输入课堂号！</ font></ h4>)));
 
   QRegExp regx("[a-zA-Z0-9]+$");
   ui.RoomNameLineEdit->setValidator(
@@ -45,23 +46,52 @@ void AgoraLoginWidget::OnLoginPushButtonClicked() {
   QString room_name = ui.RoomNameLineEdit->text();
   QString user_name = ui.UserNameLineEdit->text();
 
-  if (room_name.isEmpty()||user_name.isEmpty())
-  {
+  if (room_name.isEmpty() || user_name.isEmpty()) {
     SetTipsLabelContent(QString::fromLocal8Bit(
-        STR(<h4><font color = red> 房间号或用户名为空！</ font></ h4>)));
+        STR(<h4><font color = "#d42515"> 房间号或用户名为空！</ font></ h4>)));
     return;
   }
 
   EduRoleType type = ui.TeachRadioButton->isChecked() ? EDU_ROLE_TYPE_TEACHER
                                                       : EDU_ROLE_TYPE_STUDENT;
+  login_widget_manager_->CreateClassroomManager(room_name.toStdString(), user_name.toStdString(),
+                                                type);
+}
 
-  login_widget_manager_->CreateClassroomManager(room_name.toStdString(),
-                                                user_name.toStdString(), type);
+void AgoraLoginWidget::paintEvent(QPaintEvent* event) {
+  Q_UNUSED(event);
+  QBitmap bmp(this->size());
+  bmp.fill();
+  QPainter painter(&bmp);
+  painter.setPen(Qt::black);
+  painter.setBrush(Qt::black);
+  painter.setRenderHints(QPainter::HighQualityAntialiasing |
+                         QPainter::SmoothPixmapTransform);
+  auto top_rect =
+      QRect(ui.TitleWidget->rect().x() + 1, ui.TitleWidget->rect().y() + 1,
+            ui.TitleWidget->rect().width(), ui.TitleWidget->rect().height());
+
+  auto bottom_rect = QRect(top_rect.x(), top_rect.y() + top_rect.height(),
+            ui.bottom->rect().width(), ui.bottom->rect().height());
+  QPainterPath path;
+  path.setFillRule(Qt::WindingFill);
+  path.addRoundedRect(top_rect, 8, 8);
+  path.addRoundedRect(bottom_rect, 8, 8);
+  QRect temp_top_rect(top_rect.left(), top_rect.top() + top_rect.height() / 2,
+                      top_rect.width(), top_rect.height());
+  QRect temp_bottom_rect(bottom_rect.left(), bottom_rect.top(),
+                         bottom_rect.width(), bottom_rect.height() / 2);
+  path.addRect(temp_top_rect);
+  path.addRect(temp_bottom_rect);
+  painter.fillPath(path, QBrush(QColor(93, 201, 87)));
+  setMask(bmp);
+
+
 }
 
 void AgoraLoginWidget::OnExitPushButtonClicked() {
-  if (AgoraTipsDialog::ExecTipsDialog(str2qstr("退出应用 ？")) ==
-      QDialog::Accepted) {
+  if (AgoraTipsDialog::ExecTipsDialog(
+          str2qstr("退出确认"), str2qstr("退出应用 ？")) == QDialog::Accepted) {
     login_widget_manager_->ExitLoginWidget();
   }
 }
@@ -70,8 +100,8 @@ void AgoraLoginWidget::OnInitializeResult(bool is_success) {
   if (is_success) {
     ui.LoginPushButton->setEnabled(true);
   } else {
-    if (AgoraTipsDialog::ExecTipsDialog(str2qstr("初始化失败")) ==
-        QDialog::Accepted) {
+    if (AgoraTipsDialog::ExecTipsDialog(
+            str2qstr("提示"), str2qstr("初始化失败")) == QDialog::Accepted) {
       login_widget_manager_->InitializeEduManager();
     }
   }
@@ -86,9 +116,10 @@ void AgoraLoginWidget::OnSettingPushButtonClicked() {
 void AgoraLoginWidget::OnRoomNameLineEditTextChanged(const QString& text) {
   if (text.isEmpty()) {
     ui.RoomNameLabel->setText(QString::fromLocal8Bit(
-        STR(<h4><font color = red> 请输入课堂号！</ font></ h4>)));
+        STR(<h4><font color = "#d42515"> 请输入课堂号！</ font></ h4>)));
   } else {
-    ui.RoomNameLabel->setText("");
+    ui.RoomNameLabel->setText(QString::fromLocal8Bit(
+        STR(<h4><font color = "#d42515"> </ font></ h4>)));
   }
 }
 
@@ -115,9 +146,7 @@ void AgoraLoginWidget::mousePressEvent(QMouseEvent* event) {
 
   if (event->button() == Qt::LeftButton && rect.contains(current_pos)) {
     is_drag_ = true;
-    //获得鼠标的初始位置
     mouse_start_point_ = event->globalPos();
-    // mouseStartPoint = event->pos();
     setCursor(Qt::OpenHandCursor);
   }
 
@@ -126,10 +155,7 @@ void AgoraLoginWidget::mousePressEvent(QMouseEvent* event) {
 
 void AgoraLoginWidget::mouseMoveEvent(QMouseEvent* event) {
   if (is_drag_) {
-    //获得鼠标移动的距离
     QPoint distance = event->globalPos() - mouse_start_point_;
-    // QPoint distance = event->pos() - mouseStartPoint;
-    //改变窗口的位置
     this->move(window_top_left_point_ + distance);
   }
 

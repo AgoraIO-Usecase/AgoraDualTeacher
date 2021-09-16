@@ -17,16 +17,15 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);
-</string>
+   <string notr="true">background-color: #F9F9FC;</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>9</y>
-     <width>642</width>
-     <height>40</height>
+     <x>0</x>
+     <y>0</y>
+     <width>661</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
@@ -39,7 +38,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-color: #F9F9FC;</string>
    </property>
    <property name="text">
     <string>请选择需要共享的内容</string>
@@ -186,8 +185,8 @@
   <widget class="QPushButton" name="applyButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>460</y>
+     <x>270</x>
+     <y>465</y>
      <width>120</width>
      <height>34</height>
     </rect>
@@ -296,7 +295,7 @@ QPushButton#applyButton:pressed{
    <property name="geometry">
     <rect>
      <x>630</x>
-     <y>20</y>
+     <y>15</y>
      <width>20</width>
      <height>20</height>
     </rect>
