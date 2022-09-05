@@ -33,8 +33,8 @@ $ cd AgoraDualTeacher
 ```shell
 $ mkdir build
 $ cd build
-$ cmake ..
-$ cmake --build .
+$ cmake .. -A x64
+$ cmake --build . --config=Release
 ```
 
 ## 反馈

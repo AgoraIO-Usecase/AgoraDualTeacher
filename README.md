@@ -34,8 +34,8 @@ Then do the following:
 ```shell 
 $ mkdir build
 $ cd build
-$ cmake ..
-$ cmake --build .
+$ cmake .. -A x64
+$ cmake --build . --config=Release
 ```
 
 ## Feedback
