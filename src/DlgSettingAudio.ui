@@ -1,0 +1,1693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DlgSettingAudio</class>
+ <widget class="QDialog" name="DlgSettingAudio">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1924</width>
+    <height>1087</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>960</width>
+    <height>540</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>3840</width>
+    <height>2160</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>AgoraCourse</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2079</width>
+     <height>1117</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="sizeConstraint">
+     <enum>QLayout::SetNoConstraint</enum>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_titleButton" stretch="0,0,0">
+      <property name="spacing">
+       <number>26</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>1692</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="maxButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>50</horstretch>
+          <verstretch>50</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#maxButton{
+    border-image: url(:/AgoraCourse/Resources/dualTeacher/change-glbbtn.png);
+    background-image: url(:/AgoraCourse/Resources/dualTeacher/);
+    background-color:rgba(0,0,0,0);
+}
+QPushButton#maxButton:hover {
+     border-image: url(:/AgoraCourse/Resources/dualTeacher/change-glbbtn.png);
+    background-color:rgba(0,0,0,0);
+}
+QPushButton#maxButton:pressed {
+    border-image: url(:/AgoraCourse/Resources/dualTeacher/change-glbbtn.png);
+     background-color:rgba(0,0,0,0);
+};
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="minButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#minButton{
+    border-image: url(:/AgoraCourse/Resources/dualTeacher/mix-glbbtn.png); 
+    background-image: url(:/AgoraCourse/Resources/dualTeacher/);
+    background-color:rgba(0,0,0,0);
+}
+QPushButton#minButton:hover {
+     background-color:rgba(0,0,0,0);
+         border-image: url(:/AgoraCourse/Resources/dualTeacher/mix-glbbtn.png); 
+}
+QPushButton#minButton:pressed {
+    background-color:rgba(0,0,0,0);
+    border-image: url(:/AgoraCourse/Resources/dualTeacher/mix-glbbtn.png); 
+};
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="closeButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#closeButton{
+    border-image: url(:/AgoraCourse/Resources/dualTeacher/closes-glbbtn.png);
+    background-image: url(:/AgoraCourse/Resources/dualTeacher/);
+   background-color:rgba(0,0,0,0);
+}
+QPushButton#closeButton:hover {
+    background-color:rgba(0,0,0,0);
+    background-image: url(:/AgoraCourse/Resources/dualTeacher/);
+}
+QPushButton#closeButton:pressed {
+    background-color:rgba(0,0,0,0);
+    background-image: url(:/AgoraCourse/Resources/dualTeacher/);
+};</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_Setting">
+      <property name="spacing">
+       <number>677</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>135</number>
+      </property>
+      <property name="topMargin">
+       <number>48</number>
+      </property>
+      <property name="rightMargin">
+       <number>864</number>
+      </property>
+      <property name="bottomMargin">
+       <number>54</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="btnBack">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>78</width>
+          <height>78</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>78</width>
+          <height>78</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btnBack{
+		
+	border-image: url(:/AgoraCourse/Resources/dualTeacher/backbtn-glb.png);
+    background-color: #00000000;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labTitle">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>192</width>
+          <height>67</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>192</width>
+          <height>67</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel#labTitle{
+font-size: 48px;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #000000;
+line-height: 53px;
+}</string>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>音频设置</string>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_Mic">
+      <property name="spacing">
+       <number>75</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>562</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>460</number>
+      </property>
+      <property name="bottomMargin">
+       <number>75</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_MicInfo">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>150</number>
+        </property>
+        <item alignment="Qt::AlignRight">
+         <widget class="QLabel" name="labelMicInfo">
+          <property name="minimumSize">
+           <size>
+            <width>190</width>
+            <height>53</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>190</width>
+            <height>53</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel#labelMicInfo{
+font-size: 38px;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #000000;
+line-height: 53px;
+}</string>
+          </property>
+          <property name="text">
+           <string>麦克风设置</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_MicSetting">
+        <property name="spacing">
+         <number>55</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_Mic">
+          <property name="spacing">
+           <number>13</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_MicDevice">
+            <property name="spacing">
+             <number>34</number>
+            </property>
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="labelMic">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel#labelMic{
+  font-size: 26px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+   color: #333333;
+   line-height: 37px;
+}                </string>
+              </property>
+              <property name="text">
+               <string>麦克风</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnMicSelect">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>460</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>460</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton#btnMicSelect{
+	background-image: url(:/AgoraCourse/Resources/dualTeacher/traingle.png);
+    background-position:right;
+    background-repeat:none;
+    border:none;
+    background-color: rgba(255, 255, 255,0);
+   font-size: 26px;
+   font-family: PingFangSC-Medium, PingFang SC;
+   font-weight: 500;
+   color: #333333;
+   line-height: 37px;
+   text-align:right;
+   padding-right: 50px;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="Line" name="lineMic">
+            <property name="minimumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">width: 620px;
+border: none;
+background-color:  rgba(122, 120, 120, 1);</string>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_MicTest">
+          <property name="spacing">
+           <number>34</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="btnTestMic">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>96</horstretch>
+              <verstretch>65</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>65</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>96</width>
+              <height>65</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton#btnTestMic{
+    background-color: rgba(72, 72, 72, 1);
+    border-width: 1px;
+    border-radius: 5px;
+    border-color:   #FFFFFFFF;
+   font-size: 24px;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+line-height: 33px;
+}</string>
+            </property>
+            <property name="text">
+             <string>测试</string>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignVCenter">
+           <widget class="QProgressBar" name="progressBarMicVolume">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>500</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QProgressBar#progressBarMicVolume {
+    background-color: #FFFFFF;
+    border: none;
+    text-align:right;
+}
+QProgressBar#progressBarMicVolume::chunk {
+    background-color: #4C4C4C;
+    width: 8px;
+    margin: 1px;
+}</string>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="textVisible">
+             <bool>false</bool>
+            </property>
+            <property name="textDirection">
+             <enum>QProgressBar::BottomToTop</enum>
+            </property>
+            <property name="format">
+             <string>%p</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_Speaker">
+      <property name="spacing">
+       <number>75</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>562</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>460</number>
+      </property>
+      <property name="bottomMargin">
+       <number>75</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_SpeakerInfo">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>120</number>
+        </property>
+        <item alignment="Qt::AlignRight">
+         <widget class="QLabel" name="labelSpeakerInfo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>190</width>
+            <height>53</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>190</width>
+            <height>53</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel#labelSpeakerInfo{
+  font-size: 38px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #000000;
+  line-height: 53px;
+}                  </string>
+          </property>
+          <property name="text">
+           <string>扬声器设置</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_SpeakerSetting">
+        <property name="spacing">
+         <number>48</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_Speaker">
+          <property name="spacing">
+           <number>13</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_SpeakerDevice">
+            <property name="spacing">
+             <number>34</number>
+            </property>
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="labelSpeaker">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                            QLabel#labelSpeaker{
+                            font-size: 26px;
+                            font-family: PingFangSC-Medium, PingFang SC;
+                            font-weight: 500;
+                            color: #333333;
+                            line-height: 37px;
+                            }
+                          </string>
+              </property>
+              <property name="text">
+               <string>扬声器</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnSpeakerSelect">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>460</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>460</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                    QPushButton#btnSpeakerSelect{
+                    background-image: url(:/AgoraCourse/Resources/dualTeacher/traingle.png);
+                    background-position:right;
+                    background-repeat:none;
+                    border:none;
+                    background-color: rgba(255, 255, 255,0);
+                    font-size: 26px;
+                    font-family: PingFangSC-Medium, PingFang SC;
+                    font-weight: 500;
+                    color: #333333;
+                    line-height: 37px;
+                    text-align:right;
+                    padding-right: 50px;
+                    }
+                  </string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="Line" name="lineSpeaker">
+            <property name="minimumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+                        width: 620px;
+                        border: none;
+                        background-color:  #7A7878;
+                      </string>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_SpeakerTest">
+          <property name="spacing">
+           <number>34</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="btnTestSpeaker">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>96</horstretch>
+              <verstretch>65</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>65</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>96</width>
+              <height>65</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton#btnTestSpeaker{
+    background-color: rgba(72, 72, 72, 1);
+    border-width: 1px;
+    border-radius: 5px;
+    border-color:   #FFFFFFFF;
+   font-size: 24px;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+line-height: 33px;
+}</string>
+            </property>
+            <property name="text">
+             <string>测试</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBarSpeakerVolume">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QProgressBar#progressBarSpeakerVolume {
+    background-color: #00000000;
+    border: none;
+    text-align:right;
+}
+QProgressBar#progressBarSpeakerVolume::chunk {
+    background-color: #00000000;
+    width: 8px;
+    margin: 1px;
+}</string>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="textVisible">
+             <bool>false</bool>
+            </property>
+            <property name="format">
+             <string>%p</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3ASetting">
+      <property name="spacing">
+       <number>75</number>
+      </property>
+      <property name="leftMargin">
+       <number>540</number>
+      </property>
+      <property name="rightMargin">
+       <number>460</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3AInfo">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item alignment="Qt::AlignRight|Qt::AlignTop">
+         <widget class="QLabel" name="label3A">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>230</width>
+            <height>53</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel#label3A{
+  font-size: 38px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #000000;
+  line-height: 53px;
+}                  </string>
+          </property>
+          <property name="text">
+           <string>SDK 3A 设置</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3A">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_AGC">
+          <property name="spacing">
+           <number>13</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_AGC">
+            <property name="spacing">
+             <number>80</number>
+            </property>
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <property name="rightMargin">
+             <number>50</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="labAGCSelect">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>140</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>140</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel#labAGCSelect{
+     border:none;
+	background-color: rgba(255, 255, 255,0);
+    font-size: 26px;
+   font-family: PingFangSC-Semibold, PingFang SC;
+   font-weight: 600;
+   color:rgba(51, 51, 51, 1);
+   line-height: 37px;
+}</string>
+              </property>
+              <property name="text">
+               <string>AGC</string>
+              </property>
+              <property name="flat" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAGCStatsPre">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton#btnAGCStatsPre{
+  border:none;
+  border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+}
+QPushButton#btnAGCStatsPre:hover{
+  border:none;
+  border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+}
+QPushButton#btnAGCStatsPre:pressed{
+  border:none;
+  border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelAGCStats">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel#labelAGCStats{
+font-size: 26px;
+font-family: PingFangSC-Medium, PingFang SC;
+font-weight: 500;
+color: #333333;
+line-height: 37px;
+}                  </string>
+              </property>
+              <property name="text">
+               <string>开启</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAGCStatsNext">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton#btnAGCStatsNext{
+    border:none;
+  border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+}
+QPushButton#btnAGCStatsNext: hover{
+    border:none;
+  border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+}
+QPushButton#btnAGCStatsNext:pressed{
+    border:none;
+  border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="Line" name="lineAGC">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+                    width: 620px;
+                    border: none;
+                    background-color:  rgba(122, 120, 120, 1);
+                  </string>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_AEC">
+          <property name="spacing">
+           <number>13</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_AECDevice">
+            <property name="spacing">
+             <number>80</number>
+            </property>
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <property name="rightMargin">
+             <number>50</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="labAECSelect">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>140</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>140</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                        QLabel#labAECSelect{
+                        border:none;
+                        background-color: rgba(255, 255, 255,0);
+                        font-size: 26px;
+                        font-family: PingFangSC-Semibold, PingFang SC;
+                        font-weight: 600;
+                        color:rgba(51, 51, 51, 1);
+                        line-height: 37px;
+                        }
+                      </string>
+              </property>
+              <property name="text">
+               <string>AEC</string>
+              </property>
+              <property name="flat" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAECStatsPre">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                        QPushButton#btnAECStatsPre{
+                        border:none;
+                        border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+                        }
+                        QPushButton#btnAECStatsPre:hover{
+                        border:none;
+                        border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+                        }
+                        QPushButton#btnAECStatsPre:pressed{
+                        border:none;
+                        border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+                        }
+                      </string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelAECStats">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                        QLabel#labelAECStats{
+                        font-size: 26px;
+                        font-family: PingFangSC-Medium, PingFang SC;
+                        font-weight: 500;
+                        color: #333333;
+                        line-height: 37px;
+                        }
+                      </string>
+              </property>
+              <property name="text">
+               <string>开启</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAECStatsNext">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                        QPushButton#btnAECStatsNext{
+                        border:none;
+                        border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+                        }
+                        QPushButton#btnAECStatsNext: hover{
+                        border:none;
+                        border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+                        }
+                        QPushButton#btnAECStatsNext:pressed{
+                        border:none;
+                        border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+                        }
+                      </string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="Line" name="lineAEC">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+                    width: 620px;
+                    border: none;
+                    background-color:  rgba(122, 120, 120, 1);
+                  </string>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_ANS">
+          <property name="spacing">
+           <number>13</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_ANSDevice">
+            <property name="spacing">
+             <number>80</number>
+            </property>
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <property name="rightMargin">
+             <number>50</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="labANSSelect">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>140</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>140</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                         QLabel#labANSSelect{
+                         border:none;
+                         background-color: rgba(255, 255, 255,0);
+                         font-size: 26px;
+                         font-family: PingFangSC-Semibold, PingFang SC;
+                         font-weight: 600;
+                         color:rgba(51, 51, 51, 1);
+                         line-height: 37px;
+                         }
+                       </string>
+              </property>
+              <property name="text">
+               <string>ANS</string>
+              </property>
+              <property name="flat" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnANSStatsPre">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                         QPushButton#btnANSStatsPre{
+                         border:none;
+                         border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+                         }
+                         QPushButton#btnANSStatsPre:hover{
+                         border:none;
+                         border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+                         }
+                         QPushButton#btnANSStatsPre:pressed{
+                         border:none;
+                         border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-backward.png);
+                         }
+                       </string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelANSStats">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>78</width>
+                <height>37</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                         QLabel#labelANSStats{
+                         font-size: 26px;
+                         font-family: PingFangSC-Medium, PingFang SC;
+                         font-weight: 500;
+                         color: #333333;
+                         line-height: 37px;
+                         }
+                       </string>
+              </property>
+              <property name="text">
+               <string>开启</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnANSStatsNext">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>52</width>
+                <height>52</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                         QPushButton#btnANSStatsNext{
+                         border:none;
+                         border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+                         }
+                         QPushButton#btnANSStatsNext: hover{
+                         border:none;
+                         border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+                         }
+                         QPushButton#btnANSStatsNext:pressed{
+                         border:none;
+                         border-image: url(:/AgoraCourse/Resources/dualTeacher/icon-forward.png);
+                         }
+                       </string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="Line" name="lineANS">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>630</width>
+              <height>1</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+                     width: 620px;
+                     border: none;
+                     background-color:  rgba(122, 120, 120, 1);
+                   </string>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>48</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>50</number>
+      </property>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size: 24px;
+font-family: Helvetica;
+color: #FFFFFF;
+line-height: 29px;
+background-color: rgba(0, 0, 0, 0);
+border-image: url(:/AgoraCourse/Resources/dualTeacher);</string>
+        </property>
+        <property name="text">
+         <string>Agora.io</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="agoracourse.qrc"/>
+ </resources>
+ <connections/>
+</ui>

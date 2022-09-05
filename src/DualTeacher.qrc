@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/res">
+    <file>agora.ico</file>
+    <file>agora.png</file>
+  </qresource>
+</RCC>
